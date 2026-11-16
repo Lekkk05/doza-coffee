@@ -35,28 +35,50 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             color: #e6ded8; 
-            padding: 20px; 
+            padding: 15px 20px; 
             text-align: center; 
             position: sticky; 
             top: 0; 
             z-index: 10; 
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        header h1 { 
+        
+        .header-title { text-align: left; }
+        .header-title h1 { 
             font-family: 'Playfair Display', serif;
-            font-size: 28px; 
-            letter-spacing: 3px; 
+            font-size: 24px; 
+            letter-spacing: 2px; 
             color: #d4a373; 
             font-weight: 700;
         }
-        header p { 
-            font-size: 10px; 
+        .header-title p { 
+            font-size: 9px; 
             opacity: 0.6; 
-            margin-top: 5px; 
+            margin-top: 2px; 
             text-transform: uppercase; 
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             font-weight: 600;
         }
+
+        /* Кнопка выставить счет для бариста */
+        .manual-btn {
+            background: #d4a373;
+            color: #1a1412;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 10px rgba(212, 163, 115, 0.3);
+        }
+        .manual-btn:active { background: #faedcd; }
 
         #main-view {
             display: flex;
@@ -104,9 +126,7 @@
             transition: transform 0.15s ease;
         }
 
-        .big-cat-btn:active {
-            transform: scale(0.97);
-        }
+        .big-cat-btn:active { transform: scale(0.97); }
 
         .big-cat-btn::before {
             content: '';
@@ -117,14 +137,9 @@
             transition: background 0.3s;
         }
 
-        .big-cat-btn:active::before {
-            background: rgba(0, 0, 0, 0.1); 
-        }
+        .big-cat-btn:active::before { background: rgba(0, 0, 0, 0.1); }
 
-        .big-cat-btn span {
-            position: relative;
-            z-index: 2;
-        }
+        .big-cat-btn span { position: relative; z-index: 2; }
 
         #category-view {
             display: none; 
@@ -161,11 +176,7 @@
             font-style: italic;
         }
 
-        .menu-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
-        }
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         
         .card { 
             background: rgba(38, 28, 24, 0.85); 
@@ -197,13 +208,7 @@
             gap: 5px;
         }
         
-        .card-title { 
-            font-size: 15px; 
-            font-weight: 500; 
-            text-align: center;
-            color: #f4e9e1;
-            letter-spacing: 0.5px;
-        }
+        .card-title { font-size: 15px; font-weight: 500; text-align: center; color: #f4e9e1; letter-spacing: 0.5px; }
 
         .card-price {
             font-family: 'Playfair Display', serif;
@@ -230,11 +235,9 @@
             justify-content: center;
         }
         
-        .add-btn:active { 
-            background: #d4a373; 
-            color: #1a1412; 
-        }
+        .add-btn:active { background: #d4a373; color: #1a1412; }
 
+        /* Корзина */
         .bottom-bar { 
             position: fixed; 
             bottom: -120px; 
@@ -273,48 +276,137 @@
         }
         .checkout-btn:active { background: #faedcd; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* --- МОДАЛЬНЫЕ ОКНА --- */
+        .modal-overlay {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
         }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-box {
+            background: #2b211d;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            animation: slideUp 0.3s ease;
         }
+
+        .modal-box h2 {
+            font-family: 'Playfair Display', serif;
+            color: #d4a373;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .modal-box p { font-size: 14px; color: #e6ded8; margin-bottom: 10px; }
+
+        .amount-display {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            display: block;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* Поле ввода для бариста */
+        .manual-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border: 2px solid #d4a373;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .qr-container {
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .qr-container img {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+
+        .action-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+        }
+
+        .btn-generate { background: #d4a373; color: #1a1412; }
+        .btn-generate:active { background: #faedcd; }
+
+        .btn-cash { background: #00a841; color: white; }
+        .btn-cash:active { background: #008a35; }
+
+        .close-modal {
+            background: transparent;
+            color: #888;
+            border: none;
+            font-size: 14px;
+            margin-top: 10px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>DOZA COFFEE</h1>
-        <p>SPECIALITY</p>
+        <div class="header-title">
+            <h1>DOZA COFFEE</h1>
+            <p>SPECIALITY</p>
+        </div>
+        <!-- Кнопка для быстрого счета -->
+        <button class="manual-btn" onclick="openManualModal()">⚡ Выставить счёт</button>
     </header>
 
     <div id="main-view">
         <div class="main-column">
             <div class="column-title">ЕДА</div>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'snacks', 'Легкий перекус')">
-                <span>Легкий перекус</span>
-            </button>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'bars', 'Батончики')">
-                <span>Батончики</span>
-            </button>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'gum', 'Жевачка')">
-                <span>Жевачка</span>
-            </button>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'snacks', 'Легкий перекус')"><span>Легкий перекус</span></button>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'bars', 'Батончики')"><span>Батончики</span></button>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'gum', 'Жевачка')"><span>Жевачка</span></button>
         </div>
 
         <div class="main-column">
             <div class="column-title">НАПИТКИ</div>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'coffee', 'Кофе')">
-                <span>Кофе</span>
-            </button>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'juices', 'Холодные напитки')">
-                <span>Холодные напитки</span>
-            </button>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'water', 'Вода')">
-                <span>Вода</span>
-            </button>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'coffee', 'Кофе')"><span>Кофе</span></button>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'juices', 'Холодные напитки')"><span>Холодные напитки</span></button>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'water', 'Вода')"><span>Вода</span></button>
         </div>
     </div>
 
@@ -324,29 +416,67 @@
         <div class="menu-grid" id="menu-grid"></div>
     </div>
 
+    <!-- Нижняя корзина -->
     <div class="bottom-bar" id="cart-bar">
         <div class="cart-info">
             <span>Ваш заказ</span>
             <b id="cart-total">0 ₽</b>
         </div>
-        <button class="checkout-btn" onclick="checkout()">Оформить</button>
+        <button class="checkout-btn" onclick="openPaymentModal()">Оформить</button>
+    </div>
+
+    <!-- МОДАЛКА: Оплата из корзины -->
+    <div class="modal-overlay" id="payment-modal">
+        <div class="modal-box">
+            <h2>Оплата заказа</h2>
+            <p>Сумма к оплате:</p>
+            <span class="amount-display" id="modal-amount">0 ₽</span>
+            
+            <div class="qr-container">
+                <img id="qr-image" src="" alt="QR-код для оплаты">
+            </div>
+            
+            <p style="font-size: 12px; color: #888; margin-bottom: 20px;">
+                Отсканируйте QR-код в приложении вашего банка (СБП).
+            </p>
+
+            <button class="action-btn btn-cash" onclick="payCash()">
+                ✅ Оплата произошла наличными
+            </button>
+            
+            <button class="close-modal" onclick="closePaymentModal()">Отмена</button>
+        </div>
+    </div>
+
+    <!-- МОДАЛКА: Ручной ввод суммы (для бариста) -->
+    <div class="modal-overlay" id="manual-modal">
+        <div class="modal-box">
+            <h2>Выставить счёт</h2>
+            <p>Введите сумму заказа:</p>
+            
+            <input type="number" id="manual-amount" class="manual-input" placeholder="0 ₽" inputmode="numeric">
+            
+            <button class="action-btn btn-generate" onclick="generateManualQR()">Сгенерировать QR-код</button>
+
+            <div id="manual-qr-box" style="display: none;">
+                <div class="qr-container" style="margin-top: 15px;">
+                    <img id="manual-qr-image" src="" alt="QR-код">
+                </div>
+                <p style="font-size: 12px; color: #888;">Покажите этот код клиенту для сканирования</p>
+            </div>
+            
+            <button class="close-modal" onclick="closeManualModal()">Закрыть</button>
+        </div>
     </div>
 
     <script>
         const menuData = [
-            // Легкий перекус
             { type: 'food', subcat: 'snacks', name: 'Сэндвич', price: 300, desc: 'Классический', img: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=300&auto=format&fit=crop' },
-            
-            // Жевачка
             { type: 'food', subcat: 'gum', name: '5 Свежая мята', price: 100, desc: 'Без сахара', img: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=300&auto=format&fit=crop' },
             { type: 'food', subcat: 'gum', name: 'Wrigley\'s Spearmint', price: 100, desc: 'Без сахара', img: 'https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=300&auto=format&fit=crop' },
-            
-            // Холодные напитки
             { type: 'drink', subcat: 'juices', name: 'Колд Брю', price: 350, desc: 'Холодный кофе', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=300&auto=format&fit=crop' },
             { type: 'drink', subcat: 'juices', name: 'Deneb', price: 200, desc: 'Гранат', img: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=300&auto=format&fit=crop' },
             { type: 'drink', subcat: 'juices', name: 'Kinza', price: 200, desc: 'Лимонад', img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=300&auto=format&fit=crop' },
-            
-            // Вода
             { type: 'drink', subcat: 'water', name: 'Вода', price: 100, desc: '0.5 л', img: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=300&auto=format&fit=crop' },
             { type: 'drink', subcat: 'water', name: 'Газированная вода', price: 150, desc: '0.5 л', img: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=300&auto=format&fit=crop' }
         ];
@@ -393,17 +523,55 @@
             document.getElementById('cart-bar').classList.add('show');
         }
 
-        function checkout() {
+        // --- ОПЛАТА ИЗ КОРЗИНЫ ---
+        function openPaymentModal() {
             if(cartSum === 0) return;
-            let amount = cartSum;
-            let sbpLink = `https://www.sberbank.com/sms/pbpn?requisiteNumber=79698881993&sum=${amount}`;
-            let confirmPay = confirm(`Ваш заказ на сумму ${amount} ₽.\nСейчас откроется приложение банка для оплаты.`);
-            if (confirmPay) {
-                window.location.href = sbpLink;
-                cartSum = 0;
-                document.getElementById('cart-total').innerText = '0 ₽';
-                document.getElementById('cart-bar').classList.remove('show');
+            document.getElementById('modal-amount').innerText = cartSum + ' ₽';
+            let sbpLink = `https://www.sberbank.com/sms/pbpn?requisiteNumber=79698881993&sum=${cartSum}`;
+            let encodedLink = encodeURIComponent(sbpLink);
+            document.getElementById('qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodedLink}`;
+            document.getElementById('payment-modal').classList.add('active');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('payment-modal').classList.remove('active');
+        }
+
+        function payCash() {
+            alert("Спасибо! Заказ оплачен наличными. Пожалуйста, ожидайте.");
+            clearCart();
+        }
+
+        function clearCart() {
+            cartSum = 0;
+            document.getElementById('cart-total').innerText = '0 ₽';
+            document.getElementById('cart-bar').classList.remove('show');
+            closePaymentModal();
+        }
+
+        // --- РУЧНОЙ ВВОД СУММЫ (ДЛЯ БАРИСТА) ---
+        function openManualModal() {
+            document.getElementById('manual-amount').value = '';
+            document.getElementById('manual-qr-box').style.display = 'none';
+            document.getElementById('manual-modal').classList.add('active');
+        }
+
+        function closeManualModal() {
+            document.getElementById('manual-modal').classList.remove('active');
+        }
+
+        function generateManualQR() {
+            let amount = document.getElementById('manual-amount').value;
+            if(amount <= 0 || amount === '') {
+                alert("Пожалуйста, введите сумму больше нуля.");
+                return;
             }
+            
+            let sbpLink = `https://www.sberbank.com/sms/pbpn?requisiteNumber=79698881993&sum=${amount}`;
+            let encodedLink = encodeURIComponent(sbpLink);
+            
+            document.getElementById('manual-qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodedLink}`;
+            document.getElementById('manual-qr-box').style.display = 'block';
         }
     </script>
 </body>
