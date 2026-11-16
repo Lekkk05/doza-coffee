@@ -4,405 +4,322 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOZA COFFEE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Добавили шрифт Montserrat для заголовков -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --text-main: #2c2420; /* Темно-кофейный текст */
+            --text-sec: #8e8e93;
+            --accent: #007aff;
+            --danger: #ff3b30;
+            --success: #34c759;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
         
         body { 
-            background-color: #1a1412; 
-            background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
+            background-color: #fcfaf8;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 163, 115, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(78, 52, 46, 0.1) 0%, transparent 40%),
+                linear-gradient(135deg, #fdfbfb 0%, #f4ede4 100%);
             background-attachment: fixed;
-            color: #e6ded8; 
-            padding-bottom: 100px; 
-            overflow-x: hidden;
-            position: relative;
+            color: var(--text-main); 
+            padding-bottom: 140px; 
+            overflow-x: hidden; 
+            position: relative; 
             -webkit-tap-highlight-color: transparent;
+            min-height: 100vh;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(18, 13, 11, 0.92); 
-            z-index: -1;
-        }
-        
+        /* Шапка (Стекло) */
         header { 
-            background-color: rgba(17, 13, 12, 0.7); 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: #e6ded8; 
-            padding: 15px 20px; 
-            text-align: center; 
-            position: sticky; 
-            top: 0; 
-            z-index: 10; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: rgba(255, 255, 255, 0.65); 
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            padding: 15px 20px; position: sticky; top: 0; z-index: 10; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.9); 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            display: flex; justify-content: space-between; align-items: center;
         }
         
-        .header-title { text-align: left; }
-        .header-title h1 { 
-            font-family: 'Playfair Display', serif;
-            font-size: 24px; 
-            letter-spacing: 2px; 
-            color: #d4a373; 
-            font-weight: 700;
+        .header-title h1 { font-family: 'Playfair Display', serif; font-size: 24px; letter-spacing: 1px; color: var(--text-main); font-weight: 700; }
+        .header-title p { font-size: 9px; color: var(--text-sec); margin-top: 2px; text-transform: uppercase; letter-spacing: 3px; font-weight: 600; }
+
+        /* Кнопка стеклянная */
+        .manual-btn { 
+            background: rgba(0, 122, 255, 0.1); 
+            color: var(--accent); 
+            border: 1px solid rgba(0, 122, 255, 0.3); 
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            padding: 8px 14px; border-radius: 12px; 
+            font-weight: 600; font-size: 13px; cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.15), 0 0 10px rgba(0, 122, 255, 0.1); 
+            transition: all 0.3s ease;
+            animation: pulseGlow 3s infinite alternate;
         }
-        .header-title p { 
-            font-size: 9px; 
-            opacity: 0.6; 
-            margin-top: 2px; 
-            text-transform: uppercase; 
-            letter-spacing: 3px;
-            font-weight: 600;
+        .manual-btn:active { transform: scale(0.95); background: rgba(0, 122, 255, 0.2); animation: none; }
+
+        /* Главное меню */
+        #main-view { display: flex; padding: 20px 15px; gap: 15px; animation: fadeIn 0.5s ease; }
+        .main-column { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+        
+        /* ОБНОВЛЕННЫЕ Заголовки колонок */
+        .column-title { 
+            font-family: 'Montserrat', sans-serif; /* Новый классный шрифт */
+            font-size: 24px; /* Увеличили размер */
+            color: var(--text-main); 
+            text-align: center; 
+            font-weight: 800; /* Сделали максимально жирным */
+            letter-spacing: 1.5px; 
+            margin-bottom: 10px; 
+            text-transform: uppercase; /* Все буквы заглавные для стиля */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Легкая тень для объема */
         }
-
-        /* Кнопка выставить счет для бариста */
-        .manual-btn {
-            background: #d4a373;
-            color: #1a1412;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            box-shadow: 0 2px 10px rgba(212, 163, 115, 0.3);
+        
+        /* Плитки категорий */
+        .big-cat-btn { 
+            position: relative; height: 145px; border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.5); 
+            background-size: cover; background-position: center; cursor: pointer; overflow: hidden; 
+            display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; 
+            color: #fff; 
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.9); 
+            padding: 10px; text-align: center; 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12); 
+            animation: floatTile 6s ease-in-out infinite; 
         }
-        .manual-btn:active { background: #faedcd; }
+        
+        .main-column:nth-child(1) .big-cat-btn:nth-child(2) { animation-delay: 0s; }
+        .main-column:nth-child(1) .big-cat-btn:nth-child(3) { animation-delay: 1.5s; }
+        .main-column:nth-child(1) .big-cat-btn:nth-child(4) { animation-delay: 3s; }
+        
+        .main-column:nth-child(2) .big-cat-btn:nth-child(2) { animation-delay: 0.5s; }
+        .main-column:nth-child(2) .big-cat-btn:nth-child(3) { animation-delay: 2s; }
+        .main-column:nth-child(2) .big-cat-btn:nth-child(4) { animation-delay: 3.5s; }
 
-        #main-view {
-            display: flex;
-            padding: 20px 15px;
-            gap: 15px;
-            animation: fadeIn 0.4s ease;
+        .big-cat-btn:active { 
+            transform: scale(0.94); 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+            animation: none; 
         }
-
-        .main-column {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 15px; 
+        
+        .big-cat-btn::before { 
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+            background: rgba(0, 0, 0, 0.45); 
+            z-index: 1; transition: background 0.3s; 
         }
-
-        .column-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            color: #d4a373;
-            text-align: center;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-        }
-
-        .big-cat-btn {
-            position: relative;
-            height: 145px; 
-            border-radius: 12px;
-            border: none;
-            box-shadow: none;
-            background-size: cover;
-            background-position: center;
-            cursor: pointer;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-            font-weight: 500;
-            color: #fff;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
-            padding: 10px;
-            text-align: center;
-            transition: transform 0.15s ease;
-        }
-
-        .big-cat-btn:active { transform: scale(0.97); }
-
-        .big-cat-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.3); 
-            z-index: 1;
-            transition: background 0.3s;
-        }
-
-        .big-cat-btn:active::before { background: rgba(0, 0, 0, 0.1); }
-
+        .big-cat-btn:active::before { background: rgba(0, 0, 0, 0.2); }
         .big-cat-btn span { position: relative; z-index: 2; }
 
-        #category-view {
-            display: none; 
-            padding: 15px;
-            animation: slideUp 0.3s ease;
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(43, 33, 29, 0.6);
-            backdrop-filter: blur(8px);
-            color: #d4a373;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            margin-bottom: 25px;
+        /* Категории (Внутри) */
+        #category-view { display: none; padding: 15px; animation: slideUp 0.3s ease; }
+        .back-btn { 
+            display: inline-flex; align-items: center; background: var(--glass-bg); color: var(--accent); 
+            border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 20px; 
+            font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 25px; box-shadow: var(--glass-shadow);
             transition: 0.2s;
         }
-
-        .back-btn:active { background: #d4a373; color: #1a1412; }
-
-        .category-header {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            color: #fff;
-            margin-bottom: 25px;
-            text-align: center;
-            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
-            padding-bottom: 15px;
-            font-style: italic;
-        }
-
+        .back-btn:active { transform: scale(0.95); }
+        
+        .category-header { font-family: 'Montserrat', sans-serif; font-size: 24px; color: var(--text-main); margin-bottom: 25px; text-align: center; padding-bottom: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;}
+        
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         
+        /* Карточки товаров */
         .card { 
-            background: rgba(38, 28, 24, 0.85); 
-            backdrop-filter: blur(5px);
-            border-radius: 12px; 
-            overflow: hidden; 
-            display: flex; 
-            flex-direction: column; 
-            border: none;
-            transition: transform 0.1s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; 
+            border: 1px solid var(--glass-border); box-shadow: 0 8px 25px rgba(0,0,0,0.08); 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: fadeIn 0.4s ease;
         }
-        
-        .card:active { transform: scale(0.97); }
-        
-        .card img { 
-            width: 100%; 
-            height: 130px; 
-            object-fit: cover; 
-            opacity: 0.9;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-        }
-        
-        .card-content { 
-            padding: 15px 12px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .card-title { font-size: 15px; font-weight: 500; text-align: center; color: #f4e9e1; letter-spacing: 0.5px; }
-
-        .card-price {
-            font-family: 'Playfair Display', serif;
-            font-size: 16px;
-            color: #d4a373;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-style: italic;
-        }
+        .card:active { transform: scale(0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .card img { width: 100%; height: 120px; object-fit: cover; }
+        .card-content { padding: 15px 12px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .card-title { font-size: 15px; font-weight: 600; text-align: center; color: var(--text-main); }
+        .card-price { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
         
         .add-btn { 
-            background: rgba(212, 163, 115, 0.15);
-            color: #d4a373; 
-            border: 1px solid rgba(212, 163, 115, 0.5); 
-            width: 100%; 
-            height: 35px; 
-            border-radius: 8px; 
-            font-size: 20px; 
-            font-weight: 600;
-            cursor: pointer; 
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: rgba(0, 122, 255, 0.1); color: var(--accent); border: 1px solid rgba(0, 122, 255, 0.3); 
+            width: 100%; height: 35px; border-radius: 10px; font-size: 20px; font-weight: 600; cursor: pointer; 
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .add-btn:active { background: var(--accent); color: #fff; transform: scale(0.9); }
+
+        /* Админка */
+        #admin-view { display: none; padding: 20px; animation: fadeIn 0.4s ease; }
+        
+        .auth-box { 
+            background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            padding: 40px 20px; border-radius: 24px; text-align: center; 
+            border: 2px solid var(--glass-border); 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin-top: 20vh; 
+            animation: slideUp 0.5s ease;
+        }
+        .auth-box h2 { color: var(--text-main); margin-bottom: 20px; font-family: 'Playfair Display', serif; }
+        .admin-input { 
+            width: 100%; padding: 15px; background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.1); 
+            border-radius: 12px; color: var(--text-main); font-size: 24px; text-align: center; margin-bottom: 20px; letter-spacing: 5px; outline: none; 
+            transition: 0.3s;
+        }
+        .admin-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,122,255,0.1); }
+        .btn-login { background: var(--accent); color: #fff; border: none; padding: 15px; width: 100%; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-login:active { transform: scale(0.95); }
+
+        #admin-dashboard { display: none; animation: fadeIn 0.4s ease; }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .dash-header h2 { font-family: 'Playfair Display', serif; color: var(--text-main); font-size: 22px; }
+        .btn-logout { background: transparent; color: var(--danger); border: 1px solid var(--danger); padding: 8px 15px; border-radius: 20px; font-size: 12px; cursor: pointer; font-weight: 600; transition: 0.2s;}
+        .btn-logout:active { background: var(--danger); color: #fff; }
+
+        .emp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
+        .emp-card { 
+            background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(15px); padding: 20px; border-radius: 20px; 
+            border: 2px solid var(--glass-border); text-align: center; position: relative; 
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            transition: 0.3s;
+            animation: fadeIn 0.5s ease;
+        }
+        .emp-card.active-shift { 
+            border-color: var(--success); background: rgba(52, 199, 89, 0.15); 
+            box-shadow: 0 0 20px rgba(52, 199, 89, 0.3); 
+            animation: pulseCard 2s infinite alternate;
         }
         
-        .add-btn:active { background: #d4a373; color: #1a1412; }
+        .btn-settings { position: absolute; top: 10px; right: 10px; background: transparent; border: none; font-size: 18px; cursor: pointer; opacity: 0.5; transition: 0.2s; color: var(--text-main);}
+        .btn-settings:active { opacity: 1; transform: rotate(45deg); }
+
+        .emp-name { font-size: 16px; font-weight: 600; margin-bottom: 5px; color: var(--text-main); }
+        .emp-earnings { font-size: 22px; font-weight: bold; color: var(--accent); margin-bottom: 15px; font-family: 'Playfair Display', serif; }
+        
+        .emp-btn-group { display: flex; flex-direction: column; gap: 8px; }
+        .emp-btn { width: 100%; padding: 12px; border-radius: 12px; border: none; font-weight: 600; cursor: pointer; font-size: 13px; transition: 0.2s; }
+        .emp-btn:active { transform: scale(0.95); }
+        .btn-start { background: var(--success); color: white; box-shadow: 0 4px 10px rgba(52, 199, 89, 0.3); }
+        .btn-end { background: var(--danger); color: white; box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3); }
+        .btn-history { background: rgba(0,0,0,0.05); color: var(--text-main); border: 1px solid rgba(0,0,0,0.05); }
+
+        /* Нижнее меню (Стеклянная капсула) */
+        .bottom-nav { 
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
+            width: 90%; max-width: 350px; border-radius: 40px; 
+            background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            display: flex; justify-content: space-around; align-items: center; padding: 8px; z-index: 50; 
+            border: 1.5px solid rgba(255,255,255,1); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .nav-item { 
+            display: flex; flex-direction: column; align-items: center; 
+            color: var(--text-sec); font-size: 11px; font-weight: 600; 
+            cursor: pointer; background: transparent; border: 1px solid transparent; 
+            padding: 8px 25px; border-radius: 30px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .nav-item svg { width: 22px; height: 22px; margin-bottom: 4px; fill: currentColor; }
+        
+        .nav-item.active { 
+            color: var(--accent); 
+            background: rgba(0, 122, 255, 0.1); 
+            border: 1px solid rgba(0, 122, 255, 0.3); 
+            transform: scale(1.05);
+        }
 
         /* Корзина */
         .bottom-bar { 
-            position: fixed; 
-            bottom: -120px; 
-            left: 0; 
-            width: 100%; 
-            background: rgba(17, 13, 12, 0.95); 
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            color: #fff; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.8); 
-            z-index: 20; 
-            border-top: 1px solid rgba(212, 163, 115, 0.2);
-            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: fixed; bottom: -120px; left: 0; width: 100%; 
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            color: var(--text-main); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; 
+            z-index: 40; transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            border-top: 1px solid rgba(0,0,0,0.05); box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
         }
-        
-        .bottom-bar.show { bottom: 0; }
+        .bottom-bar.show { bottom: 90px; } 
+        .cart-info span { font-size: 11px; color: var(--text-sec); text-transform: uppercase; font-weight: 600; }
+        .cart-info b { font-size: 24px; font-family: 'Playfair Display', serif; color: var(--text-main); }
+        .checkout-btn { background: var(--accent); color: #fff; border: none; padding: 12px 25px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 14px; box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3); transition: 0.2s;}
+        .checkout-btn:active { transform: scale(0.95); }
 
-        .cart-info { display: flex; flex-direction: column; }
-        .cart-info span { font-size: 11px; color: #d4a373; text-transform: uppercase; font-weight: 600; letter-spacing: 1px;}
-        .cart-info b { font-size: 24px; font-family: 'Playfair Display', serif; }
-        
-        .checkout-btn { 
-            background: #d4a373; 
-            color: #1a1412; 
-            border: none; 
-            padding: 12px 25px; 
-            border-radius: 25px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            font-size: 14px;
-            transition: 0.2s;
-        }
-        .checkout-btn:active { background: #faedcd; }
-
-        /* --- МОДАЛЬНЫЕ ОКНА --- */
-        .modal-overlay {
-            display: none; 
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(5px);
-            z-index: 100;
-            align-items: center;
-            justify-content: center;
-        }
-
+        /* Модалки */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); backdrop-filter: blur(5px); z-index: 100; align-items: center; justify-content: center; }
         .modal-overlay.active { display: flex; }
-
-        .modal-box {
-            background: #2b211d;
-            width: 90%;
-            max-width: 400px;
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid rgba(212, 163, 115, 0.3);
+        
+        .modal-box { 
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            width: 90%; max-width: 400px; border-radius: 24px; padding: 25px; text-align: center; 
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15); border: 1.5px solid rgba(255,255,255,1);
             animation: slideUp 0.3s ease;
         }
+        .modal-box h2 { color: var(--text-main); font-family: 'Playfair Display', serif; margin-bottom: 15px;}
+        
+        .qr-container { background: #fff; padding: 15px; border-radius: 16px; display: inline-block; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .qr-container img { width: 200px; height: 200px; }
+        
+        .action-btn { display: block; width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 14px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .action-btn:active { transform: scale(0.95); }
+        .btn-cash { background: var(--success); color: white; }
+        .btn-cancel { background: rgba(0,0,0,0.05); color: var(--text-main); }
+        .close-modal { background: transparent; color: var(--text-sec); border: none; font-size: 14px; cursor: pointer; margin-top: 10px;}
 
-        .modal-box h2 {
-            font-family: 'Playfair Display', serif;
-            color: #d4a373;
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
+        /* История смен */
+        .history-list { max-height: 350px; overflow-y: auto; text-align: left; margin-top: 15px; margin-bottom: 15px; background: rgba(0,0,0,0.03); border-radius: 12px; padding: 10px; border: 1px solid rgba(0,0,0,0.05); }
+        .history-item { border-bottom: 1px solid rgba(0,0,0,0.05); padding: 12px 0; font-size: 13px; position: relative; }
+        .history-item:last-child { border-bottom: none; }
+        .history-time { color: var(--text-sec); font-size: 12px; font-weight: 600; margin-bottom: 5px; padding-right: 25px;}
+        .history-details { display: flex; justify-content: space-between; margin-bottom: 5px; flex-wrap: wrap; }
+        .history-revenue { color: var(--text-main); font-weight: 500;}
+        .history-salary { color: var(--success); font-weight: bold; }
+        .history-breakdown { font-size: 12px; color: var(--text-sec); margin-bottom: 5px; }
+        .history-products { font-size: 11px; color: var(--text-sec); line-height: 1.4; background: rgba(255,255,255,0.6); padding: 8px; border-radius: 8px; margin-top: 5px; border: 1px solid rgba(0,0,0,0.03); }
+        
+        .btn-delete-shift { position: absolute; top: 10px; right: 0; background: transparent; border: none; font-size: 16px; cursor: pointer; opacity: 0.5; transition: 0.2s; }
+        .btn-delete-shift:active { opacity: 1; transform: scale(1.2); }
 
-        .modal-box p { font-size: 14px; color: #e6ded8; margin-bottom: 10px; }
-
-        .amount-display {
-            font-size: 24px;
-            font-weight: bold;
-            color: #fff;
-            display: block;
-            margin-top: 5px;
-            margin-bottom: 15px;
-        }
-
-        /* Поле ввода для бариста */
-        .manual-input {
-            width: 100%;
-            padding: 15px;
-            background: rgba(0,0,0,0.3);
-            border: 2px solid #d4a373;
-            border-radius: 10px;
-            color: #fff;
-            font-size: 24px;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 15px;
-            outline: none;
-        }
-
-        .qr-container {
-            background: #fff;
-            padding: 15px;
-            border-radius: 12px;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .qr-container img {
-            width: 200px;
-            height: 200px;
-            display: block;
-        }
-
-        .action-btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            border: none;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            text-align: center;
-        }
-
-        .btn-generate { background: #d4a373; color: #1a1412; }
-        .btn-generate:active { background: #faedcd; }
-
-        .btn-cash { background: #00a841; color: white; }
-        .btn-cash:active { background: #008a35; }
-
-        .close-modal {
-            background: transparent;
-            color: #888;
-            border: none;
-            font-size: 14px;
-            margin-top: 10px;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
+        /* Анимации */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        @keyframes floatTile {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 4px 15px rgba(0, 122, 255, 0.15); }
+            100% { box-shadow: 0 4px 20px rgba(0, 122, 255, 0.35); }
+        }
+
+        @keyframes pulseCard {
+            0% { box-shadow: 0 0 15px rgba(52, 199, 89, 0.2); }
+            100% { box-shadow: 0 0 25px rgba(52, 199, 89, 0.5); }
+        }
     </style>
 </head>
 <body>
 
-    <header>
+    <header id="main-header">
         <div class="header-title">
             <h1>DOZA COFFEE</h1>
             <p>SPECIALITY</p>
         </div>
-        <!-- Кнопка для быстрого счета -->
         <button class="manual-btn" onclick="openManualModal()">⚡ Выставить счёт</button>
     </header>
 
     <div id="main-view">
         <div class="main-column">
+            <!-- Применился новый шрифт Montserrat -->
             <div class="column-title">ЕДА</div>
             <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'snacks', 'Легкий перекус')"><span>Легкий перекус</span></button>
             <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'bars', 'Батончики')"><span>Батончики</span></button>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'gum', 'Жевачка')"><span>Жевачка</span></button>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'gum', 'Жевательная резинка')"><span>Жевательная резинка</span></button>
         </div>
-
         <div class="main-column">
+            <!-- Применился новый шрифт Montserrat -->
             <div class="column-title">НАПИТКИ</div>
             <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'coffee', 'Кофе')"><span>Кофе</span></button>
             <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'juices', 'Холодные напитки')"><span>Холодные напитки</span></button>
@@ -416,7 +333,28 @@
         <div class="menu-grid" id="menu-grid"></div>
     </div>
 
-    <!-- Нижняя корзина -->
+    <!-- АДМИНКА -->
+    <div id="admin-view">
+        <div class="auth-box" id="admin-auth">
+            <h2>Вход для персонала</h2>
+            <input type="password" id="admin-pass" class="admin-input" placeholder="****" inputmode="numeric">
+            <button class="btn-login" onclick="loginAdmin()">Войти</button>
+        </div>
+
+        <div id="admin-dashboard">
+            <div class="dash-header">
+                <h2>Смены</h2>
+                <div>
+                    <button class="btn-logout" onclick="logoutAdmin()">Выход</button>
+                </div>
+            </div>
+            
+            <div class="emp-grid" id="emp-grid">
+                <!-- Карточки сотрудников будут здесь -->
+            </div>
+        </div>
+    </div>
+
     <div class="bottom-bar" id="cart-bar">
         <div class="cart-info">
             <span>Ваш заказ</span>
@@ -425,47 +363,54 @@
         <button class="checkout-btn" onclick="openPaymentModal()">Оформить</button>
     </div>
 
-    <!-- МОДАЛКА: Оплата из корзины -->
+    <!-- Нижнее парящее меню -->
+    <div class="bottom-nav">
+        <button class="nav-item active" onclick="switchTab('menu', this)">
+            <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7V9H5V2H3V9C3 11.12 4.66 12.84 6.75 12.97V22H8.25V12.97C10.34 12.84 12 11.12 12 9V2H11V9ZM16 6V2H14V14H16V22H18V2H17C16.45 2 16 2.45 16 3V6Z"/></svg>
+            Меню
+        </button>
+        <button class="nav-item" onclick="switchTab('admin', this)">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            Админ
+        </button>
+    </div>
+
+    <!-- Модалки -->
     <div class="modal-overlay" id="payment-modal">
         <div class="modal-box">
-            <h2>Оплата заказа</h2>
-            <p>Сумма к оплате:</p>
-            <span class="amount-display" id="modal-amount">0 ₽</span>
-            
-            <div class="qr-container">
-                <img id="qr-image" src="" alt="QR-код для оплаты">
-            </div>
-            
-            <p style="font-size: 12px; color: #888; margin-bottom: 20px;">
-                Отсканируйте QR-код в приложении вашего банка (СБП).
-            </p>
-
-            <button class="action-btn btn-cash" onclick="payCash()">
-                ✅ Оплата произошла наличными
-            </button>
-            
+            <h2>Оплата</h2>
+            <h1 style="color:var(--accent); margin-bottom:15px; font-size: 32px;" id="modal-amount">0 ₽</h1>
+            <div class="qr-container"><img id="qr-image" src="" alt="QR"></div>
+            <button class="action-btn btn-cash" onclick="payCash()">✅ Оплата наличными</button>
+            <button class="action-btn btn-cancel" onclick="clearCart()">Очистить корзину</button>
             <button class="close-modal" onclick="closePaymentModal()">Отмена</button>
         </div>
     </div>
 
-    <!-- МОДАЛКА: Ручной ввод суммы (для бариста) -->
     <div class="modal-overlay" id="manual-modal">
         <div class="modal-box">
             <h2>Выставить счёт</h2>
-            <p>Введите сумму заказа:</p>
-            
-            <input type="number" id="manual-amount" class="manual-input" placeholder="0 ₽" inputmode="numeric">
-            
-            <button class="action-btn btn-generate" onclick="generateManualQR()">Сгенерировать QR-код</button>
-
+            <input type="number" id="manual-amount" class="admin-input" placeholder="0 ₽" inputmode="numeric">
+            <button class="action-btn" style="background:var(--accent); color:#fff; margin-bottom:15px;" onclick="generateManualQR()">Сгенерировать QR</button>
             <div id="manual-qr-box" style="display: none;">
-                <div class="qr-container" style="margin-top: 15px;">
-                    <img id="manual-qr-image" src="" alt="QR-код">
-                </div>
-                <p style="font-size: 12px; color: #888;">Покажите этот код клиенту для сканирования</p>
+                <div class="qr-container"><img id="manual-qr-image" src="" alt="QR"></div>
             </div>
-            
             <button class="close-modal" onclick="closeManualModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Модалка истории смен -->
+    <div class="modal-overlay" id="history-modal">
+        <div class="modal-box">
+            <h2 id="history-title">История смен</h2>
+            <div class="history-list" id="history-list">
+                <!-- Список смен -->
+            </div>
+            <div style="text-align: right; margin-bottom: 15px; font-size: 14px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 10px;">
+                <span style="color:var(--text-sec);">Всего выручка: </span> <b id="history-total-rev" style="color:var(--text-main);">0 ₽</b><br>
+                <span style="color:var(--text-sec);">Всего зарплата: </span> <b id="history-total-sal" style="color:var(--success); font-size: 18px;">0 ₽</b>
+            </div>
+            <button class="close-modal" onclick="closeHistoryModal()">Закрыть</button>
         </div>
     </div>
 
@@ -482,6 +427,235 @@
         ];
 
         let cartSum = 0;
+        let cartItems = []; 
+
+        const SALARY_PERCENTAGE = 0.05; 
+        const BASE_PAY = 1500; 
+        const BONUS_COOLDOWN_HOURS = 12; 
+
+        let employees = JSON.parse(localStorage.getItem('dozaEmployees')) || {
+            "1": { earned: 0, active: false, startTime: null, currentItems: [], history: [], lastBonusTime: null },
+            "2": { earned: 0, active: false, startTime: null, currentItems: [], history: [], lastBonusTime: null },
+            "3": { earned: 0, active: false, startTime: null, currentItems: [], history: [], lastBonusTime: null },
+            "4": { earned: 0, active: false, startTime: null, currentItems: [], history: [], lastBonusTime: null }
+        };
+
+        for(let key in employees) {
+            if(employees[key].lastBonusTime === undefined) employees[key].lastBonusTime = null;
+        }
+
+        function saveEmployees() { localStorage.setItem('dozaEmployees', JSON.stringify(employees)); }
+
+        function getMoscowTime() {
+            return new Date().toLocaleString('ru-RU', { 
+                timeZone: 'Europe/Moscow', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'
+            });
+        }
+
+        function switchTab(tab, btn) {
+            document.getElementById('main-view').style.display = 'none';
+            document.getElementById('category-view').style.display = 'none';
+            document.getElementById('admin-view').style.display = 'none';
+            document.getElementById('cart-bar').classList.remove('show');
+            
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
+
+            if (tab === 'menu') {
+                document.getElementById('main-view').style.display = 'flex';
+                document.getElementById('main-header').style.display = 'flex';
+            } else if (tab === 'admin') {
+                document.getElementById('admin-view').style.display = 'block';
+                document.getElementById('main-header').style.display = 'none';
+                if(sessionStorage.getItem('adminAuth') === 'true') { showDashboard(); } 
+                else {
+                    document.getElementById('admin-auth').style.display = 'block';
+                    document.getElementById('admin-dashboard').style.display = 'none';
+                }
+            }
+        }
+
+        function loginAdmin() {
+            if(document.getElementById('admin-pass').value === '333') {
+                sessionStorage.setItem('adminAuth', 'true');
+                document.getElementById('admin-pass').value = '';
+                showDashboard();
+            } else { alert("Неверный пароль!"); }
+        }
+
+        function logoutAdmin() {
+            sessionStorage.removeItem('adminAuth');
+            document.getElementById('admin-auth').style.display = 'block';
+            document.getElementById('admin-dashboard').style.display = 'none';
+        }
+
+        function showDashboard() {
+            document.getElementById('admin-auth').style.display = 'none';
+            document.getElementById('admin-dashboard').style.display = 'block';
+            renderEmployees();
+        }
+
+        function renderEmployees() {
+            const grid = document.getElementById('emp-grid');
+            grid.innerHTML = '';
+            
+            for (let i = 1; i <= 4; i++) {
+                let emp = employees[i.toString()];
+                grid.innerHTML += `
+                    <div class="emp-card ${emp.active ? 'active-shift' : ''}">
+                        <button class="btn-settings" onclick="openHistory(${i})">⚙️</button>
+                        <div class="emp-name">Бариста ${i}</div>
+                        <div class="emp-earnings">${emp.earned} ₽</div>
+                        <div class="emp-btn-group">
+                            ${emp.active 
+                                ? `<button class="emp-btn btn-end" onclick="endShift(${i})">Закрыть смену</button>`
+                                : `<button class="emp-btn btn-start" onclick="startShift(${i})">Открыть смену</button>`
+                            }
+                            <button class="emp-btn btn-history" onclick="openHistory(${i})">История смен</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function startShift(id) {
+            for (let key in employees) {
+                if (employees[key].active) { alert("Сначала закройте смену текущего сотрудника!"); return; }
+            }
+            employees[id].active = true;
+            employees[id].earned = 0;
+            employees[id].currentItems = []; 
+            employees[id].startTime = getMoscowTime(); 
+            saveEmployees();
+            renderEmployees();
+            sendTelegramMessage(`🟢 Смена: Бариста ${id} начал(а) работу.`);
+        }
+
+        function endShift(id) {
+            if(!confirm("Вы точно хотите завершить смену? Это действие нельзя отменить.")) { return; }
+
+            let revenue = employees[id].earned;
+            let percentPay = Math.round(revenue * SALARY_PERCENTAGE);
+            let endTime = getMoscowTime();
+            let now = Date.now();
+            
+            let basePay = 0;
+            let isBonusEligible = true;
+            
+            if (employees[id].lastBonusTime) {
+                let hoursSinceLastBonus = (now - employees[id].lastBonusTime) / (1000 * 60 * 60);
+                if (hoursSinceLastBonus < BONUS_COOLDOWN_HOURS) { isBonusEligible = false; }
+            }
+            
+            if (isBonusEligible) {
+                basePay = BASE_PAY;
+                employees[id].lastBonusTime = now; 
+            }
+
+            let totalSalary = basePay + percentPay;
+            
+            let itemsText = "";
+            if (employees[id].currentItems.length > 0) {
+                let grouped = {};
+                employees[id].currentItems.forEach(item => {
+                    if(!grouped[item.name]) grouped[item.name] = { count: 0, price: item.price };
+                    grouped[item.name].count++;
+                });
+                
+                for(let name in grouped) {
+                    itemsText += `${name} (${grouped[name].count} шт) - ${grouped[name].price * grouped[name].count} ₽<br>`;
+                }
+            } else { itemsText = "Ручной ввод суммы"; }
+            
+            employees[id].history.push({ 
+                startTime: employees[id].startTime, endTime: endTime, revenue: revenue, 
+                percentPay: percentPay, basePay: basePay, salary: totalSalary, itemsHtml: itemsText
+            });
+            
+            employees[id].active = false;
+            employees[id].currentItems = [];
+            saveEmployees();
+            renderEmployees();
+
+            let msg = `🔴 Смена: Бариста ${id} закрыл(а) смену.\n💰 Выручка: ${revenue} ₽.\n💵 Процент: ${percentPay} ₽.\n💸 За выход: ${basePay} ₽.\n✅ Итого: ${totalSalary} ₽`;
+            sendTelegramMessage(msg);
+            
+            alert(`Смена закрыта.\nВыручка: ${revenue} ₽\nПроцент (5%): ${percentPay} ₽\nЗа выход: ${basePay} ₽\n\nИТОГО К ВЫПЛАТЕ: ${totalSalary} ₽`);
+        }
+
+        function openHistory(id) {
+            document.getElementById('history-title').innerText = `История Бариста ${id}`;
+            const list = document.getElementById('history-list');
+            list.innerHTML = '';
+            
+            let emp = employees[id.toString()];
+            let totalRev = 0;
+            let totalSal = 0;
+
+            if(emp.history.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color:var(--text-sec); font-style:italic;">Смен еще не было</p>';
+            } else {
+                let reversedHistory = [...emp.history].reverse();
+                reversedHistory.forEach((shift, index) => {
+                    totalRev += shift.revenue;
+                    totalSal += shift.salary;
+                    let originalIndex = emp.history.length - 1 - index;
+                    let timeStr = shift.startTime ? `${shift.startTime} — ${shift.endTime}` : `Завершено: ${shift.endTime || 'Неизвестно'}`;
+
+                    list.innerHTML += `
+                        <div class="history-item">
+                            <button class="btn-delete-shift" onclick="deleteShift(${id}, ${originalIndex})">🗑️</button>
+                            <div class="history-time">📅 ${timeStr}</div>
+                            <div class="history-details">
+                                <span class="history-revenue">Выручка: ${shift.revenue} ₽</span>
+                                <span class="history-salary">К выплате: ${shift.salary} ₽</span>
+                            </div>
+                            <div class="history-breakdown">
+                                (Выход: ${shift.basePay} ₽ + Процент: ${shift.percentPay} ₽)
+                            </div>
+                            <div class="history-products">
+                                <b>Продано:</b><br>${shift.itemsHtml || 'Нет данных'}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            document.getElementById('history-total-rev').innerText = `${totalRev} ₽`;
+            document.getElementById('history-total-sal').innerText = `${totalSal} ₽`;
+            document.getElementById('history-modal').classList.add('active');
+        }
+
+        function deleteShift(empId, shiftIndex) {
+            if(confirm("Вы уверены, что хотите удалить эту смену из истории?")) {
+                employees[empId].history.splice(shiftIndex, 1); 
+                saveEmployees();
+                openHistory(empId);
+                if(document.getElementById('admin-dashboard').style.display === 'block') { renderEmployees(); }
+            }
+        }
+
+        function closeHistoryModal() { document.getElementById('history-modal').classList.remove('active'); }
+
+        function addEarnings(amount, items) {
+            let activeId = null;
+            for (let key in employees) {
+                if (employees[key].active) { activeId = key; break; }
+            }
+            if (activeId) {
+                employees[activeId].earned += amount;
+                if (items && items.length > 0) { employees[activeId].currentItems.push(...items); }
+                saveEmployees();
+                if(document.getElementById('admin-dashboard').style.display === 'block') { renderEmployees(); }
+            }
+        }
+
+        function sendTelegramMessage(text) {
+            const BOT_TOKEN = "ТВОЙ_ТОКЕН_БОТА";
+            const CHAT_ID = "ТВОЙ_CHAT_ID";
+            if(BOT_TOKEN !== "ТВОЙ_ТОКЕН_БОТА") {
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`);
+            }
+        }
 
         function openCategory(type, subcat, title) {
             document.getElementById('main-view').style.display = 'none';
@@ -490,25 +664,20 @@
 
             const grid = document.getElementById('menu-grid');
             grid.innerHTML = '';
-
             const filtered = menuData.filter(item => item.type === type && item.subcat === subcat);
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '<p style="text-align:center; width:100%; grid-column: span 2; color:#888; margin-top:20px; font-style:italic;">Здесь пока пусто...</p>';
-            } else {
-                filtered.forEach(item => {
-                    grid.innerHTML += `
-                        <div class="card">
-                            <img src="${item.img}" alt="${item.name}">
-                            <div class="card-content">
-                                <div class="card-title">${item.name}</div>
-                                <div class="card-price">${item.price} ₽</div>
-                                <button class="add-btn" onclick="addToCart(${item.price})">+</button>
-                            </div>
+            
+            filtered.forEach(item => {
+                grid.innerHTML += `
+                    <div class="card">
+                        <img src="${item.img}" alt="${item.name}">
+                        <div class="card-content">
+                            <div class="card-title">${item.name}</div>
+                            <div class="card-price">${item.price} ₽</div>
+                            <button class="add-btn" onclick="addToCart(${item.price}, '${item.name}')">+</button>
                         </div>
-                    `;
-                });
-            }
+                    </div>
+                `;
+            });
             window.scrollTo(0, 0);
         }
 
@@ -517,61 +686,47 @@
             document.getElementById('main-view').style.display = 'flex';
         }
 
-        function addToCart(price) {
+        function addToCart(price, name) {
             cartSum += price;
+            cartItems.push({ name: name, price: price }); 
             document.getElementById('cart-total').innerText = cartSum + ' ₽';
             document.getElementById('cart-bar').classList.add('show');
         }
 
-        // --- ОПЛАТА ИЗ КОРЗИНЫ ---
         function openPaymentModal() {
             if(cartSum === 0) return;
             document.getElementById('modal-amount').innerText = cartSum + ' ₽';
             let sbpLink = `https://www.sberbank.com/sms/pbpn?requisiteNumber=79698881993&sum=${cartSum}`;
-            let encodedLink = encodeURIComponent(sbpLink);
-            document.getElementById('qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodedLink}`;
+            document.getElementById('qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(sbpLink)}`;
             document.getElementById('payment-modal').classList.add('active');
         }
 
-        function closePaymentModal() {
-            document.getElementById('payment-modal').classList.remove('active');
+        function closePaymentModal() { document.getElementById('payment-modal').classList.remove('active'); }
+        
+        function payCash() { 
+            alert("Оплата наличными принята!"); 
+            addEarnings(cartSum, cartItems); 
+            clearCart(); 
         }
-
-        function payCash() {
-            alert("Спасибо! Заказ оплачен наличными. Пожалуйста, ожидайте.");
-            clearCart();
-        }
-
+        
         function clearCart() {
             cartSum = 0;
+            cartItems = []; 
             document.getElementById('cart-total').innerText = '0 ₽';
             document.getElementById('cart-bar').classList.remove('show');
             closePaymentModal();
         }
 
-        // --- РУЧНОЙ ВВОД СУММЫ (ДЛЯ БАРИСТА) ---
-        function openManualModal() {
-            document.getElementById('manual-amount').value = '';
-            document.getElementById('manual-qr-box').style.display = 'none';
-            document.getElementById('manual-modal').classList.add('active');
-        }
-
-        function closeManualModal() {
-            document.getElementById('manual-modal').classList.remove('active');
-        }
-
+        function openManualModal() { document.getElementById('manual-amount').value = ''; document.getElementById('manual-qr-box').style.display = 'none'; document.getElementById('manual-modal').classList.add('active'); }
+        function closeManualModal() { document.getElementById('manual-modal').classList.remove('active'); }
+        
         function generateManualQR() {
             let amount = document.getElementById('manual-amount').value;
-            if(amount <= 0 || amount === '') {
-                alert("Пожалуйста, введите сумму больше нуля.");
-                return;
-            }
-            
+            if(amount <= 0 || amount === '') return alert("Введите сумму больше нуля.");
             let sbpLink = `https://www.sberbank.com/sms/pbpn?requisiteNumber=79698881993&sum=${amount}`;
-            let encodedLink = encodeURIComponent(sbpLink);
-            
-            document.getElementById('manual-qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodedLink}`;
+            document.getElementById('manual-qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(sbpLink)}`;
             document.getElementById('manual-qr-box').style.display = 'block';
+            addEarnings(Number(amount), []); 
         }
     </script>
 </body>
