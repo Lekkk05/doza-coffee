@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOZA COFFEE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background-color: #1a1412; 
+            background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e6ded8; 
+            padding-bottom: 100px; 
+            overflow-x: hidden;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(18, 13, 11, 0.92); 
+            z-index: -1;
+        }
+        
+        header { 
+            background-color: rgba(17, 13, 12, 0.7); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #e6ded8; 
+            padding: 20px; 
+            text-align: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 10; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        header h1 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 28px; 
+            letter-spacing: 3px; 
+            color: #d4a373; 
+            font-weight: 700;
+        }
+        header p { 
+            font-size: 10px; 
+            opacity: 0.6; 
+            margin-top: 5px; 
+            text-transform: uppercase; 
+            letter-spacing: 4px;
+            font-weight: 600;
+        }
+
+        #main-view {
+            display: flex;
+            padding: 20px 15px;
+            gap: 15px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .main-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; 
+        }
+
+        .column-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: #d4a373;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .big-cat-btn {
+            position: relative;
+            height: 145px; 
+            border-radius: 12px;
+            border: none;
+            box-shadow: none;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 500;
+            color: #fff;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.15s ease;
+        }
+
+        .big-cat-btn:active {
+            transform: scale(0.97);
+        }
+
+        .big-cat-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.3); 
+            z-index: 1;
+            transition: background 0.3s;
+        }
+
+        .big-cat-btn:active::before {
+            background: rgba(0, 0, 0, 0.1); 
+        }
+
+        .big-cat-btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        #category-view {
+            display: none; 
+            padding: 15px;
+            animation: slideUp 0.3s ease;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(43, 33, 29, 0.6);
+            backdrop-filter: blur(8px);
+            color: #d4a373;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 25px;
+            transition: 0.2s;
+        }
+
+        .back-btn:active { background: #d4a373; color: #1a1412; }
+
+        .category-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+            padding-bottom: 15px;
+            font-style: italic;
+        }
+
+        .menu-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+        }
+        
+        .card { 
+            background: rgba(38, 28, 24, 0.85); 
+            backdrop-filter: blur(5px);
+            border-radius: 12px; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            border: none;
+            transition: transform 0.1s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .card:active { transform: scale(0.97); }
+        
+        .card img { 
+            width: 100%; 
+            height: 130px; 
+            object-fit: cover; 
+            opacity: 0.9;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        
+        .card-content { 
+            padding: 15px 12px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .card-title { 
+            font-size: 15px; 
+            font-weight: 500; 
+            text-align: center;
+            color: #f4e9e1;
+            letter-spacing: 0.5px;
+        }
+
+        .card-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: #d4a373;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        
+        .add-btn { 
+            background: rgba(212, 163, 115, 0.15);
+            color: #d4a373; 
+            border: 1px solid rgba(212, 163, 115, 0.5); 
+            width: 100%; 
+            height: 35px; 
+            border-radius: 8px; 
+            font-size: 20px; 
+            font-weight: 600;
+            cursor: pointer; 
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .add-btn:active { 
+            background: #d4a373; 
+            color: #1a1412; 
+        }
+
+        .bottom-bar { 
+            position: fixed; 
+            bottom: -120px; 
+            left: 0; 
+            width: 100%; 
+            background: rgba(17, 13, 12, 0.95); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            color: #fff; 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.8); 
+            z-index: 20; 
+            border-top: 1px solid rgba(212, 163, 115, 0.2);
+            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .bottom-bar.show { bottom: 0; }
+
+        .cart-info { display: flex; flex-direction: column; }
+        .cart-info span { font-size: 11px; color: #d4a373; text-transform: uppercase; font-weight: 600; letter-spacing: 1px;}
+        .cart-info b { font-size: 24px; font-family: 'Playfair Display', serif; }
+        
+        .checkout-btn { 
+            background: #d4a373; 
+            color: #1a1412; 
+            border: none; 
+            padding: 12px 25px; 
+            border-radius: 25px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .checkout-btn:active { background: #faedcd; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DOZA COFFEE</h1>
+        <p>SPECIALITY</p>
+    </header>
+
+    <div id="main-view">
+        <div class="main-column">
+            <div class="column-title">ЕДА</div>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'snacks', 'Легкий перекус')">
+                <span>Легкий перекус</span>
+            </button>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'bars', 'Батончики')">
+                <span>Батончики</span>
+            </button>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'gum', 'Жевачка')">
+                <span>Жевачка</span>
+            </button>
+        </div>
+
+        <div class="main-column">
+            <div class="column-title">НАПИТКИ</div>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'coffee', 'Кофе')">
+                <span>Кофе</span>
+            </button>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'juices', 'Холодные напитки')">
+                <span>Холодные напитки</span>
+            </button>
+            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'water', 'Вода')">
+                <span>Вода</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="category-view">
+        <button class="back-btn" onclick="goBack()">← Назад в меню</button>
+        <div class="category-header" id="category-title"></div>
+        <div class="menu-grid" id="menu-grid"></div>
+    </div>
+
+    <div class="bottom-bar" id="cart-bar">
+        <div class="cart-info">
+            <span>Ваш заказ</span>
+            <b id="cart-total">0 ₽</b>
+        </div>
+        <button class="checkout-btn" onclick="checkout()">Оформить</button>
+    </div>
+
+    <script>
+        const menuData = [
+            // Легкий перекус
+            { type: 'food', subcat: 'snacks', name: 'Сэндвич', price: 300, desc: 'Классический', img: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=300&auto=format&fit=crop' },
+            
+            // Жевачка
+            { type: 'food', subcat: 'gum', name: '5 Свежая мята', price: 100, desc: 'Без сахара', img: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=300&auto=format&fit=crop' },
+            { type: 'food', subcat: 'gum', name: 'Wrigley\'s Spearmint', price: 100, desc: 'Без сахара', img: 'https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=300&auto=format&fit=crop' },
+            
+            // Холодные напитки
+            { type: 'drink', subcat: 'juices', name: 'Колд Брю', price: 350, desc: 'Холодный кофе', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=300&auto=format&fit=crop' },
+            { type: 'drink', subcat: 'juices', name: 'Deneb', price: 200, desc: 'Гранат', img: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=300&auto=format&fit=crop' },
+            { type: 'drink', subcat: 'juices', name: 'Kinza', price: 200, desc: 'Лимонад', img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=300&auto=format&fit=crop' },
+            
+            // Вода
+            { type: 'drink', subcat: 'water', name: 'Вода', price: 100, desc: '0.5 л', img: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=300&auto=format&fit=crop' },
+            { type: 'drink', subcat: 'water', name: 'Газированная вода', price: 150, desc: '0.5 л', img: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=300&auto=format&fit=crop' }
+        ];
+
+        let cartSum = 0;
+
+        function openCategory(type, subcat, title) {
+            document.getElementById('main-view').style.display = 'none';
+            document.getElementById('category-view').style.display = 'block';
+            document.getElementById('category-title').innerText = title;
+
+            const grid = document.getElementById('menu-grid');
+            grid.innerHTML = '';
+
+            const filtered = menuData.filter(item => item.type === type && item.subcat === subcat);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p style="text-align:center; width:100%; grid-column: span 2; color:#888; margin-top:20px; font-style:italic;">Здесь пока пусто...</p>';
+            } else {
+                filtered.forEach(item => {
+                    grid.innerHTML += `
+                        <div class="card">
+                            <img src="${item.img}" alt="${item.name}">
+                            <div class="card-content">
+                                <div class="card-title">${item.name}</div>
+                                <div class="card-price">${item.price} ₽</div>
+                                <button class="add-btn" onclick="addToCart(${item.price})">+</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            window.scrollTo(0, 0);
+        }
+
+        function goBack() {
+            document.getElementById('category-view').style.display = 'none';
+            document.getElementById('main-view').style.display = 'flex';
+        }
+
+        function addToCart(price) {
+            cartSum += price;
+            document.getElementById('cart-total').innerText = cartSum + ' ₽';
+            document.getElementById('cart-bar').classList.add('show');
+        }
+
+        function checkout() {
+            if(cartSum === 0) return;
+            let amount = cartSum;
+            let sbpLink = `https://www.sberbank.com/sms/pbpn?requisiteNumber=79698881993&sum=${amount}`;
+            let confirmPay = confirm(`Ваш заказ на сумму ${amount} ₽.\nСейчас откроется приложение банка для оплаты.`);
+            if (confirmPay) {
+                window.location.href = sbpLink;
+                cartSum = 0;
+                document.getElementById('cart-total').innerText = '0 ₽';
+                document.getElementById('cart-bar').classList.remove('show');
+            }
+        }
+    </script>
+</body>
+</html>
