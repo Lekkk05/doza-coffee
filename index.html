@@ -2,385 +2,265 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#f7f5f2">
     <title>DOZA COFFEE</title>
-    <!-- Добавили шрифт Montserrat для заголовков -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.9);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-            --text-main: #2c2420; /* Темно-кофейный текст */
-            --text-sec: #8e8e93;
-            --accent: #007aff;
-            --danger: #ff3b30;
-            --success: #34c759;
+            --accent: #c47b3d; --accent-soft: rgba(196, 123, 61, 0.12); --accent-border: rgba(196, 123, 61, 0.3);
+            --bg-main: #f7f5f2;
+            --bg-gradient: radial-gradient(circle at 10% 20%, rgba(212,163,115,.12) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(78,52,46,.08) 0%, transparent 40%), linear-gradient(135deg,#fdfbfb 0%,#f0ebe1 100%);
+            --text-main: #2c2420; --text-sec: #8e8a85; --success: #34c759; --danger: #ff3b30; --gold: #f59e0b;
+            --glass-1: rgba(255, 255, 255, 0.45); --glass-2: rgba(255, 255, 255, 0.65); --glass-3: rgba(255, 255, 255, 0.85);
+            --border-glass: rgba(255, 255, 255, 0.8); --shadow-soft: 0 8px 24px rgba(80, 50, 30, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+        [data-theme="dark"] {
+            --accent: #e09f65; --accent-soft: rgba(224, 159, 101, 0.15); --accent-border: rgba(224, 159, 101, 0.3);
+            --bg-main: #121212;
+            --bg-gradient: radial-gradient(circle at 10% 20%, rgba(212,163,115,.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(78,52,46,.05) 0%, transparent 40%), linear-gradient(135deg,#121212 0%,#1a1a1a 100%);
+            --text-main: #f0f0f0; --text-sec: #a0a0a0;
+            --glass-1: rgba(40, 40, 40, 0.45); --glass-2: rgba(35, 35, 35, 0.65); --glass-3: rgba(25, 25, 25, 0.85);
+            --border-glass: rgba(255, 255, 255, 0.1); --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg-main); background-image: var(--bg-gradient); color: var(--text-main); padding-bottom: calc(140px + env(safe-area-inset-bottom)); overflow-x: hidden; position: relative; min-height: 100vh; transition: background 0.4s ease, color 0.4s ease; }
         
-        body { 
-            background-color: #fcfaf8;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(212, 163, 115, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(78, 52, 46, 0.1) 0%, transparent 40%),
-                linear-gradient(135deg, #fdfbfb 0%, #f4ede4 100%);
-            background-attachment: fixed;
-            color: var(--text-main); 
-            padding-bottom: 140px; 
-            overflow-x: hidden; 
-            position: relative; 
-            -webkit-tap-highlight-color: transparent;
-            min-height: 100vh;
-        }
-
-        /* Шапка (Стекло) */
-        header { 
-            background: rgba(255, 255, 255, 0.65); 
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            padding: 15px 20px; position: sticky; top: 0; z-index: 10; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.9); 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            display: flex; justify-content: space-between; align-items: center;
-        }
+        .glass-1 { background: var(--glass-1); border: 1px solid var(--border-glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        .glass-2 { background: var(--glass-2); border: 1px solid var(--border-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: var(--shadow-soft); }
+        .glass-3 { background: var(--glass-3); border: 1px solid var(--border-glass); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); box-shadow: 0 20px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.4); }
         
-        .header-title h1 { font-family: 'Playfair Display', serif; font-size: 24px; letter-spacing: 1px; color: var(--text-main); font-weight: 700; }
-        .header-title p { font-size: 9px; color: var(--text-sec); margin-top: 2px; text-transform: uppercase; letter-spacing: 3px; font-weight: 600; }
+        button, .card, .big-cat-btn, .nav-item, .barista-card, .admin-card { transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
 
-        /* Кнопка стеклянная */
-        .manual-btn { 
-            background: rgba(0, 122, 255, 0.1); 
-            color: var(--accent); 
-            border: 1px solid rgba(0, 122, 255, 0.3); 
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            padding: 8px 14px; border-radius: 12px; 
-            font-weight: 600; font-size: 13px; cursor: pointer; 
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.15), 0 0 10px rgba(0, 122, 255, 0.1); 
-            transition: all 0.3s ease;
-            animation: pulseGlow 3s infinite alternate;
-        }
-        .manual-btn:active { transform: scale(0.95); background: rgba(0, 122, 255, 0.2); animation: none; }
+        header { padding: 15px 20px; position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; }
+        .header-title h1 { font-family: 'Playfair Display', serif; font-size: 26px; letter-spacing: 2px; font-weight: 700; background: linear-gradient(135deg, #d4a373 0%, #c47b3d 50%, #9e5a26 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        [data-theme="dark"] .header-title h1 { background: linear-gradient(135deg, #f7d6b5 0%, #e09f65 50%, #c47b3d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header-title p { font-size: 9px; color: var(--accent); margin-top: 2px; text-transform: uppercase; letter-spacing: 5px; font-weight: 700; opacity: 0.8; }
+        
+        .header-actions { display: flex; gap: 10px; align-items: center; }
+        .manual-btn { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-border); padding: 8px 14px; border-radius: 12px; font-weight: 600; font-size: 13px; cursor: pointer; }
+        .manual-btn:active { transform: scale(0.95); }
+        .settings-btn { background: var(--glass-2); border: 1px solid var(--border-glass); color: var(--text-main); width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; box-shadow: var(--shadow-soft); }
+        .settings-btn:active { transform: scale(0.92); }
 
-        /* Главное меню */
-        #main-view { display: flex; padding: 20px 15px; gap: 15px; animation: fadeIn 0.5s ease; }
+        #main-view { display: flex; padding: 20px 15px; gap: 15px; }
         .main-column { flex: 1; display: flex; flex-direction: column; gap: 15px; }
-        
-        /* ОБНОВЛЕННЫЕ Заголовки колонок */
-        .column-title { 
-            font-family: 'Montserrat', sans-serif; /* Новый классный шрифт */
-            font-size: 24px; /* Увеличили размер */
-            color: var(--text-main); 
-            text-align: center; 
-            font-weight: 800; /* Сделали максимально жирным */
-            letter-spacing: 1.5px; 
-            margin-bottom: 10px; 
-            text-transform: uppercase; /* Все буквы заглавные для стиля */
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Легкая тень для объема */
-        }
-        
-        /* Плитки категорий */
-        .big-cat-btn { 
-            position: relative; height: 145px; border-radius: 20px; 
-            border: 1px solid rgba(255, 255, 255, 0.5); 
-            background-size: cover; background-position: center; cursor: pointer; overflow: hidden; 
-            display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; 
-            color: #fff; 
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.9); 
-            padding: 10px; text-align: center; 
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12); 
-            animation: floatTile 6s ease-in-out infinite; 
-        }
-        
-        .main-column:nth-child(1) .big-cat-btn:nth-child(2) { animation-delay: 0s; }
-        .main-column:nth-child(1) .big-cat-btn:nth-child(3) { animation-delay: 1.5s; }
-        .main-column:nth-child(1) .big-cat-btn:nth-child(4) { animation-delay: 3s; }
-        
-        .main-column:nth-child(2) .big-cat-btn:nth-child(2) { animation-delay: 0.5s; }
-        .main-column:nth-child(2) .big-cat-btn:nth-child(3) { animation-delay: 2s; }
-        .main-column:nth-child(2) .big-cat-btn:nth-child(4) { animation-delay: 3.5s; }
+        .column-title { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text-main); text-align: center; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; font-style: italic; }
+        .big-cat-btn { position: relative; height: 145px; border-radius: 20px; border: 1px solid var(--border-glass); background-size: cover; background-position: center; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: #fff; text-shadow: 1px 1px 5px rgba(0,0,0,0.8); padding: 10px; text-align: center; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        .big-cat-btn:active { transform: scale(0.96); }
+        .big-cat-btn::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.35); z-index: 1; transition: background 0.3s ease; }
+        .big-cat-btn:active::before { background: rgba(0, 0, 0, 0.15); }
+        .big-cat-btn span { position: relative; z-index: 2; letter-spacing: 0.5px; }
 
-        .big-cat-btn:active { 
-            transform: scale(0.94); 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
-            animation: none; 
-        }
-        
-        .big-cat-btn::before { 
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
-            background: rgba(0, 0, 0, 0.45); 
-            z-index: 1; transition: background 0.3s; 
-        }
-        .big-cat-btn:active::before { background: rgba(0, 0, 0, 0.2); }
-        .big-cat-btn span { position: relative; z-index: 2; }
-
-        /* Категории (Внутри) */
-        #category-view { display: none; padding: 15px; animation: slideUp 0.3s ease; }
-        .back-btn { 
-            display: inline-flex; align-items: center; background: var(--glass-bg); color: var(--accent); 
-            border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 20px; 
-            font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 25px; box-shadow: var(--glass-shadow);
-            transition: 0.2s;
-        }
+        #category-view, #barista-view { display: none; padding: 15px; }
+        .back-btn { display: inline-flex; align-items: center; background: var(--glass-2); color: var(--accent); border: 1px solid var(--border-glass); padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 25px; box-shadow: var(--shadow-soft); }
         .back-btn:active { transform: scale(0.95); }
-        
-        .category-header { font-family: 'Montserrat', sans-serif; font-size: 24px; color: var(--text-main); margin-bottom: 25px; text-align: center; padding-bottom: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;}
-        
+        .category-header { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--text-main); margin-bottom: 25px; text-align: center; padding-bottom: 10px; font-weight: 700; }
+
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        
-        /* Карточки товаров */
-        .card { 
-            background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; 
-            border: 1px solid var(--glass-border); box-shadow: 0 8px 25px rgba(0,0,0,0.08); 
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            animation: fadeIn 0.4s ease;
-        }
-        .card:active { transform: scale(0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .card img { width: 100%; height: 120px; object-fit: cover; }
+        .card { background: var(--glass-2); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--border-glass); box-shadow: var(--shadow-soft); }
+        .card:active { transform: scale(0.96); }
+        .card img { width: 100%; height: 120px; object-fit: cover; background: #eee; }
         .card-content { padding: 15px 12px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .card-title { font-size: 15px; font-weight: 600; text-align: center; color: var(--text-main); }
+        .card-title { font-size: 15px; font-weight: 600; text-align: center; }
         .card-price { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
-        
-        .add-btn { 
-            background: rgba(0, 122, 255, 0.1); color: var(--accent); border: 1px solid rgba(0, 122, 255, 0.3); 
-            width: 100%; height: 35px; border-radius: 10px; font-size: 20px; font-weight: 600; cursor: pointer; 
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .add-btn:active { background: var(--accent); color: #fff; transform: scale(0.9); }
+        .add-btn { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-border); width: 100%; height: 35px; border-radius: 10px; font-size: 20px; font-weight: 600; cursor: pointer; }
+        .add-btn:active { background: var(--accent); color: #fff; transform: scale(0.92); }
 
-        /* Админка */
-        #admin-view { display: none; padding: 20px; animation: fadeIn 0.4s ease; }
-        
-        .auth-box { 
-            background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            padding: 40px 20px; border-radius: 24px; text-align: center; 
-            border: 2px solid var(--glass-border); 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin-top: 20vh; 
-            animation: slideUp 0.5s ease;
-        }
+        .barista-list { display: flex; flex-direction: column; gap: 15px; }
+        .barista-card { background: var(--glass-2); border-radius: 20px; padding: 20px; border: 1px solid var(--border-glass); display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow-soft); }
+        .barista-card.online { border-color: var(--success); box-shadow: 0 0 0 1px var(--success), var(--shadow-soft); }
+        .barista-header { display: flex; justify-content: space-between; align-items: center; }
+        .barista-header h3 { font-size: 18px; font-weight: 600; }
+        .status-badge { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
+        .status-online { background: rgba(52, 199, 89, 0.15); color: var(--success); }
+        .status-offline { background: var(--glass-1); color: var(--text-sec); }
+        .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; display: inline-block; }
+        .timer-display { font-size: 32px; font-family: monospace; font-weight: 700; text-align: center; margin: 5px 0; }
+        .online .timer-display { color: var(--success); }
+        .stats-row { display: flex; justify-content: space-between; background: var(--glass-1); padding: 12px 15px; border-radius: 12px; font-size: 14px; border: 1px solid var(--border-glass); }
+        .stats-row b { color: var(--success); font-size: 16px; }
+        .barista-actions { display: flex; gap: 10px; }
+        .barista-actions button { flex: 1; padding: 14px; border-radius: 12px; font-weight: 600; cursor: pointer; border: none; font-size: 14px; }
+        .btn-start { background: var(--success); color: white; }
+        .btn-end { background: var(--danger); color: white; }
+        .btn-extend { background: var(--gold); color: #fff; }
+        .btn-salary { background: var(--accent); color: #fff; }
+
+        #admin-view { display: none; padding: 20px; }
+        .auth-box { background: var(--glass-2); padding: 40px 20px; border-radius: 24px; text-align: center; border: 1px solid var(--border-glass); box-shadow: var(--shadow-soft); margin-top: 20vh; }
         .auth-box h2 { color: var(--text-main); margin-bottom: 20px; font-family: 'Playfair Display', serif; }
-        .admin-input { 
-            width: 100%; padding: 15px; background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.1); 
-            border-radius: 12px; color: var(--text-main); font-size: 24px; text-align: center; margin-bottom: 20px; letter-spacing: 5px; outline: none; 
-            transition: 0.3s;
-        }
-        .admin-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,122,255,0.1); }
-        .btn-login { background: var(--accent); color: #fff; border: none; padding: 15px; width: 100%; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-login:active { transform: scale(0.95); }
-
-        #admin-dashboard { display: none; animation: fadeIn 0.4s ease; }
+        .admin-input { width: 100%; padding: 15px; background: var(--glass-1); border: 1px solid var(--border-glass); border-radius: 12px; color: var(--text-main); font-size: 24px; text-align: center; margin-bottom: 20px; letter-spacing: 5px; outline: none; transition: border 0.3s ease; }
+        .admin-input:focus { border-color: var(--accent); background: var(--glass-2); }
+        .btn-login { background: var(--accent); color: #fff; border: none; padding: 15px; width: 100%; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; }
+        .auth-error { color: var(--danger); font-size: 13px; margin-bottom: 12px; min-height: 18px; font-weight: 600; }
+        #admin-dashboard { display: none; }
         .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .dash-header h2 { font-family: 'Playfair Display', serif; color: var(--text-main); font-size: 22px; }
-        .btn-logout { background: transparent; color: var(--danger); border: 1px solid var(--danger); padding: 8px 15px; border-radius: 20px; font-size: 12px; cursor: pointer; font-weight: 600; transition: 0.2s;}
-        .btn-logout:active { background: var(--danger); color: #fff; }
+        .dash-header h2 { font-family: 'Playfair Display', serif; font-size: 22px; }
+        .btn-logout { background: transparent; color: var(--danger); border: 1px solid var(--danger); padding: 8px 15px; border-radius: 20px; font-size: 12px; cursor: pointer; font-weight: 600; }
+        .admin-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
+        .admin-card { background: var(--glass-2); border: 1px solid var(--border-glass); border-radius: 20px; padding: 16px; box-shadow: var(--shadow-soft); }
+        .admin-card.online { border-color: var(--success); }
+        .admin-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .admin-card-head h3 { font-size: 16px; font-weight: 600; }
+        .admin-card-body { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+        .admin-cell { background: var(--glass-1); border-radius: 12px; padding: 10px; text-align: center; border: 1px solid var(--border-glass); }
+        .admin-cell .label { display: block; font-size: 10px; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 600; }
+        .admin-cell .value { font-size: 14px; font-weight: 700; }
+        .admin-cell .value.accent { color: var(--accent); }
+        .admin-cell .value.success { color: var(--success); }
+        .admin-total-stats { background: var(--glass-2); padding: 20px; border-radius: 20px; border: 1px solid var(--border-glass); text-align: center; box-shadow: var(--shadow-soft); }
+        .admin-total-stats h3 { font-size: 14px; color: var(--text-sec); margin-bottom: 12px; text-transform: uppercase; }
+        .stat-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; font-weight: 600; }
+        .stat-row span:last-child { color: var(--accent); }
 
-        .emp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        
-        .emp-card { 
-            background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(15px); padding: 20px; border-radius: 20px; 
-            border: 2px solid var(--glass-border); text-align: center; position: relative; 
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-            transition: 0.3s;
-            animation: fadeIn 0.5s ease;
-        }
-        .emp-card.active-shift { 
-            border-color: var(--success); background: rgba(52, 199, 89, 0.15); 
-            box-shadow: 0 0 20px rgba(52, 199, 89, 0.3); 
-            animation: pulseCard 2s infinite alternate;
-        }
-        
-        .btn-settings { position: absolute; top: 10px; right: 10px; background: transparent; border: none; font-size: 18px; cursor: pointer; opacity: 0.5; transition: 0.2s; color: var(--text-main);}
-        .btn-settings:active { opacity: 1; transform: rotate(45deg); }
+        .bottom-nav { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 380px; border-radius: 40px; display: flex; justify-content: space-around; align-items: center; padding: 8px; z-index: 50; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-sec); font-size: 11px; font-weight: 600; cursor: pointer; background: transparent; border: 1px solid transparent; padding: 8px 20px; border-radius: 30px; }
+        .nav-item svg { width: 22px; height: 22px; margin-bottom: 4px; fill: currentColor; transition: transform 0.3s ease; }
+        .nav-item.active svg { transform: scale(1.1); }
+        .nav-item.active { color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent-border); }
 
-        .emp-name { font-size: 16px; font-weight: 600; margin-bottom: 5px; color: var(--text-main); }
-        .emp-earnings { font-size: 22px; font-weight: bold; color: var(--accent); margin-bottom: 15px; font-family: 'Playfair Display', serif; }
-        
-        .emp-btn-group { display: flex; flex-direction: column; gap: 8px; }
-        .emp-btn { width: 100%; padding: 12px; border-radius: 12px; border: none; font-weight: 600; cursor: pointer; font-size: 13px; transition: 0.2s; }
-        .emp-btn:active { transform: scale(0.95); }
-        .btn-start { background: var(--success); color: white; box-shadow: 0 4px 10px rgba(52, 199, 89, 0.3); }
-        .btn-end { background: var(--danger); color: white; box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3); }
-        .btn-history { background: rgba(0,0,0,0.05); color: var(--text-main); border: 1px solid rgba(0,0,0,0.05); }
-
-        /* Нижнее меню (Стеклянная капсула) */
-        .bottom-nav { 
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
-            width: 90%; max-width: 350px; border-radius: 40px; 
-            background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            display: flex; justify-content: space-around; align-items: center; padding: 8px; z-index: 50; 
-            border: 1.5px solid rgba(255,255,255,1); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .nav-item { 
-            display: flex; flex-direction: column; align-items: center; 
-            color: var(--text-sec); font-size: 11px; font-weight: 600; 
-            cursor: pointer; background: transparent; border: 1px solid transparent; 
-            padding: 8px 25px; border-radius: 30px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .nav-item svg { width: 22px; height: 22px; margin-bottom: 4px; fill: currentColor; }
-        
-        .nav-item.active { 
-            color: var(--accent); 
-            background: rgba(0, 122, 255, 0.1); 
-            border: 1px solid rgba(0, 122, 255, 0.3); 
-            transform: scale(1.05);
-        }
-
-        /* Корзина */
-        .bottom-bar { 
-            position: fixed; bottom: -120px; left: 0; width: 100%; 
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
-            color: var(--text-main); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; 
-            z-index: 40; transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            border-top: 1px solid rgba(0,0,0,0.05); box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-        }
-        .bottom-bar.show { bottom: 90px; } 
+        .bottom-bar { position: fixed; bottom: -120px; left: 0; width: 100%; color: var(--text-main); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 40; transition: bottom 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .bottom-bar.show { bottom: calc(90px + env(safe-area-inset-bottom)); } 
         .cart-info span { font-size: 11px; color: var(--text-sec); text-transform: uppercase; font-weight: 600; }
-        .cart-info b { font-size: 24px; font-family: 'Playfair Display', serif; color: var(--text-main); }
-        .checkout-btn { background: var(--accent); color: #fff; border: none; padding: 12px 25px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 14px; box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3); transition: 0.2s;}
-        .checkout-btn:active { transform: scale(0.95); }
+        .cart-info b { font-size: 24px; font-family: 'Playfair Display', serif; }
+        .checkout-btn { background: var(--accent); color: #fff; border: none; padding: 12px 25px; border-radius: 25px; font-weight: 600; font-size: 14px; cursor: pointer; }
+        .checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-        /* Модалки */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); backdrop-filter: blur(5px); z-index: 100; align-items: center; justify-content: center; }
-        .modal-overlay.active { display: flex; }
-        
-        .modal-box { 
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-            width: 90%; max-width: 400px; border-radius: 24px; padding: 25px; text-align: center; 
-            box-shadow: 0 15px 50px rgba(0,0,0,0.15); border: 1.5px solid rgba(255,255,255,1);
-            animation: slideUp 0.3s ease;
-        }
-        .modal-box h2 { color: var(--text-main); font-family: 'Playfair Display', serif; margin-bottom: 15px;}
-        
-        .qr-container { background: #fff; padding: 15px; border-radius: 16px; display: inline-block; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .qr-container img { width: 200px; height: 200px; }
-        
-        .action-btn { display: block; width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 14px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .action-btn:active { transform: scale(0.95); }
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 100; align-items: center; justify-content: center; padding: 15px; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-box { width: 100%; max-width: 400px; border-radius: 24px; padding: 25px; text-align: center; color: var(--text-main); display: flex; flex-direction: column; transform: translateY(20px) scale(0.95); transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); max-height: 90vh; overflow-y: auto; }
+        .modal-overlay.active .modal-box { transform: translateY(0) scale(1); }
+        .modal-box h2 { font-family: 'Playfair Display', serif; margin-bottom: 15px; }
+        .qr-container { background: #fff; padding: 15px; border-radius: 16px; display: inline-block; margin-bottom: 15px; align-self: center; }
+        .qr-container img { width: 200px; height: 200px; display: block; }
+        .action-btn { display: block; width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 14px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; }
         .btn-cash { background: var(--success); color: white; }
-        .btn-cancel { background: rgba(0,0,0,0.05); color: var(--text-main); }
-        .close-modal { background: transparent; color: var(--text-sec); border: none; font-size: 14px; cursor: pointer; margin-top: 10px;}
+        .btn-confirm-manual { background: var(--accent); color: white; }
+        .btn-cancel { background: var(--glass-1); color: var(--text-main); border: 1px solid var(--border-glass); }
+        .close-modal { background: transparent; color: var(--text-sec); border: none; font-size: 14px; cursor: pointer; margin-top: 10px; }
 
-        /* История смен */
-        .history-list { max-height: 350px; overflow-y: auto; text-align: left; margin-top: 15px; margin-bottom: 15px; background: rgba(0,0,0,0.03); border-radius: 12px; padding: 10px; border: 1px solid rgba(0,0,0,0.05); }
-        .history-item { border-bottom: 1px solid rgba(0,0,0,0.05); padding: 12px 0; font-size: 13px; position: relative; }
-        .history-item:last-child { border-bottom: none; }
-        .history-time { color: var(--text-sec); font-size: 12px; font-weight: 600; margin-bottom: 5px; padding-right: 25px;}
-        .history-details { display: flex; justify-content: space-between; margin-bottom: 5px; flex-wrap: wrap; }
-        .history-revenue { color: var(--text-main); font-weight: 500;}
-        .history-salary { color: var(--success); font-weight: bold; }
-        .history-breakdown { font-size: 12px; color: var(--text-sec); margin-bottom: 5px; }
-        .history-products { font-size: 11px; color: var(--text-sec); line-height: 1.4; background: rgba(255,255,255,0.6); padding: 8px; border-radius: 8px; margin-top: 5px; border: 1px solid rgba(0,0,0,0.03); }
-        
-        .btn-delete-shift { position: absolute; top: 10px; right: 0; background: transparent; border: none; font-size: 16px; cursor: pointer; opacity: 0.5; transition: 0.2s; }
-        .btn-delete-shift:active { opacity: 1; transform: scale(1.2); }
+        .slot-pick-box { display: flex; flex-direction: column; gap: 12px; }
+        .slot-pick-btn { padding: 20px; border-radius: 16px; border: 2px solid var(--border-glass); background: var(--glass-1); cursor: pointer; font-size: 15px; font-weight: 600; color: var(--text-main); }
+        .slot-pick-btn:active { transform: scale(0.97); }
+        .slot-pick-btn.night { border-color: var(--accent); background: var(--accent-soft); }
+        .slot-pick-btn.day { border-color: var(--gold); background: rgba(245, 158, 11, 0.1); }
+        .slot-pick-btn .slot-title { display: block; font-size: 18px; margin-bottom: 4px; font-weight: 700; }
+        .slot-pick-btn .slot-time { display: block; font-size: 13px; color: var(--text-sec); font-weight: 500; }
 
-        /* Анимации */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
-        @keyframes floatTile {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
-            100% { transform: translateY(0px); }
-        }
+        .salary-section { margin-bottom: 16px; text-align: left; }
+        .salary-section h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-sec); margin-bottom: 10px; font-weight: 700; }
+        .salary-current { background: var(--glass-1); border: 1px solid var(--accent); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
+        .salary-current-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .salary-current-head .slot-name { font-weight: 700; color: var(--accent); font-size: 14px; }
+        .salary-current-head .live-timer { font-family: monospace; font-weight: 700; color: var(--accent); font-size: 16px; }
+        .salary-line { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; }
+        .salary-line .lbl { color: var(--text-sec); }
+        .salary-line .val { font-weight: 600; }
+        .salary-line.total { border-top: 1px solid var(--border-glass); margin-top: 6px; padding-top: 8px; font-size: 15px; }
+        .salary-line.total .val { color: var(--success); font-size: 16px; font-weight: 700; }
+        .salary-history-item { background: var(--glass-1); border: 1px solid var(--border-glass); border-radius: 12px; padding: 12px; margin-bottom: 8px; }
+        .salary-history-item .sh-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .salary-history-item .sh-date { font-size: 13px; font-weight: 600; }
+        .salary-history-item .sh-type { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 10px; text-transform: uppercase; }
+        .sh-type.night { background: var(--accent-soft); color: var(--accent); }
+        .sh-type.day { background: rgba(245, 158, 11, 0.15); color: var(--gold); }
 
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 4px 15px rgba(0, 122, 255, 0.15); }
-            100% { box-shadow: 0 4px 20px rgba(0, 122, 255, 0.35); }
-        }
+        /* Стили для окна информации */
+        .info-text { text-align: left; font-size: 14px; line-height: 1.6; color: var(--text-main); }
+        .info-text p { margin-bottom: 12px; }
+        .info-text ul { margin-left: 20px; margin-bottom: 12px; }
+        .info-text li { margin-bottom: 6px; }
+        .info-highlight { background: var(--accent-soft); padding: 10px; border-radius: 10px; border-left: 3px solid var(--accent); margin-bottom: 12px; font-weight: 500; }
+        .info-danger { background: rgba(255, 59, 48, 0.1); padding: 10px; border-radius: 10px; border-left: 3px solid var(--danger); margin-bottom: 12px; font-weight: 500; color: var(--danger); }
 
-        @keyframes pulseCard {
-            0% { box-shadow: 0 0 15px rgba(52, 199, 89, 0.2); }
-            100% { box-shadow: 0 0 25px rgba(52, 199, 89, 0.5); }
-        }
+        #toast-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 300; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+        .toast { background: var(--glass-3); color: var(--text-main); padding: 15px 25px; border-radius: 15px; font-weight: 600; font-size: 14px; text-align: center; animation: slideDown 0.3s ease forwards; pointer-events: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 90vw; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
     </style>
 </head>
 <body>
+    <div id="toast-container" aria-live="polite"></div>
 
-    <header id="main-header">
+    <header class="glass-2" id="main-header">
         <div class="header-title">
             <h1>DOZA COFFEE</h1>
             <p>SPECIALITY</p>
         </div>
-        <button class="manual-btn" onclick="openManualModal()">⚡ Выставить счёт</button>
+        <div class="header-actions">
+            <button class="manual-btn" id="manual-top-btn" style="display:none" onclick="openManualModal()">⚡ Счёт</button>
+            <button class="settings-btn" onclick="openSettings()" aria-label="Настройки">⚙️</button>
+        </div>
     </header>
 
     <div id="main-view">
         <div class="main-column">
-            <!-- Применился новый шрифт Montserrat -->
             <div class="column-title">ЕДА</div>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'snacks', 'Легкий перекус')"><span>Легкий перекус</span></button>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'bars', 'Батончики')"><span>Батончики</span></button>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('food', 'gum', 'Жевательная резинка')"><span>Жевательная резинка</span></button>
+            <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('food','snacks','Легкий перекус')"><span>Легкий перекус</span></button>
+            <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('food','bars','Батончики')"><span>Батончики</span></button>
+            <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('food','gum','Жевательная резинка')"><span>Жевательная резинка</span></button>
         </div>
         <div class="main-column">
-            <!-- Применился новый шрифт Montserrat -->
             <div class="column-title">НАПИТКИ</div>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'coffee', 'Кофе')"><span>Кофе</span></button>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'juices', 'Холодные напитки')"><span>Холодные напитки</span></button>
-            <button class="big-cat-btn" style="background-image: url('https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=500&auto=format&fit=crop');" onclick="openCategory('drink', 'water', 'Вода')"><span>Вода</span></button>
+            <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('drink','coffee','Кофе')"><span>Кофе</span></button>
+            <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('drink','juices','Холодные напитки')"><span>Холодные напитки</span></button>
+            <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('drink','water','Вода')"><span>Вода</span></button>
         </div>
     </div>
 
     <div id="category-view">
-        <button class="back-btn" onclick="goBack()">← Назад в меню</button>
+        <button class="back-btn" onclick="goBack()">← Назад</button>
         <div class="category-header" id="category-title"></div>
         <div class="menu-grid" id="menu-grid"></div>
     </div>
 
-    <!-- АДМИНКА -->
+    <div id="barista-view">
+        <div class="category-header">Бариста</div>
+        <div class="barista-list" id="barista-list"></div>
+    </div>
+
     <div id="admin-view">
-        <div class="auth-box" id="admin-auth">
+        <div class="auth-box glass-2" id="admin-auth">
             <h2>Вход для персонала</h2>
-            <input type="password" id="admin-pass" class="admin-input" placeholder="****" inputmode="numeric">
+            <input type="password" id="admin-pass" class="admin-input" placeholder="****" inputmode="numeric" autocomplete="off" maxlength="8">
+            <div class="auth-error" id="auth-error"></div>
             <button class="btn-login" onclick="loginAdmin()">Войти</button>
         </div>
-
         <div id="admin-dashboard">
             <div class="dash-header">
                 <h2>Смены</h2>
-                <div>
-                    <button class="btn-logout" onclick="logoutAdmin()">Выход</button>
-                </div>
+                <button class="btn-logout" onclick="logoutAdmin()">Выход</button>
             </div>
-            
-            <div class="emp-grid" id="emp-grid">
-                <!-- Карточки сотрудников будут здесь -->
+            <div class="admin-grid" id="admin-grid"></div>
+            <div class="admin-total-stats glass-2">
+                <h3>Общая статистика</h3>
+                <div class="stat-row"><span>Всего смен:</span><span id="total-shifts-count">0</span></div>
+                <div class="stat-row"><span>Общая выручка:</span><span id="total-revenue-all">0 ₽</span></div>
             </div>
         </div>
     </div>
 
-    <div class="bottom-bar" id="cart-bar">
-        <div class="cart-info">
-            <span>Ваш заказ</span>
-            <b id="cart-total">0 ₽</b>
-        </div>
-        <button class="checkout-btn" onclick="openPaymentModal()">Оформить</button>
+    <div class="bottom-bar glass-3" id="cart-bar">
+        <div class="cart-info"><span>Ваш заказ</span><b id="cart-total">0 ₽</b></div>
+        <button class="checkout-btn" id="checkout-btn" onclick="openPaymentModal()" disabled>Оформить</button>
     </div>
 
-    <!-- Нижнее парящее меню -->
-    <div class="bottom-nav">
-        <button class="nav-item active" onclick="switchTab('menu', this)">
-            <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7V9H5V2H3V9C3 11.12 4.66 12.84 6.75 12.97V22H8.25V12.97C10.34 12.84 12 11.12 12 9V2H11V9ZM16 6V2H14V14H16V22H18V2H17C16.45 2 16 2.45 16 3V6Z"/></svg>
-            Меню
-        </button>
-        <button class="nav-item" onclick="switchTab('admin', this)">
-            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-            Админ
-        </button>
+    <div class="bottom-nav glass-3">
+        <button class="nav-item active" onclick="switchTab('menu', this)"><svg viewBox="0 0 24 24"><path d="M11 9H9V2H7V9H5V2H3V9C3 11.12 4.66 12.84 6.75 12.97V22H8.25V12.97C10.34 12.84 12 11.12 12 9V2H11V9ZM16 6V2H14V14H16V22H18V2H17C16.45 2 16 2.45 16 3V6Z"/></svg>Меню</button>
+        <button class="nav-item" onclick="switchTab('barista', this)"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>Бариста</button>
+        <button class="nav-item" onclick="switchTab('admin', this)"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>Админ</button>
     </div>
 
     <!-- Модалки -->
     <div class="modal-overlay" id="payment-modal">
-        <div class="modal-box">
+        <div class="modal-box glass-3">
             <h2>Оплата</h2>
-            <h1 style="color:var(--accent); margin-bottom:15px; font-size: 32px;" id="modal-amount">0 ₽</h1>
-            <div class="qr-container"><img id="qr-image" src="" alt="QR"></div>
+            <h1 style="color:var(--accent);margin-bottom:15px;font-size:32px" id="modal-amount">0 ₽</h1>
+            <div class="qr-container"><img id="qr-image" src="" alt="QR-код для оплаты"></div>
             <button class="action-btn btn-cash" onclick="payCash()">✅ Оплата наличными</button>
             <button class="action-btn btn-cancel" onclick="clearCart()">Очистить корзину</button>
             <button class="close-modal" onclick="closePaymentModal()">Отмена</button>
@@ -388,346 +268,522 @@
     </div>
 
     <div class="modal-overlay" id="manual-modal">
-        <div class="modal-box">
+        <div class="modal-box glass-3">
             <h2>Выставить счёт</h2>
-            <input type="number" id="manual-amount" class="admin-input" placeholder="0 ₽" inputmode="numeric">
-            <button class="action-btn" style="background:var(--accent); color:#fff; margin-bottom:15px;" onclick="generateManualQR()">Сгенерировать QR</button>
-            <div id="manual-qr-box" style="display: none;">
-                <div class="qr-container"><img id="manual-qr-image" src="" alt="QR"></div>
+            <input type="number" id="manual-amount" class="admin-input" placeholder="0 ₽" inputmode="numeric" min="1">
+            <button class="action-btn" style="background:var(--accent);color:#fff;margin-bottom:15px" onclick="generateManualQR()">Сгенерировать QR</button>
+            <div id="manual-qr-box" style="display:none">
+                <div class="qr-container"><img id="manual-qr-image" src="" alt="QR-код счёта"></div>
+                <button class="action-btn btn-confirm-manual" onclick="confirmManualPayment()">✅ Подтвердить оплату</button>
             </div>
             <button class="close-modal" onclick="closeManualModal()">Закрыть</button>
         </div>
     </div>
 
-    <!-- Модалка истории смен -->
-    <div class="modal-overlay" id="history-modal">
-        <div class="modal-box">
-            <h2 id="history-title">История смен</h2>
-            <div class="history-list" id="history-list">
-                <!-- Список смен -->
+    <div class="modal-overlay" id="shift-pick-modal">
+        <div class="modal-box glass-3">
+            <h2>Выберите смену</h2>
+            <p style="font-size:13px;color:var(--text-sec);margin-bottom:20px">Какую смену вы начинаете?</p>
+            <div class="slot-pick-box">
+                <button class="slot-pick-btn night" onclick="confirmStartShift('night')"><span class="slot-title">🌙 Ночная</span><span class="slot-time">00:00 — 12:00</span></button>
+                <button class="slot-pick-btn day" onclick="confirmStartShift('day')"><span class="slot-title">☀️ Дневная</span><span class="slot-time">12:00 — 00:00</span></button>
             </div>
-            <div style="text-align: right; margin-bottom: 15px; font-size: 14px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 10px;">
-                <span style="color:var(--text-sec);">Всего выручка: </span> <b id="history-total-rev" style="color:var(--text-main);">0 ₽</b><br>
-                <span style="color:var(--text-sec);">Всего зарплата: </span> <b id="history-total-sal" style="color:var(--success); font-size: 18px;">0 ₽</b>
-            </div>
-            <button class="close-modal" onclick="closeHistoryModal()">Закрыть</button>
+            <button class="close-modal" onclick="cancelStartShift()">Отмена</button>
         </div>
     </div>
 
+    <!-- Модалка продления -->
+    <div class="modal-overlay" id="extend-modal">
+        <div class="modal-box glass-3">
+            <h2>Продление смены</h2>
+            <p style="font-size:13px;color:var(--text-sec);margin-bottom:15px">Вы остаетесь забирать рейсы сменщика?<br>Вы получите <b>+500 ₽</b>, но они вычтутся из фикса следующего бариста.</p>
+            <div class="slot-pick-box">
+                <button class="slot-pick-btn" onclick="applyExtension(1)">На +1 час</button>
+                <button class="slot-pick-btn" onclick="applyExtension(2)">На +2 часа</button>
+                <button class="slot-pick-btn" onclick="applyExtension(3)">На +3 часа</button>
+            </div>
+            <button class="close-modal" onclick="closeExtendModal()">Отмена</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="salary-modal">
+        <div class="modal-box glass-3" style="text-align:left">
+            <h2 id="salary-title" style="text-align:center">Моя зарплата</h2>
+            <div id="salary-body"></div>
+            <button class="close-modal" onclick="closeSalaryModal()" style="text-align:center">Закрыть</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="settings-modal">
+        <div class="modal-box glass-3">
+            <h2>Настройки</h2>
+            <div class="settings-row" style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--border-glass)">
+                <span style="font-weight:600;color:var(--text-main)">Тёмная тема</span>
+                <label class="theme-switch" style="position:relative;display:inline-block;width:50px;height:28px;">
+                    <input type="checkbox" id="theme-toggle" onchange="toggleTheme()" style="opacity:0;width:0;height:0;">
+                    <span class="slider" style="position:absolute;cursor:pointer;inset:0;background-color:#ccc;transition:.4s;border-radius:34px;"></span>
+                </label>
+            </div>
+            <button class="action-btn" style="background:var(--glass-1);color:var(--text-main);border:1px solid var(--border-glass);margin-top:15px;margin-bottom:5px;" onclick="openSalaryInfo()">📖 Информация о ЗП</button>
+            <button class="close-modal" onclick="closeSettings()" style="margin-top:10px">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Модалка информации о ЗП -->
+    <div class="modal-overlay" id="salary-info-modal">
+        <div class="modal-box glass-3" style="text-align:left">
+            <h2 style="text-align:center">Информация о ЗП</h2>
+            <div class="info-text">
+                <div class="info-highlight">
+                    <b>Смены:</b> Ночная (00:00–12:00) и Дневная (12:00–00:00).
+                </div>
+                <p><b>1. Фикс за выход (1500 ₽)</b><br>Выплачивается тому, кто в слоте отработал <b>больше всех времени</b> (минимум 2 часа). Выплата одна на слот. Если вы отработали меньше 2 часов, фикс не начисляется.</p>
+                <p><b>2. Процент от выручки (6%)</b><br>Каждый бариста получает 6% от той выручки, которую он лично пробил (наличные или ручной счёт).</p>
+                <p><b>3. Продление смены</b><br>Если вам нужно остаться и забрать рейсы сменщика, нажмите «⏱ Продлить». Лимит — до 3 часов. За это вы получаете <b>+500 ₽</b>.</p>
+                <div class="info-danger">
+                    <b>Важно про продление!</b><br>
+                    • Если вы продлили смену, ваши 500 ₽ вычитаются из фикса (1500 ₽) того бариста, который выйдет на следующую смену (он получит 1000 ₽).<br>
+                    • Вы <b>не можете</b> стать лидером следующей смены и забрать их фикс.<br>
+                    • Если сменщик так и не вышел, а вы закончили смену, вам начисляется <b>штраф -1500 ₽</b>.
+                </div>
+                <p style="font-size:12px;color:var(--text-sec);text-align:center;margin-top:15px;">Формула: <b>ЗП = 6% + 500(если продлевал) + 1500(если лидер)</b></p>
+            </div>
+            <button class="close-modal" onclick="closeSalaryInfo()" style="text-align:center;margin-top:15px;">Понятно</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="custom-confirm-modal" style="z-index:200;">
+        <div class="modal-box glass-3">
+            <h2>Подтверждение</h2>
+            <p id="confirm-text" style="margin-bottom:20px;font-size:15px;color:var(--text-sec)">Вы уверены?</p>
+            <div style="display:flex;gap:10px">
+                <button class="action-btn btn-cancel" onclick="closeCustomConfirm(false)">Отмена</button>
+                <button class="action-btn btn-cash" onclick="closeCustomConfirm(true)">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        input:checked + .slider { background-color: var(--accent); }
+        input:checked + .slider:before { transform: translateX(22px); }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+    </style>
+
     <script>
+        'use strict';
+        const CONFIG = {
+            SESSION_MS: 30 * 60 * 1000, BASE_PAY: 1500, SALARY_PCT: 0.06,
+            EXTENSION_BONUS: 500, EXTENSION_LIMIT: 3, EXTENSION_PENALTY: 1500,
+            MIN_SLOT_TIME_MS: 2 * 3600 * 1000,
+            ADMIN_PIN: '333', STORAGE_KEY: 'doza_v7_shifts', SBP_REQUISITE: '79698881993'
+        };
+        const BARISTAS = [1, 2, 3, 4];
+        const $ = id => document.getElementById(id);
+
         const menuData = [
-            { type: 'food', subcat: 'snacks', name: 'Сэндвич', price: 300, desc: 'Классический', img: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=300&auto=format&fit=crop' },
-            { type: 'food', subcat: 'gum', name: '5 Свежая мята', price: 100, desc: 'Без сахара', img: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=300&auto=format&fit=crop' },
-            { type: 'food', subcat: 'gum', name: 'Wrigley\'s Spearmint', price: 100, desc: 'Без сахара', img: 'https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=300&auto=format&fit=crop' },
-            { type: 'drink', subcat: 'juices', name: 'Колд Брю', price: 350, desc: 'Холодный кофе', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=300&auto=format&fit=crop' },
-            { type: 'drink', subcat: 'juices', name: 'Deneb', price: 200, desc: 'Гранат', img: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=300&auto=format&fit=crop' },
-            { type: 'drink', subcat: 'juices', name: 'Kinza', price: 200, desc: 'Лимонад', img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=300&auto=format&fit=crop' },
-            { type: 'drink', subcat: 'water', name: 'Вода', price: 100, desc: '0.5 л', img: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=300&auto=format&fit=crop' },
-            { type: 'drink', subcat: 'water', name: 'Газированная вода', price: 150, desc: '0.5 л', img: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=300&auto=format&fit=crop' }
+            { type:'food', subcat:'snacks', name:'Сэндвич', price:300, img:'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=300&auto=format&fit=crop' },
+            { type:'food', subcat:'bars', name:'Сникерс', price:150, img:'https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=300&auto=format&fit=crop' },
+            { type:'food', subcat:'bars', name:'Протеиновый батончик', price:200, img:'https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=300&auto=format&fit=crop' },
+            { type:'food', subcat:'bars', name:'Разные батончики', price:250, img:'https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=300&auto=format&fit=crop' },
+            { type:'food', subcat:'gum', name:'5 Свежая мята', price:100, img:'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'coffee', name:'Эспрессо', price:150, img:'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'coffee', name:'Капучино', price:250, img:'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'coffee', name:'Латте', price:280, img:'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'coffee', name:'Раф', price:300, img:'https://images.unsplash.com/photo-1550368566-f9ac44eeae95?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'juices', name:'Колд Брю', price:350, img:'https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'juices', name:'Deneb', price:200, img:'https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'water', name:'Вода', price:100, img:'https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=300&auto=format&fit=crop' }
         ];
 
-        let cartSum = 0;
-        let cartItems = []; 
+        let cartSum = 0, cartItems = [], timerInterval = null;
+        let pendingManualAmount = 0, pendingShiftBarista = null, currentSalaryBarista = null, pendingExtendBarista = null;
 
-        const SALARY_PERCENTAGE = 0.05; 
-        const BASE_PAY = 1500; 
-        const BONUS_COOLDOWN_HOURS = 12; 
+        function defaultStore() {
+            const b = {};
+            for (const i of BARISTAS) b[i] = { active: false, since: null, slot: null, slotKey: null, revenue: 0, bonus: 0, totalShifts: 0, extended: false };
+            return { baristas: b, slots: {}, globalPenalties: 0 };
+        }
+        function loadStore() {
+            try {
+                const raw = localStorage.getItem(CONFIG.STORAGE_KEY);
+                if (!raw) return null;
+                const p = JSON.parse(raw);
+                return (p && p.baristas && p.slots) ? p : null;
+            } catch { return null; }
+        }
+        let store = loadStore() || defaultStore();
+        function saveStore() { try { localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(store)); } catch {} }
 
-        let employees = JSON.parse(localStorage.getItem('dozaEmployees')) || {
-            "1": { earned: 0, active: false, startTime: null, currentItems: [], history: [], lastBonusTime: null },
-            "2": { earned: 0, active: false, startTime: null, currentItems: [], history: [], lastBonusTime: null },
-            "3": { earned: 0, active: false, startTime: null, currentItems: [], history: [], lastBonusTime: null },
-            "4": { earned: 0, active: false, startTime: null, currentItems: [], history: [], lastBonusTime: null }
-        };
+        function formatTime(ms) { if (ms < 0) ms = 0; const s = Math.floor(ms/1000); return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor(s%3600/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`; }
+        function safeText(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 
-        for(let key in employees) {
-            if(employees[key].lastBonusTime === undefined) employees[key].lastBonusTime = null;
+        function getSlotKeyForType(slotType) {
+            const now = new Date(), hour = now.getHours();
+            const slotDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            if (slotType === 'night' && hour >= 12) slotDate.setDate(slotDate.getDate() + 1);
+            const fmt = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+            return `${fmt(slotDate)}_${slotType}`;
+        }
+        function getSlotByKey(key) {
+            if (!store.slots[key]) store.slots[key] = { times: {}, revenues: {}, bonuses: {}, awarded: null, penaltyApplied: false, needsReplacement: false, replacementDone: false };
+            return store.slots[key];
         }
 
-        function saveEmployees() { localStorage.setItem('dozaEmployees', JSON.stringify(employees)); }
+        function initTheme() { if (localStorage.getItem('dozaTheme') === 'dark') { document.body.setAttribute('data-theme','dark'); $('theme-toggle').checked = true; } }
+        function toggleTheme() { if ($('theme-toggle').checked) { document.body.setAttribute('data-theme','dark'); localStorage.setItem('dozaTheme','dark'); } else { document.body.removeAttribute('data-theme'); localStorage.setItem('dozaTheme','light'); } }
+        function openSettings(){ $('settings-modal').classList.add('active'); }
+        function closeSettings(){ $('settings-modal').classList.remove('active'); }
+        function openSalaryInfo() { $('settings-modal').classList.remove('active'); $('salary-info-modal').classList.add('active'); }
+        function closeSalaryInfo() { $('salary-info-modal').classList.remove('active'); }
 
-        function getMoscowTime() {
-            return new Date().toLocaleString('ru-RU', { 
-                timeZone: 'Europe/Moscow', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'
-            });
+        function showToast(msg, type='success') {
+            const t = document.createElement('div'); t.className = 'toast glass-3';
+            if (type === 'error') t.style.color = 'var(--danger)';
+            t.innerHTML = msg; $('toast-container').appendChild(t);
+            setTimeout(() => { t.style.opacity='0'; setTimeout(()=>t.remove(),300); }, 3000);
+        }
+        function customConfirm(text) { return new Promise(resolve => { $('confirm-text').innerText = text; $('custom-confirm-modal').classList.add('active'); window.confirmCallback = r => { $('custom-confirm-modal').classList.remove('active'); resolve(r); }; }); }
+        function closeCustomConfirm(r){ if (window.confirmCallback) window.confirmCallback(r); }
+
+        function isAuthorized() { try { const s = JSON.parse(sessionStorage.getItem('dozaSession') || 'null'); return s && Date.now() <= s.exp; } catch { return false; } }
+        function loginAdmin() { if ($('admin-pass').value.trim() === CONFIG.ADMIN_PIN) { sessionStorage.setItem('dozaSession', JSON.stringify({ exp: Date.now() + CONFIG.SESSION_MS })); $('admin-pass').value = ''; $('auth-error').innerText = ''; showAdminDashboard(); } else { $('auth-error').innerText = 'Неверный PIN'; } }
+        function logoutAdmin() { sessionStorage.removeItem('dozaSession'); $('admin-auth').style.display = 'block'; $('admin-dashboard').style.display = 'none'; syncManualBtnVisibility(); }
+        function showAdminDashboard() { $('admin-auth').style.display = 'none'; $('admin-dashboard').style.display = 'block'; renderAdmin(); syncManualBtnVisibility(); }
+
+        function getBaristaLiveTime(id) {
+            const b = store.baristas[id];
+            let ms = (b.slotKey && store.slots[b.slotKey] ? store.slots[b.slotKey].times[id] || 0 : 0);
+            if (b.active && b.since) ms += Date.now() - b.since;
+            return ms;
+        }
+        function getBaristaLiveRevenue(id) {
+            const b = store.baristas[id];
+            let r = (b.slotKey && store.slots[b.slotKey] ? store.slots[b.slotKey].revenues[id] || 0 : 0);
+            if (b.active) r += b.revenue || 0;
+            return r;
+        }
+        function getBaristaLiveBonus(id) {
+            const b = store.baristas[id];
+            let r = (b.slotKey && store.slots[b.slotKey] ? store.slots[b.slotKey].bonuses[id] || 0 : 0);
+            if (b.active) r += b.bonus || 0;
+            return r;
+        }
+        function isSlotLeader(slotKey, id) {
+            const slot = store.slots[slotKey];
+            if (!slot || store.baristas[id].extended) return false; // Продливший не может быть лидером
+            const totals = {};
+            for (const bid of BARISTAS) {
+                const b = store.baristas[bid];
+                let t = slot.times[bid] || 0;
+                if (b.active && b.slotKey === slotKey && b.since) t += Date.now() - b.since;
+                if (t > 0 && !b.extended) totals[bid] = t; // Только не продлевавшие
+            }
+            const myTime = totals[id] || 0;
+            if (myTime < CONFIG.MIN_SLOT_TIME_MS) return false;
+            for (const bid in totals) if (bid !== String(id) && totals[bid] > myTime) return false;
+            return true;
         }
 
-        function switchTab(tab, btn) {
-            document.getElementById('main-view').style.display = 'none';
-            document.getElementById('category-view').style.display = 'none';
-            document.getElementById('admin-view').style.display = 'none';
-            document.getElementById('cart-bar').classList.remove('show');
+        function startShiftClick(id) {
+            if (store.baristas[id].active) return;
+            pendingShiftBarista = id; $('shift-pick-modal').classList.add('active');
+        }
+        function cancelStartShift() { pendingShiftBarista = null; $('shift-pick-modal').classList.remove('active'); }
+        
+        function confirmStartShift(slotType) {
+            const id = pendingShiftBarista; pendingShiftBarista = null; $('shift-pick-modal').classList.remove('active');
+            if (!id) return;
+            const b = store.baristas[id];
+            const key = getSlotKeyForType(slotType);
+            const slot = getSlotByKey(key);
+
+            // Проверка штрафа от предыдущей смены
+            if (slot.needsReplacement && !slot.replacementDone) {
+                slot.replacementDone = true;
+                showToast(`⚠️ С фикса списано 500 ₽ (сменщик продлевал смену)`, 'error');
+            }
+
+            b.active = true; b.since = Date.now(); b.slot = slotType; b.slotKey = key; b.revenue = 0; b.bonus = 0; b.extended = false;
+            saveStore();
+            showToast(`🟢 Бариста ${id} начал ${slotType === 'night' ? 'ночную' : 'дневную'} смену`);
+            renderBarista(); renderAdmin(); updateCheckoutState(); syncManualBtnVisibility();
+        }
+
+        function openExtendModal(id) {
+            const b = store.baristas[id];
+            if (!b.active || b.extended) return;
+            pendingExtendBarista = id; $('extend-modal').classList.add('active');
+        }
+        function closeExtendModal() { pendingExtendBarista = null; $('extend-modal').classList.remove('active'); }
+        
+        function applyExtension(hours) {
+            const id = pendingExtendBarista; closeExtendModal();
+            if (!id) return;
+            const b = store.baristas[id];
+            if (hours > CONFIG.EXTENSION_LIMIT) return;
+
+            const nextSlotType = b.slot === 'night' ? 'day' : 'night';
+            const nextSlotKey = getSlotKeyForType(nextSlotType);
+            const nextSlot = getSlotByKey(nextSlotKey);
+
+            b.extended = true;
+            b.bonus = (b.bonus || 0) + CONFIG.EXTENSION_BONUS;
+            nextSlot.needsReplacement = true;
+            nextSlot.replacementDone = false;
+
+            saveStore();
+            showToast(`⏱ Бариста ${id} продлил смену на ${hours} ч.<br>Начислено +500 ₽ (следующий фикс будет 1000 ₽)`);
+            renderBarista(); renderAdmin();
+        }
+
+        async function endShift(id) {
+            const b = store.baristas[id];
+            if (!b.active) return;
+            if (!await customConfirm('Завершить смену?')) return;
             
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            btn.classList.add('active');
+            const sessionTime = Date.now() - b.since;
+            const slot = getSlotByKey(b.slotKey);
+            slot.times[id] = (slot.times[id] || 0) + sessionTime;
+            slot.revenues[id] = (slot.revenues[id] || 0) + (b.revenue || 0);
+            slot.bonuses[id] = (slot.bonuses[id] || 0) + (b.bonus || 0);
 
-            if (tab === 'menu') {
-                document.getElementById('main-view').style.display = 'flex';
-                document.getElementById('main-header').style.display = 'flex';
-            } else if (tab === 'admin') {
-                document.getElementById('admin-view').style.display = 'block';
-                document.getElementById('main-header').style.display = 'none';
-                if(sessionStorage.getItem('adminAuth') === 'true') { showDashboard(); } 
-                else {
-                    document.getElementById('admin-auth').style.display = 'block';
-                    document.getElementById('admin-dashboard').style.display = 'none';
+            // Штраф, если брал продление, но сменщик не вышел
+            if (b.extended && slot.needsReplacement && !slot.replacementDone) {
+                slot.replacementDone = true; // закрываем запрос
+                b.bonus -= CONFIG.EXTENSION_PENALTY; // -1500
+                showToast(`🚨 Штраф -1500 ₽! Сменщик не вышел, а смена была продлена.`, 'error');
+            }
+
+            if (!slot.awarded && slot.times[id] >= CONFIG.MIN_SLOT_TIME_MS && !b.extended) {
+                let leaderId = null, maxT = 0;
+                for (const bid in slot.times) {
+                    if (slot.times[bid] >= CONFIG.MIN_SLOT_TIME_MS && slot.times[bid] > maxT && !store.baristas[bid].extended) { maxT = slot.times[bid]; leaderId = bid; }
                 }
+                if (leaderId === String(id)) slot.awarded = String(id);
             }
+
+            b.totalShifts = (b.totalShifts || 0) + 1;
+            b.active = false; b.since = null; b.slot = null; b.slotKey = null; b.revenue = 0; b.bonus = 0; b.extended = false;
+            saveStore();
+
+            const win = (slot.awarded === String(id)) ? CONFIG.BASE_PAY : 0;
+            showToast(`🔴 Бариста ${id} завершил смену<br>6%: ${Math.round((slot.revenues[id]||0)*CONFIG.SALARY_PCT)} ₽${win ? '<br>🏆 +1500 ₽ за слот' : ''}`);
+            renderBarista(); renderAdmin(); updateCheckoutState(); syncManualBtnVisibility();
         }
 
-        function loginAdmin() {
-            if(document.getElementById('admin-pass').value === '333') {
-                sessionStorage.setItem('adminAuth', 'true');
-                document.getElementById('admin-pass').value = '';
-                showDashboard();
-            } else { alert("Неверный пароль!"); }
-        }
+        function renderBarista() {
+            const list = $('barista-list');
+            list.innerHTML = BARISTAS.map(i => {
+                const k = String(i), b = store.baristas[k], online = b.active;
+                const timeMs = getBaristaLiveTime(k), rev = getBaristaLiveRevenue(k), pct = Math.round(rev * CONFIG.SALARY_PCT);
+                const bonus = getBaristaLiveBonus(k), isLeader = online && isSlotLeader(b.slotKey, k);
+                const slotAwarded = b.slotKey && store.slots[b.slotKey] ? store.slots[b.slotKey].awarded : null;
+                const slotLabel = online ? (b.slot === 'night' ? '🌙 Ночная' : '☀️ Дневная') : '';
 
-        function logoutAdmin() {
-            sessionStorage.removeItem('adminAuth');
-            document.getElementById('admin-auth').style.display = 'block';
-            document.getElementById('admin-dashboard').style.display = 'none';
-        }
-
-        function showDashboard() {
-            document.getElementById('admin-auth').style.display = 'none';
-            document.getElementById('admin-dashboard').style.display = 'block';
-            renderEmployees();
-        }
-
-        function renderEmployees() {
-            const grid = document.getElementById('emp-grid');
-            grid.innerHTML = '';
-            
-            for (let i = 1; i <= 4; i++) {
-                let emp = employees[i.toString()];
-                grid.innerHTML += `
-                    <div class="emp-card ${emp.active ? 'active-shift' : ''}">
-                        <button class="btn-settings" onclick="openHistory(${i})">⚙️</button>
-                        <div class="emp-name">Бариста ${i}</div>
-                        <div class="emp-earnings">${emp.earned} ₽</div>
-                        <div class="emp-btn-group">
-                            ${emp.active 
-                                ? `<button class="emp-btn btn-end" onclick="endShift(${i})">Закрыть смену</button>`
-                                : `<button class="emp-btn btn-start" onclick="startShift(${i})">Открыть смену</button>`
-                            }
-                            <button class="emp-btn btn-history" onclick="openHistory(${i})">История смен</button>
+                return `
+                    <div class="barista-card ${online ? 'online' : ''}">
+                        <div class="barista-header">
+                            <h3>Бариста ${i}</h3>
+                            <span class="status-badge ${online ? 'status-online' : 'status-offline'}">
+                                <span class="status-dot"></span>${online ? 'На смене' : 'Не на смене'}
+                            </span>
                         </div>
-                    </div>
-                `;
-            }
+                        ${online ? `<div style="font-size:12px;color:var(--accent);font-weight:600;text-align:center">${slotLabel}${isLeader && !slotAwarded ? ' · 🏆 Лидер' : ''}${slotAwarded === k ? ' · 🏆 +1500' : ''}${b.extended ? ' · ⏳ Ждет сменщика' : ''}</div>` : ''}
+                        <div class="timer-display" id="barista-timer-${k}">${formatTime(timeMs)}</div>
+                        <div class="stats-row">
+                            <div style="text-align:center"><span style="font-size:10px;color:var(--text-sec)">Смен</span><br><b style="color:var(--text-main)">${b.totalShifts||0}</b></div>
+                            <div style="text-align:center"><span style="font-size:10px;color:var(--text-sec)">Выручка</span><br><b id="barista-rev-${k}">${rev}</b></div>
+                            <div style="text-align:center"><span style="font-size:10px;color:var(--text-sec)">6%</span><br><b id="barista-pct-${k}">${pct}</b></div>
+                        </div>
+                        <div class="barista-actions">
+                            ${online 
+                                ? `<button class="btn-end" onclick="endShift(${i})">Завершить</button>
+                                   ${!b.extended ? `<button class="btn-extend" onclick="openExtendModal(${i})">⏱ Продлить</button>` : ''}
+                                   <button class="btn-salary" onclick="openSalary(${i})">💰</button>`
+                                : `<button class="btn-start" onclick="startShiftClick(${i})">Начать смену</button>
+                                   <button class="btn-salary" onclick="openSalary(${i})">💰</button>`}
+                        </div>
+                    </div>`;
+            }).join('');
         }
 
-        function startShift(id) {
-            for (let key in employees) {
-                if (employees[key].active) { alert("Сначала закройте смену текущего сотрудника!"); return; }
-            }
-            employees[id].active = true;
-            employees[id].earned = 0;
-            employees[id].currentItems = []; 
-            employees[id].startTime = getMoscowTime(); 
-            saveEmployees();
-            renderEmployees();
-            sendTelegramMessage(`🟢 Смена: Бариста ${id} начал(а) работу.`);
+        function renderAdmin() {
+            const grid = $('admin-grid');
+            grid.innerHTML = BARISTAS.map(i => {
+                const k = String(i), b = store.baristas[k], online = b.active;
+                const timeMs = getBaristaLiveTime(k), rev = getBaristaLiveRevenue(k), pct = Math.round(rev * CONFIG.SALARY_PCT);
+                const bonus = getBaristaLiveBonus(k);
+                const slotAwarded = b.slotKey && store.slots[b.slotKey] ? store.slots[b.slotKey].awarded : null;
+                const slotInfo = online ? (b.slot === 'night' ? 'Ночная' : 'Дневная') : '—';
+
+                return `
+                    <div class="admin-card ${online ? 'online' : ''}">
+                        <div class="admin-card-head">
+                            <h3>Бариста ${i}</h3>
+                            <span class="status-badge ${online ? 'status-online' : 'status-offline'}">
+                                <span class="status-dot"></span>${online ? slotInfo : 'Отдыхает'}
+                            </span>
+                        </div>
+                        <div class="admin-card-body">
+                            <div class="admin-cell"><span class="label">Время</span><span class="value accent" id="admin-timer-${k}">${formatTime(timeMs)}</span></div>
+                            <div class="admin-cell"><span class="label">Доход</span><span class="value" id="admin-rev-${k}">${rev} ₽</span></div>
+                            <div class="admin-cell"><span class="label">6%</span><span class="value success" id="admin-pct-${k}">${pct} ₽</span></div>
+                            <div class="admin-cell"><span class="label">Смен</span><span class="value">${b.totalShifts||0}</span></div>
+                            <div class="admin-cell"><span class="label">Надбавки</span><span class="value" style="color:var(--gold)" id="admin-bonus-${k}">${bonus} ₽</span></div>
+                            <div class="admin-cell"><span class="label">1500₽</span><span class="value ${slotAwarded === k ? 'success' : ''}" id="admin-win-${k}">${slotAwarded === k ? '🏆 Да' : (online && isSlotLeader(b.slotKey, k) ? '🏆 Лидер' : '—')}</span></div>
+                        </div>
+                    </div>`;
+            }).join('');
+
+            let totalShifts = 0, totalRev = 0;
+            for (const k in store.baristas) totalShifts += store.baristas[k].totalShifts || 0;
+            for (const key in store.slots) for (const bid in store.slots[key].revenues) totalRev += store.slots[key].revenues[bid] || 0;
+            for (const k in store.baristas) if (store.baristas[k].active) totalRev += store.baristas[k].revenue || 0;
+            
+            $('total-shifts-count').innerText = totalShifts;
+            $('total-revenue-all').innerText = totalRev + ' ₽';
         }
 
-        function endShift(id) {
-            if(!confirm("Вы точно хотите завершить смену? Это действие нельзя отменить.")) { return; }
+        function updateTimers() {
+            BARISTAS.forEach(i => {
+                const k = String(i), ms = getBaristaLiveTime(k);
+                const t1 = $(`barista-timer-${k}`); if (t1) t1.textContent = formatTime(ms);
+                const t2 = $(`admin-timer-${k}`); if (t2) t2.textContent = formatTime(ms);
+                if (store.baristas[k].active) {
+                    const rev = getBaristaLiveRevenue(k), pct = Math.round(rev * CONFIG.SALARY_PCT), bonus = getBaristaLiveBonus(k);
+                    const r1 = $(`barista-rev-${k}`); if (r1) r1.textContent = rev;
+                    const p1 = $(`barista-pct-${k}`); if (p1) p1.textContent = pct;
+                    const b1 = $(`barista-bonus-${k}`); if (b1) b1.textContent = bonus;
+                    const r2 = $(`admin-rev-${k}`); if (r2) r2.textContent = rev + ' ₽';
+                    const p2 = $(`admin-pct-${k}`); if (p2) p2.textContent = pct + ' ₽';
+                    const b2 = $(`admin-bonus-${k}`); if (b2) b2.textContent = bonus + ' ₽';
+                }
+            });
+            if (currentSalaryBarista) renderSalary(currentSalaryBarista);
+        }
+        function startTimerLoop(){ if (!timerInterval) timerInterval = setInterval(updateTimers, 1000); }
+        function stopTimerLoop(){ clearInterval(timerInterval); timerInterval = null; }
 
-            let revenue = employees[id].earned;
-            let percentPay = Math.round(revenue * SALARY_PERCENTAGE);
-            let endTime = getMoscowTime();
-            let now = Date.now();
-            
-            let basePay = 0;
-            let isBonusEligible = true;
-            
-            if (employees[id].lastBonusTime) {
-                let hoursSinceLastBonus = (now - employees[id].lastBonusTime) / (1000 * 60 * 60);
-                if (hoursSinceLastBonus < BONUS_COOLDOWN_HOURS) { isBonusEligible = false; }
-            }
-            
-            if (isBonusEligible) {
-                basePay = BASE_PAY;
-                employees[id].lastBonusTime = now; 
-            }
-
-            let totalSalary = basePay + percentPay;
-            
-            let itemsText = "";
-            if (employees[id].currentItems.length > 0) {
-                let grouped = {};
-                employees[id].currentItems.forEach(item => {
-                    if(!grouped[item.name]) grouped[item.name] = { count: 0, price: item.price };
-                    grouped[item.name].count++;
-                });
+        function openSalary(id) { currentSalaryBarista = id; $('salary-title').innerText = `💰 Бариста ${id}`; renderSalary(id); $('salary-modal').classList.add('active'); }
+        function closeSalaryModal() { currentSalaryBarista = null; $('salary-modal').classList.remove('active'); }
+        function renderSalary(id) {
+            const k = String(id), b = store.baristas[k];
+            let html = '';
+            if (b.active) {
+                const slot = getSlotByKey(b.slotKey), liveTime = getBaristaLiveTime(k), liveRev = getBaristaLiveRevenue(k);
+                const livePct = Math.round(liveRev * CONFIG.SALARY_PCT), liveBonus = getBaristaLiveBonus(k);
+                const isLeader = isSlotLeader(b.slotKey, k), awarded = slot.awarded;
+                const win = awarded === k ? CONFIG.BASE_PAY : 0, potential = (isLeader && !awarded) ? CONFIG.BASE_PAY : 0;
                 
-                for(let name in grouped) {
-                    itemsText += `${name} (${grouped[name].count} шт) - ${grouped[name].price * grouped[name].count} ₽<br>`;
+                let penaltyHtml = '';
+                if (b.extended) {
+                    penaltyHtml = `<div class="salary-line"><span class="lbl" style="color:var(--danger)">Штраф (если сменщик не выйдет)</span><span class="val" style="color:var(--danger)">-1500 ₽</span></div>`;
                 }
-            } else { itemsText = "Ручной ввод суммы"; }
-            
-            employees[id].history.push({ 
-                startTime: employees[id].startTime, endTime: endTime, revenue: revenue, 
-                percentPay: percentPay, basePay: basePay, salary: totalSalary, itemsHtml: itemsText
-            });
-            
-            employees[id].active = false;
-            employees[id].currentItems = [];
-            saveEmployees();
-            renderEmployees();
 
-            let msg = `🔴 Смена: Бариста ${id} закрыл(а) смену.\n💰 Выручка: ${revenue} ₽.\n💵 Процент: ${percentPay} ₽.\n💸 За выход: ${basePay} ₽.\n✅ Итого: ${totalSalary} ₽`;
-            sendTelegramMessage(msg);
-            
-            alert(`Смена закрыта.\nВыручка: ${revenue} ₽\nПроцент (5%): ${percentPay} ₽\nЗа выход: ${basePay} ₽\n\nИТОГО К ВЫПЛАТЕ: ${totalSalary} ₽`);
-        }
-
-        function openHistory(id) {
-            document.getElementById('history-title').innerText = `История Бариста ${id}`;
-            const list = document.getElementById('history-list');
-            list.innerHTML = '';
-            
-            let emp = employees[id.toString()];
-            let totalRev = 0;
-            let totalSal = 0;
-
-            if(emp.history.length === 0) {
-                list.innerHTML = '<p style="text-align:center; color:var(--text-sec); font-style:italic;">Смен еще не было</p>';
-            } else {
-                let reversedHistory = [...emp.history].reverse();
-                reversedHistory.forEach((shift, index) => {
-                    totalRev += shift.revenue;
-                    totalSal += shift.salary;
-                    let originalIndex = emp.history.length - 1 - index;
-                    let timeStr = shift.startTime ? `${shift.startTime} — ${shift.endTime}` : `Завершено: ${shift.endTime || 'Неизвестно'}`;
-
-                    list.innerHTML += `
-                        <div class="history-item">
-                            <button class="btn-delete-shift" onclick="deleteShift(${id}, ${originalIndex})">🗑️</button>
-                            <div class="history-time">📅 ${timeStr}</div>
-                            <div class="history-details">
-                                <span class="history-revenue">Выручка: ${shift.revenue} ₽</span>
-                                <span class="history-salary">К выплате: ${shift.salary} ₽</span>
-                            </div>
-                            <div class="history-breakdown">
-                                (Выход: ${shift.basePay} ₽ + Процент: ${shift.percentPay} ₽)
-                            </div>
-                            <div class="history-products">
-                                <b>Продано:</b><br>${shift.itemsHtml || 'Нет данных'}
-                            </div>
-                        </div>
-                    `;
-                });
+                html += `<div class="salary-section"><h3>Текущая смена</h3><div class="salary-current">
+                    <div class="salary-current-head"><span class="slot-name">${b.slot === 'night' ? '🌙 Ночная' : '☀️ Дневная'}</span><span class="live-timer">${formatTime(liveTime)}</span></div>
+                    <div class="salary-line"><span class="lbl">Выручка</span><span class="val">${liveRev} ₽</span></div>
+                    <div class="salary-line"><span class="lbl">6% от выручки</span><span class="val">${livePct} ₽</span></div>
+                    ${liveBonus ? `<div class="salary-line"><span class="lbl">Надбавки/Продление</span><span class="val" style="color:var(--gold)">${liveBonus} ₽</span></div>` : ''}
+                    ${penaltyHtml}
+                    ${win ? `<div class="salary-line"><span class="lbl">🏆 Лидер слота</span><span class="val" style="color:var(--gold)">${win} ₽</span></div>` : ''}
+                    ${potential ? `<div class="salary-line"><span class="lbl">🏆 Потенциал</span><span class="val" style="color:var(--gold)">до ${potential} ₽</span></div>` : ''}
+                    <div class="salary-line total"><span class="lbl">К выплате</span><span class="val">${livePct + liveBonus + win} ₽</span></div>
+                </div></div>`;
             }
-            document.getElementById('history-total-rev').innerText = `${totalRev} ₽`;
-            document.getElementById('history-total-sal').innerText = `${totalSal} ₽`;
-            document.getElementById('history-modal').classList.add('active');
-        }
-
-        function deleteShift(empId, shiftIndex) {
-            if(confirm("Вы уверены, что хотите удалить эту смену из истории?")) {
-                employees[empId].history.splice(shiftIndex, 1); 
-                saveEmployees();
-                openHistory(empId);
-                if(document.getElementById('admin-dashboard').style.display === 'block') { renderEmployees(); }
+            const slotKeys = Object.keys(store.slots).filter(key => (store.slots[key].times[k] || 0) > 0).sort().reverse();
+            html += `<div class="salary-section"><h3>История</h3>`;
+            if (!slotKeys.length) html += `<div style="text-align:center;padding:20px;color:var(--text-sec)">Смен пока не было</div>`;
+            else {
+                for (const key of slotKeys) {
+                    if (b.active && b.slotKey === key) continue;
+                    const slot = store.slots[key], [dateStr, type] = key.split('_');
+                    const time = slot.times[k] || 0; if (time === 0) continue;
+                    const rev = slot.revenues[k] || 0, pct = Math.round(rev * CONFIG.SALARY_PCT), bonus = slot.bonuses[k] || 0;
+                    const win = slot.awarded === k ? CONFIG.BASE_PAY : 0, total = pct + bonus + win;
+                    html += `<div class="salary-history-item"><div class="sh-head"><span class="sh-date">${dateStr.split('-').reverse().join('.')}</span><span class="sh-type ${type}">${type === 'night' ? 'Ночь' : 'День'}</span></div>
+                        <div style="font-size:12px;color:var(--text-sec);margin-bottom:6px;line-height:1.5">Время: ${formatTime(time)} · Выручка: ${rev} ₽<br>6%: ${pct} ₽${bonus?` · Надбавки: ${bonus} ₽`:''}${win?` · <span style="color:var(--gold);font-weight:700">🏆 1500 ₽</span>`:''}</div>
+                        <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border-glass);padding-top:6px;font-weight:700;font-size:14px"><span>Итого</span><span>${total} ₽</span></div>
+                    </div>`;
+                }
             }
-        }
-
-        function closeHistoryModal() { document.getElementById('history-modal').classList.remove('active'); }
-
-        function addEarnings(amount, items) {
-            let activeId = null;
-            for (let key in employees) {
-                if (employees[key].active) { activeId = key; break; }
-            }
-            if (activeId) {
-                employees[activeId].earned += amount;
-                if (items && items.length > 0) { employees[activeId].currentItems.push(...items); }
-                saveEmployees();
-                if(document.getElementById('admin-dashboard').style.display === 'block') { renderEmployees(); }
-            }
-        }
-
-        function sendTelegramMessage(text) {
-            const BOT_TOKEN = "ТВОЙ_ТОКЕН_БОТА";
-            const CHAT_ID = "ТВОЙ_CHAT_ID";
-            if(BOT_TOKEN !== "ТВОЙ_ТОКЕН_БОТА") {
-                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`);
-            }
+            html += `</div>`; $('salary-body').innerHTML = html;
         }
 
         function openCategory(type, subcat, title) {
-            document.getElementById('main-view').style.display = 'none';
-            document.getElementById('category-view').style.display = 'block';
-            document.getElementById('category-title').innerText = title;
-
-            const grid = document.getElementById('menu-grid');
-            grid.innerHTML = '';
-            const filtered = menuData.filter(item => item.type === type && item.subcat === subcat);
-            
-            filtered.forEach(item => {
-                grid.innerHTML += `
-                    <div class="card">
-                        <img src="${item.img}" alt="${item.name}">
-                        <div class="card-content">
-                            <div class="card-title">${item.name}</div>
-                            <div class="card-price">${item.price} ₽</div>
-                            <button class="add-btn" onclick="addToCart(${item.price}, '${item.name}')">+</button>
-                        </div>
+            $('main-view').style.display = 'none'; $('category-view').style.display = 'block'; $('category-title').innerText = title;
+            $('menu-grid').innerHTML = menuData.filter(i => i.type === type && i.subcat === subcat).map(item => `
+                <div class="card">
+                    <img src="${safeText(item.img)}" alt="${safeText(item.name)}" loading="lazy">
+                    <div class="card-content">
+                        <div class="card-title">${safeText(item.name)}</div>
+                        <div class="card-price">${item.price} ₽</div>
+                        <button class="add-btn" data-price="${item.price}" data-name="${safeText(item.name)}">+</button>
                     </div>
-                `;
-            });
-            window.scrollTo(0, 0);
+                </div>`).join('');
+            $('menu-grid').onclick = e => {
+                const btn = e.target.closest('.add-btn');
+                if (btn) addToCart(Number(btn.dataset.price), btn.dataset.name);
+            };
+            window.scrollTo(0,0);
         }
-
-        function goBack() {
-            document.getElementById('category-view').style.display = 'none';
-            document.getElementById('main-view').style.display = 'flex';
-        }
-
-        function addToCart(price, name) {
-            cartSum += price;
-            cartItems.push({ name: name, price: price }); 
-            document.getElementById('cart-total').innerText = cartSum + ' ₽';
-            document.getElementById('cart-bar').classList.add('show');
-        }
-
+        function goBack() { $('category-view').style.display = 'none'; $('main-view').style.display = 'flex'; document.querySelectorAll('.nav-item').forEach((el,idx)=>el.classList.toggle('active', idx===0)); }
+        function addToCart(price, name) { cartSum += price; cartItems.push({ name, price }); $('cart-total').innerText = cartSum + ' ₽'; $('cart-bar').classList.add('show'); updateCheckoutState(); }
         function openPaymentModal() {
-            if(cartSum === 0) return;
-            document.getElementById('modal-amount').innerText = cartSum + ' ₽';
-            let sbpLink = `https://www.sberbank.com/sms/pbpn?requisiteNumber=79698881993&sum=${cartSum}`;
-            document.getElementById('qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(sbpLink)}`;
-            document.getElementById('payment-modal').classList.add('active');
+            if (cartSum === 0) return;
+            $('modal-amount').innerText = cartSum + ' ₽';
+            const sbp = `https://www.sberbank.com/sms/pbpn?requisiteNumber=${CONFIG.SBP_REQUISITE}&sum=${cartSum}`;
+            $('qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(sbp)}`;
+            $('payment-modal').classList.add('active');
         }
-
-        function closePaymentModal() { document.getElementById('payment-modal').classList.remove('active'); }
-        
-        function payCash() { 
-            alert("Оплата наличными принята!"); 
-            addEarnings(cartSum, cartItems); 
-            clearCart(); 
+        function closePaymentModal(){ $('payment-modal').classList.remove('active'); }
+        function clearCart() { cartSum = 0; cartItems = []; $('cart-total').innerText = '0 ₽'; $('cart-bar').classList.remove('show'); closePaymentModal(); updateCheckoutState(); }
+        function getActiveBaristaId() { for (const i of BARISTAS) if (store.baristas[String(i)].active) return String(i); return null; }
+        function payCash() {
+            const id = getActiveBaristaId();
+            if (!id) { showToast('Никто не на смене', 'error'); clearCart(); return; }
+            store.baristas[id].revenue = (store.baristas[id].revenue || 0) + cartSum;
+            saveStore(); showToast(`💰 ${cartSum} ₽ зачислено Бариста ${id}`);
+            updateTimers(); renderBarista(); renderAdmin(); clearCart();
         }
-        
-        function clearCart() {
-            cartSum = 0;
-            cartItems = []; 
-            document.getElementById('cart-total').innerText = '0 ₽';
-            document.getElementById('cart-bar').classList.remove('show');
-            closePaymentModal();
-        }
-
-        function openManualModal() { document.getElementById('manual-amount').value = ''; document.getElementById('manual-qr-box').style.display = 'none'; document.getElementById('manual-modal').classList.add('active'); }
-        function closeManualModal() { document.getElementById('manual-modal').classList.remove('active'); }
-        
+        function updateCheckoutState() { const anyOnline = BARISTAS.some(i => store.baristas[String(i)].active); $('checkout-btn').disabled = !(anyOnline && cartSum > 0); }
+        function syncManualBtnVisibility() { const anyOnline = BARISTAS.some(i => store.baristas[String(i)].active); $('manual-top-btn').style.display = (isAuthorized() || anyOnline) ? 'inline-block' : 'none'; }
+        function openManualModal() { $('manual-amount').value = ''; $('manual-qr-box').style.display = 'none'; pendingManualAmount = 0; $('manual-modal').classList.add('active'); }
+        function closeManualModal(){ $('manual-modal').classList.remove('active'); pendingManualAmount = 0; }
         function generateManualQR() {
-            let amount = document.getElementById('manual-amount').value;
-            if(amount <= 0 || amount === '') return alert("Введите сумму больше нуля.");
-            let sbpLink = `https://www.sberbank.com/sms/pbpn?requisiteNumber=79698881993&sum=${amount}`;
-            document.getElementById('manual-qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(sbpLink)}`;
-            document.getElementById('manual-qr-box').style.display = 'block';
-            addEarnings(Number(amount), []); 
+            const amount = Number($('manual-amount').value);
+            if (!amount || amount <= 0) return showToast('Введите сумму больше нуля', 'error');
+            pendingManualAmount = amount;
+            const sbp = `https://www.sberbank.com/sms/pbpn?requisiteNumber=${CONFIG.SBP_REQUISITE}&sum=${amount}`;
+            $('manual-qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(sbp)}`;
+            $('manual-qr-box').style.display = 'block';
         }
+        function confirmManualPayment() {
+            if (!pendingManualAmount) return;
+            const id = getActiveBaristaId();
+            if (!id) { showToast('Никто не на смене', 'error'); return; }
+            store.baristas[id].revenue = (store.baristas[id].revenue || 0) + pendingManualAmount;
+            saveStore(); showToast(`💰 ${pendingManualAmount} ₽ зачислено Бариста ${id}`);
+            updateTimers(); renderBarista(); renderAdmin(); closeManualModal();
+        }
+
+        function switchTab(tab, btn) {
+            $('main-view').style.display = 'none'; $('category-view').style.display = 'none'; $('barista-view').style.display = 'none'; $('admin-view').style.display = 'none'; $('cart-bar').classList.remove('show');
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); btn.classList.add('active');
+            if (tab === 'menu') { $('main-view').style.display = 'flex'; stopTimerLoop(); }
+            else if (tab === 'barista') { $('barista-view').style.display = 'block'; renderBarista(); startTimerLoop(); }
+            else if (tab === 'admin') {
+                $('admin-view').style.display = 'block';
+                if (isAuthorized()) { showAdminDashboard(); startTimerLoop(); }
+                else { $('admin-auth').style.display = 'block'; $('admin-dashboard').style.display = 'none'; stopTimerLoop(); }
+            }
+            syncManualBtnVisibility(); updateCheckoutState();
+        }
+
+        document.querySelectorAll('.modal-overlay').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('active'); }));
+        setInterval(() => { if (!isAuthorized() && $('admin-dashboard').style.display === 'block') logoutAdmin(); }, 60 * 1000);
+
+        initTheme(); renderBarista(); syncManualBtnVisibility(); updateCheckoutState();
     </script>
 </body>
 </html>
