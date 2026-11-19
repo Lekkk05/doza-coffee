@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-    <meta name="theme-color" content="#f7f5f2">
+    <meta name="theme-color" content="#121212">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="DOZA">
     <title>DOZA COFFEE</title>
     
@@ -37,14 +37,15 @@
             --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.1);
             --noise-bg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 
-            /* Улучшенное жидкое стекло */
-            --liquid-bg: rgba(255, 255, 255, 0.55);
+            --liquid-bg: rgba(255, 255, 255, 0.65);
             --liquid-border: rgba(255, 255, 255, 1);
-            --liquid-shadow: 0 12px 40px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,1), inset 0 -2px 4px rgba(0,0,0,0.05);
-            --liquid-blur: blur(50px) saturate(250%) brightness(1.1);
+            --liquid-shadow: 0 10px 40px rgba(0,0,0,0.08), inset 0 1px 2px rgba(255,255,255,1), inset 0 -1px 1px rgba(0,0,0,0.03);
+            --liquid-blur: blur(25px) saturate(200%) brightness(1.05);
+            --glass-highlight: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 40%);
         }
 
-        [data-theme="dark"] {
+        /* По умолчанию темная тема */
+        body {
             --accent: #e09f65; 
             --accent-soft: rgba(224, 159, 101, 0.15); 
             --accent-border: rgba(224, 159, 101, 0.3);
@@ -59,24 +60,74 @@
             --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
             --noise-bg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
 
-            /* Улучшенное жидкое стекло (Темная тема) */
-            --liquid-bg: rgba(20, 20, 20, 0.7);
+            --liquid-bg: rgba(25, 25, 25, 0.75);
             --liquid-border: rgba(255, 255, 255, 0.15);
-            --liquid-shadow: 0 12px 40px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -2px 4px rgba(0,0,0,0.2);
-            --liquid-blur: blur(50px) saturate(250%) brightness(0.9);
+            --liquid-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.1), inset 0 -1px 1px rgba(0,0,0,0.2);
+            --liquid-blur: blur(25px) saturate(200%) brightness(0.95);
+            --glass-highlight: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 40%);
         }
 
+        /* Светлая тема */
+        body:not([data-theme="dark"]) {
+            --accent: #c47b3d; 
+            --accent-soft: rgba(196, 123, 61, 0.1); 
+            --accent-border: rgba(196, 123, 61, 0.25);
+            --bg-main: #f7f5f2;
+            --bg-gradient: linear-gradient(145deg, #fdfbfb 0%, #f2ece4 100%);
+            --text-main: #2c2420; 
+            --text-sec: #8e8a85; 
+            --glass-1: rgba(255, 255, 255, 0.5); 
+            --glass-2: rgba(255, 255, 255, 0.75); 
+            --glass-3: rgba(255, 255, 255, 0.95);
+            --border-glass: rgba(255, 255, 255, 1); 
+            --shadow-soft: 0 8px 32px rgba(80, 50, 30, 0.06), inset 0 1px 0 rgba(255, 255, 255, 1);
+            --noise-bg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            --liquid-bg: rgba(255, 255, 255, 0.65);
+            --liquid-border: rgba(255, 255, 255, 1);
+            --liquid-shadow: 0 10px 40px rgba(0,0,0,0.08), inset 0 1px 2px rgba(255,255,255,1), inset 0 -1px 1px rgba(0,0,0,0.03);
+            --liquid-blur: blur(25px) saturate(200%) brightness(1.05);
+            --glass-highlight: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 40%);
+        }
+
+        body.lite-mode {
+            --liquid-blur: none;
+            --liquid-bg: var(--glass-2);
+            --liquid-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --glass-highlight: none;
+        }
+        body.lite-mode .liquid-glass, 
+        body.lite-mode .card, 
+        body.lite-mode .barista-card, 
+        body.lite-mode .admin-card,
+        body.lite-mode .bottom-nav,
+        body.lite-mode .bottom-bar,
+        body.lite-mode .modal-box,
+        body.lite-mode .dm-header,
+        body.lite-mode .dm-search-wrap,
+        body.lite-mode .stats-row,
+        body.lite-mode .admin-cell {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: var(--glass-2) !important;
+        }
+        body.lite-mode .aurora-container { display: none; }
+        body.lite-mode .view-anim-left, body.lite-mode .view-anim-right, body.lite-mode .card { animation: none !important; }
+        body.lite-mode .btn-liquid::after { display: none; }
+        
         body.keyboard-open .bottom-nav-wrapper { transform: translate(-50%, 150%) !important; opacity: 0; pointer-events: none; }
         body.keyboard-open .bottom-bar { bottom: -120px !important; }
         body.modal-open { overflow: hidden; }
         
+        ::-webkit-scrollbar { display: none; width: 0; height: 0; }
+        * { scrollbar-width: none; -ms-overflow-style: none; }
+
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-tap-highlight-color: transparent; }
         
         body { 
             background-color: var(--bg-main); 
             background-image: var(--bg-gradient);
             color: var(--text-main); 
-            padding-bottom: calc(140px + env(safe-area-inset-bottom)); 
+            padding-bottom: calc(160px + env(safe-area-inset-bottom)); 
             overflow-x: hidden; 
             position: relative; 
             min-height: 100vh; 
@@ -87,10 +138,35 @@
             pointer-events: none; z-index: -1; mix-blend-mode: overlay;
         }
 
-        .aurora-container {
-            position: fixed; top: 0; left: 0; right: 0; height: 50vh; z-index: -2; overflow: hidden; pointer-events: none; opacity: 0.6; filter: blur(60px);
+        #splash-screen {
+            position: fixed; inset: 0; background: var(--bg-main); z-index: 99999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
-        .aurora-blob { position: absolute; border-radius: 50%; animation: floatBlob 15s infinite alternate ease-in-out; }
+        #splash-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .splash-logo {
+            font-family: 'Playfair Display', serif; font-size: 36px; letter-spacing: 2px; font-weight: 700;
+            background: linear-gradient(135deg, #d4a373 0%, #c47b3d 50%, #9e5a26 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: pulseLogo 2s infinite ease-in-out;
+        }
+        [data-theme="dark"] .splash-logo { background: linear-gradient(135deg, #f7d6b5 0%, #e09f65 50%, #c47b3d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @keyframes pulseLogo { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+
+        .header-title h1 { 
+            font-family: 'Playfair Display', serif; font-size: 24px; letter-spacing: 2px; font-weight: 700; 
+            background: linear-gradient(135deg, #f7d6b5 0%, #e09f65 25%, #c47b3d 50%, #e09f65 75%, #f7d6b5 100%); 
+            background-size: 200% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            animation: shineText 3s linear infinite;
+        }
+        body:not([data-theme="dark"]) .header-title h1 { background: linear-gradient(135deg, #d4a373 0%, #c47b3d 25%, #9e5a26 50%, #c47b3d 75%, #d4a373 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @keyframes shineText { to { background-position: 200% center; } }
+
+        .aurora-container {
+            position: fixed; top: 0; left: 0; right: 0; height: 50vh; z-index: -2; overflow: hidden; pointer-events: none; opacity: 0.6; filter: blur(40px);
+        }
+        .aurora-blob { position: absolute; border-radius: 50%; animation: floatBlob 15s infinite alternate ease-in-out; will-change: transform; }
         .blob-1 { background: var(--accent); width: 250px; height: 250px; top: -50px; left: -50px; opacity: 0.4; }
         .blob-2 { background: #8a2be2; width: 300px; height: 300px; top: -100px; right: -50px; animation-delay: -5s; opacity: 0.2; }
         .blob-3 { background: #00fa9a; width: 200px; height: 200px; top: 10%; left: 30%; animation-delay: -10s; opacity: 0.15; }
@@ -99,43 +175,40 @@
         @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
         .skeleton { background: linear-gradient(90deg, var(--glass-1) 25%, var(--glass-2) 50%, var(--glass-1) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
 
-        /* ЕДИНЫЙ СТИЛЬ ЖИДКОГО СТЕКЛА */
         .liquid-glass {
             background: var(--liquid-bg);
             backdrop-filter: var(--liquid-blur);
             -webkit-backdrop-filter: var(--liquid-blur);
             border: 1px solid var(--liquid-border);
             box-shadow: var(--liquid-shadow);
+            position: relative;
+            overflow: hidden;
         }
-
-        .glass-1 { background: var(--glass-1); border: 1px solid var(--border-glass); backdrop-filter: blur(12px) saturate(150%); -webkit-backdrop-filter: blur(12px) saturate(150%); }
-        .glass-2 { background: var(--glass-2); border: 1px solid var(--border-glass); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); box-shadow: var(--shadow-soft); }
-        .glass-3 { background: var(--glass-3); border: 1px solid var(--border-glass); backdrop-filter: blur(32px) saturate(200%); -webkit-backdrop-filter: blur(32px) saturate(200%); box-shadow: 0 24px 64px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.6); }
+        .liquid-glass::before {
+            content: ''; position: absolute; inset: 0; background: var(--glass-highlight); pointer-events: none; z-index: 0;
+        }
+        .liquid-glass > * { position: relative; z-index: 1; }
 
         @keyframes appleFadeIn { 0% { opacity: 0; transform: scale(0.97) translateY(8px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
         @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
         @keyframes breathe { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
         
-        /* Анимация свайпа контента */
         @keyframes swipeInLeft { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes swipeInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
-        .view-anim-left { animation: swipeInLeft 0.4s var(--ease-spring) forwards; }
-        .view-anim-right { animation: swipeInRight 0.4s var(--ease-spring) forwards; }
+        .view-anim-left { animation: swipeInLeft 0.3s var(--ease-spring) forwards; }
+        .view-anim-right { animation: swipeInRight 0.3s var(--ease-spring) forwards; }
         
+        .btn-spring { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease; }
+        .btn-spring:active { transform: scale(0.92); }
+
         .btn-liquid { position: relative; overflow: hidden; }
         .btn-liquid::after {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 60%);
-            opacity: 0; transform: scale(0.5); transition: opacity 0.3s, transform 0.3s; pointer-events: none;
+            opacity: 0; transform: scale(0.5); transition: opacity 0.2s, transform 0.2s; pointer-events: none;
         }
         .btn-liquid:active::after { opacity: 1; transform: scale(1); }
 
-        button, .card, .nav-item, .big-cat-btn, .slot-pick-btn {
-            transition: transform 0.2s var(--ease-spring), box-shadow 0.2s var(--ease-apple), background 0.3s var(--ease-apple), border-color 0.3s var(--ease-apple);
-        }
-        button:active, .card:active, .nav-item:active, .big-cat-btn:active, .slot-pick-btn:active { transform: scale(0.94) !important; }
-
-        /* ВЕРХНЯЯ ПАНЕЛЬ (Теперь статичная) */
         header { 
             padding: 12px 20px; 
             position: sticky; top: 10px; 
@@ -146,15 +219,12 @@
         }
         
         .header-title { cursor: pointer; user-select: none; -webkit-user-select: none; }
-        .header-title h1 { font-family: 'Playfair Display', serif; font-size: 24px; letter-spacing: 2px; font-weight: 700; background: linear-gradient(135deg, #d4a373 0%, #c47b3d 50%, #9e5a26 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        [data-theme="dark"] .header-title h1 { background: linear-gradient(135deg, #f7d6b5 0%, #e09f65 50%, #c47b3d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .header-title p { font-size: 9px; color: var(--accent); margin-top: 2px; text-transform: uppercase; letter-spacing: 5px; font-weight: 700; opacity: 0.8; }
         
         .header-actions { display: flex; gap: 10px; align-items: center; }
-        .settings-btn { background: var(--glass-1); border: 1px solid var(--border-glass); color: var(--text-main); width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: var(--shadow-soft); }
-        .settings-btn:active { transform: scale(0.9) rotate(30deg) !important; }
+        .settings-btn { background: var(--glass-1); border: 1px solid var(--border-glass); color: var(--text-main); width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-soft); }
+        .settings-btn svg { width: 20px; height: 20px; fill: currentColor; }
 
-        /* Утилиты */
         .text-center { text-align: center; }
         .flex { display: flex; }
         .flex-col { flex-direction: column; }
@@ -169,73 +239,103 @@
         .stat-col { display: flex; flex-direction: column; align-items: center; gap: 2px; }
         .stat-label { font-size: 10px; color: var(--text-sec); text-transform: uppercase; font-weight: 600; }
 
-        /* ОСНОВНОЙ КОНТЕНТ (С поддержкой свайпа) */
         .view-container { position: relative; overflow: hidden; width: 100%; }
         #main-view { display: flex; padding: 20px 15px; gap: 15px; }
         .main-column { flex: 1; display: flex; flex-direction: column; gap: 15px; }
         .column-title { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text-main); text-align: center; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; font-style: italic; }
         
         .big-cat-btn { position: relative; height: 145px; border-radius: 20px; border: 1px solid var(--border-glass); background-size: cover; background-position: center; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: #fff; text-shadow: 1px 1px 5px rgba(0,0,0,0.8); padding: 10px; text-align: center; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); }
-        .big-cat-btn::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.3); z-index: 1; transition: background 0.4s var(--ease-apple); }
+        .big-cat-btn::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.3); z-index: 1; transition: background 0.3s var(--ease-apple); }
         .big-cat-btn:active::before { background: rgba(0, 0, 0, 0.1); }
         .big-cat-btn span { position: relative; z-index: 2; letter-spacing: 0.5px; }
-
+        
         #category-view, #barista-view { display: none; padding: 15px; }
-        .back-btn { display: inline-flex; align-items: center; background: var(--glass-2); color: var(--accent); border: 1px solid var(--border-glass); padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-bottom: 25px; box-shadow: var(--shadow-soft); }
+        .back-btn { display: inline-flex; align-items: center; background: var(--liquid-bg); color: var(--accent); border: 1px solid var(--border-glass); padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-bottom: 25px; box-shadow: var(--shadow-soft); }
         .category-header { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--text-main); margin-bottom: 25px; text-align: center; padding-bottom: 10px; font-weight: 700; }
 
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .card { background: var(--glass-2); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--border-glass); box-shadow: var(--shadow-soft); position: relative; animation: slideUpFade 0.4s var(--ease-spring) forwards; }
+        
+        .card { background: var(--liquid-bg); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--liquid-border); box-shadow: var(--liquid-shadow); position: relative; animation: slideUpFade 0.3s var(--ease-apple) forwards; }
         .card-img-wrapper { width: 100%; height: 120px; overflow: hidden; position: relative; background: var(--glass-1); }
-        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s, transform 0.5s var(--ease-apple); }
+        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.3s ease; }
         .card-img-wrapper img.loaded { opacity: 1; }
-        .card:active .card-img-wrapper img { transform: scale(1.05); }
         .card-content { padding: 15px 12px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
         .card-title { font-size: 15px; font-weight: 600; text-align: center; }
         .card-price { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--accent); font-weight: 700; margin-bottom: 8px; font-variant-numeric: tabular-nums; }
         .add-btn { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-border); width: 100%; height: 35px; border-radius: 10px; font-size: 20px; font-weight: 600; }
         .add-btn:active { background: var(--accent); color: #fff; }
 
-        .fly-dot { position: fixed; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; z-index: 9999; pointer-events: none; box-shadow: 0 0 10px var(--accent); }
+        .fly-dot { 
+            position: fixed; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; z-index: 9999; pointer-events: none; 
+            box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent); will-change: transform, opacity; 
+        }
 
         .barista-list { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
-        .barista-card { background: var(--glass-2); border-radius: 20px; padding: 20px; border: 1px solid var(--border-glass); display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow-soft); }
-        .barista-card.online { border-color: var(--success); box-shadow: 0 0 0 1px var(--success), var(--shadow-soft); }
-        .barista-header { display: flex; justify-content: space-between; align-items: center; }
-        .barista-header h3 { font-size: 18px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
         
-        .status-badge { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; display: flex; align-items: center; gap: 6px; transition: all 0.3s; }
+        .barista-card { background: var(--liquid-bg); border-radius: 20px; padding: 20px; border: 1px solid var(--liquid-border); display: flex; flex-direction: column; gap: 8px; box-shadow: var(--liquid-shadow); }
+        .barista-card.online { border-color: var(--success); box-shadow: 0 0 0 1px var(--success), var(--liquid-shadow); }
+        .barista-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .barista-header h3 { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        
+        .status-badge { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
         .status-online { background: rgba(52, 199, 89, 0.15); color: var(--success); }
         .status-offline { background: var(--glass-1); color: var(--text-sec); }
         .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; display: inline-block; }
         .status-online .status-dot { animation: breathe 2.5s infinite var(--ease-apple); }
         
-        .timer-display { font-size: 32px; font-family: monospace; font-variant-numeric: tabular-nums; font-weight: 700; text-align: center; margin: 5px 0; transition: color 0.3s; }
+        .timer-display { font-size: 36px; font-family: monospace; font-variant-numeric: tabular-nums; font-weight: 700; text-align: center; margin: 0 0 5px 0; transition: color 0.2s; }
         .online .timer-display { color: var(--success); }
         
-        .stats-row { display: flex; justify-content: space-between; background: var(--glass-1); padding: 12px 15px; border-radius: 12px; font-size: 14px; border: 1px solid var(--border-glass); font-variant-numeric: tabular-nums; }
+        .timer-warning { animation: pulseWarning 2s infinite; }
+        @keyframes pulseWarning { 0% { color: var(--success); text-shadow: 0 0 0 rgba(255,59,48,0); } 50% { color: var(--danger); text-shadow: 0 0 10px rgba(255,59,48,0.5); } 100% { color: var(--success); text-shadow: 0 0 0 rgba(255,59,48,0); } }
+
+        .stats-row { 
+            display: flex; justify-content: space-between; 
+            background: rgba(0, 0, 0, 0.3); 
+            padding: 12px 15px; border-radius: 14px; font-size: 14px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.1);
+            font-variant-numeric: tabular-nums; 
+        }
+        body:not([data-theme="dark"]) .stats-row {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.8);
+        }
         .stats-row b { color: var(--success); font-size: 16px; }
-        .barista-actions { display: flex; gap: 10px; }
-        .barista-actions button { flex: 1; padding: 14px; border-radius: 12px; font-weight: 600; border: none; font-size: 14px; }
-        .btn-start { background: var(--success); color: white; }
-        .btn-end { background: var(--danger); color: white; }
-        .btn-extend { background: var(--gold); color: #fff; }
-        .btn-salary { background: var(--accent); color: #fff; }
+        
+        .barista-actions { display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
+        
+        .btn-glass-green, .btn-glass-orange, .btn-glass-red, .btn-glass-gold {
+            position: relative; overflow: hidden; padding: 12px 8px; border-radius: 12px; font-weight: 600; border: none; font-size: 13px;
+            transition: background 0.2s; white-space: normal; line-height: 1.2; text-align: center;
+        }
+        .btn-glass-green { flex: 1 1 30%; min-width: 80px; background: rgba(52, 199, 89, 0.2); color: var(--success); border: 1px solid rgba(52, 199, 89, 0.4); }
+        .btn-glass-green:active { background: rgba(52, 199, 89, 0.35); }
+        
+        .btn-glass-orange { flex: 1 1 30%; min-width: 80px; background: rgba(224, 159, 101, 0.2); color: var(--accent); border: 1px solid rgba(224, 159, 101, 0.4); }
+        .btn-glass-orange:active { background: rgba(224, 159, 101, 0.35); }
+
+        .btn-glass-red { flex: 1 1 30%; min-width: 80px; background: rgba(255, 59, 48, 0.2); color: var(--danger); border: 1px solid rgba(255, 59, 48, 0.4); }
+        .btn-glass-red:active { background: rgba(255, 59, 48, 0.35); }
+
+        .btn-glass-gold { flex: 1 1 30%; min-width: 80px; background: rgba(245, 158, 11, 0.2); color: var(--gold); border: 1px solid rgba(245, 158, 11, 0.4); }
+        .btn-glass-gold:active { background: rgba(245, 158, 11, 0.35); }
 
         .add-barista-btn {
             display: flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 16px; border-radius: 20px;
             font-size: 16px; font-weight: 600; color: var(--accent);
             cursor: pointer; border: 1px dashed var(--accent-border);
-            margin-top: 10px;
+            margin-top: 10px; background: var(--liquid-bg);
         }
 
         #admin-view { display: none; padding: 20px; }
         
         .auth-box { padding: 40px 20px; border-radius: 24px; text-align: center; margin-top: 20vh; max-width: 500px; margin-left: auto; margin-right: auto; }
         .auth-box h2 { color: var(--text-main); margin-bottom: 20px; font-family: 'Playfair Display', serif; }
-        .admin-input { width: 100%; padding: 15px; background: var(--glass-1); border: 1px solid var(--border-glass); border-radius: 12px; color: var(--text-main); font-size: 24px; text-align: center; margin-bottom: 20px; letter-spacing: 5px; outline: none; transition: all 0.3s var(--ease-apple); }
-        .admin-input:focus { border-color: var(--accent); background: var(--glass-2); box-shadow: 0 0 0 4px var(--accent-soft), 0 0 20px var(--accent-soft); }
+        .admin-input { width: 100%; padding: 15px; background: var(--glass-1); border: 1px solid var(--border-glass); border-radius: 12px; color: var(--text-main); font-size: 24px; text-align: center; margin-bottom: 20px; letter-spacing: 5px; outline: none; transition: all 0.2s var(--ease-apple); }
+        .admin-input:focus { border-color: var(--accent); background: var(--glass-2); box-shadow: 0 0 0 4px var(--accent-soft); }
         .btn-login { background: var(--accent); color: #fff; border: none; padding: 15px; width: 100%; border-radius: 12px; font-size: 16px; font-weight: 600; }
         .auth-error { color: var(--danger); font-size: 13px; margin-bottom: 12px; min-height: 18px; font-weight: 600; }
         
@@ -245,13 +345,27 @@
         .btn-logout { background: transparent; color: var(--danger); border: 1px solid var(--danger); padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: 600; }
         
         .admin-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; max-width: 1200px; margin-left: auto; margin-right: auto; }
-        .admin-card { background: var(--glass-2); border: 1px solid var(--border-glass); border-radius: 20px; padding: 16px; box-shadow: var(--shadow-soft); }
+        
+        .admin-card { background: var(--liquid-bg); border: 1px solid var(--liquid-border); border-radius: 20px; padding: 16px; box-shadow: var(--liquid-shadow); }
         .admin-card.online { border-color: var(--success); }
-        .admin-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .admin-card-head h3 { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px;}
-        .edit-shift-btn { background: var(--glass-1); border: 1px solid var(--border-glass); color: var(--accent); border-radius: 8px; padding: 4px 8px; font-size: 12px; cursor: pointer; font-weight: 600; }
+        .admin-card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;}
+        .admin-card-head h3 { font-size: 16px; font-weight: 600; display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 200px;}
+        .admin-card-head h3 .admin-actions { display: flex; gap: 5px; margin-top: 5px; }
+        .edit-shift-btn { background: var(--glass-1); border: 1px solid var(--border-glass); color: var(--accent); border-radius: 8px; padding: 6px 10px; font-size: 12px; cursor: pointer; font-weight: 600; }
         .admin-card-body { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-        .admin-cell { background: var(--glass-1); border-radius: 12px; padding: 10px; text-align: center; border: 1px solid var(--border-glass); font-variant-numeric: tabular-nums; }
+        
+        .admin-cell { 
+            background: rgba(0, 0, 0, 0.3); 
+            border-radius: 12px; padding: 10px; text-align: center; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.1);
+            font-variant-numeric: tabular-nums; 
+        }
+        body:not([data-theme="dark"]) .admin-cell {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.8);
+        }
         .admin-cell .label { display: block; font-size: 10px; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 600; }
         .admin-cell .value { font-size: 14px; font-weight: 700; }
         .admin-cell .value.accent { color: var(--accent); }
@@ -262,40 +376,67 @@
         .stat-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; font-weight: 600; }
         .stat-row span:last-child { color: var(--accent); }
         
+        .filter-tabs { display: flex; gap: 8px; margin-bottom: 15px; justify-content: center; }
+        .filter-tab { padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-glass); background: var(--glass-1); color: var(--text-sec); font-size: 12px; font-weight: 600; cursor: pointer; }
+        .filter-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
         .export-btn { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 20px auto 0; padding: 15px 30px; border-radius: 15px; background: var(--success); color: white; font-size: 16px; font-weight: 600; border: none; cursor: pointer; max-width: 300px; width: 100%; box-shadow: 0 4px 15px rgba(52, 199, 89, 0.3); }
 
-        /* НИЖНЯЯ НАВИГАЦИЯ */
-        .bottom-nav-wrapper { position: fixed; bottom: max(20px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); width: 90%; max-width: 380px; z-index: 50; transition: transform 0.4s var(--ease-apple), opacity 0.3s var(--ease-apple); will-change: transform, opacity; }
+        .bottom-nav-wrapper { position: fixed; bottom: max(20px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); width: 90%; max-width: 380px; z-index: 50; transition: transform 0.3s var(--ease-apple), opacity 0.2s var(--ease-apple); will-change: transform, opacity; }
         .bottom-nav-wrapper.nav-hidden { transform: translate(-50%, 150%) !important; opacity: 0 !important; pointer-events: none; }
         
-        .bottom-nav { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-radius: 40px; overflow: hidden; }
-        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; color: var(--text-sec); font-size: 11px; font-weight: 600; background: transparent; border: 1px solid transparent; padding: 8px 0; border-radius: 30px; position: relative; z-index: 1; }
-        .nav-item svg { width: 22px; height: 22px; margin-bottom: 4px; fill: currentColor; transition: transform 0.4s var(--ease-spring); }
-        .nav-item.active { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-border); box-shadow: 0 0 15px var(--accent-soft); }
+        .bottom-nav { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-radius: 40px; overflow: hidden; position: relative; }
+        
+        .nav-indicator {
+            position: absolute; top: 8px; bottom: 8px; left: 8px; width: calc(33.333% - 5.33px);
+            background: var(--accent-soft); border: 1px solid var(--accent-border); border-radius: 30px;
+            transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1); z-index: 0;
+            box-shadow: 0 0 15px var(--accent-soft);
+        }
+        
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; color: var(--text-sec); font-size: 11px; font-weight: 600; background: transparent; border: none; padding: 8px 0; border-radius: 30px; position: relative; z-index: 1; transition: color 0.2s; }
+        .nav-item svg { width: 22px; height: 22px; margin-bottom: 4px; fill: currentColor; transition: transform 0.2s var(--ease-spring); }
+        .nav-item.active { color: var(--accent); }
         .nav-item.active svg { transform: translateY(-3px) scale(1.05); }
 
-        .bottom-bar { position: fixed; bottom: -120px; left: 0; width: 100%; color: var(--text-main); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 40; transition: bottom 0.5s var(--ease-spring); will-change: bottom; border-top: 1px solid var(--border-glass); }
-        .bottom-bar.show { bottom: calc(90px + max(20px, env(safe-area-inset-bottom))); } 
-        .cart-info { display: flex; flex-direction: column; gap: 2px; }
+        .bottom-bar { 
+            position: fixed; bottom: -150px; left: 50%; transform: translateX(-50%); 
+            width: calc(100% - 30px); max-width: 380px; 
+            color: var(--text-main); padding: 12px 20px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            z-index: 40; transition: bottom 0.3s var(--ease-spring); will-change: bottom; 
+            border-radius: 24px; border: 1px solid var(--liquid-border); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            background: var(--liquid-bg);
+        }
+        .bottom-bar.show { bottom: calc(95px + max(20px, env(safe-area-inset-bottom))); } 
+        .cart-info { display: flex; flex-direction: column; gap: 2px; position: relative; }
         .cart-info span { font-size: 11px; color: var(--text-sec); text-transform: uppercase; font-weight: 600; }
-        .cart-info b { font-size: 20px; font-family: 'Playfair Display', serif; font-variant-numeric: tabular-nums; }
-        .checkout-btn { background: var(--accent); color: #fff; border: none; padding: 12px 25px; border-radius: 25px; font-weight: 600; font-size: 14px; }
+        .cart-info b { font-size: 18px; font-family: 'Playfair Display', serif; font-variant-numeric: tabular-nums; }
+        
+        .cart-badge {
+            position: absolute; top: -8px; left: -12px; background: var(--accent); color: #fff;
+            font-size: 10px; font-weight: 700; width: 20px; height: 20px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); animation: appleFadeIn 0.2s ease;
+        }
+        
+        .checkout-btn { background: var(--accent); color: #fff; border: none; padding: 10px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; }
         .checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-        /* МОДАЛКИ */
-        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); z-index: 1000; align-items: center; justify-content: center; padding: 15px; opacity: 0; transition: opacity 0.3s var(--ease-apple); }
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); z-index: 1000; align-items: center; justify-content: center; padding: 15px; opacity: 0; transition: opacity 0.2s var(--ease-apple); }
+        body.lite-mode .modal-overlay { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(0,0,0,0.7); }
         .modal-overlay.active { display: flex; opacity: 1; }
         
         .modal-box { 
             width: 100%; max-width: 440px; border-radius: 28px; padding: 25px; text-align: center; color: var(--text-main); display: flex; flex-direction: column; 
-            transform: scale(0.95) translateY(20px); transition: transform 0.4s var(--ease-spring), opacity 0.3s var(--ease-apple); 
+            transform: scale(0.95) translateY(20px); transition: transform 0.3s var(--ease-spring), opacity 0.2s var(--ease-apple); 
             max-height: 90vh; overflow-y: auto; opacity: 0;
             will-change: transform;
         }
         .modal-overlay.active .modal-box { transform: scale(1) translateY(0); opacity: 1; }
-        .modal-overlay.active .modal-box.dragging { transition: none; }
         
-        .modal-handle { width: 40px; height: 4px; background: var(--text-sec); opacity: 0.3; border-radius: 2px; margin: 0 auto 15px auto; cursor: grab; }
+        .modal-handle { width: 40px; height: 4px; background: var(--text-sec); opacity: 0.3; border-radius: 2px; margin: 0 auto 15px auto; }
         .modal-box h2 { font-family: 'Playfair Display', serif; margin-bottom: 15px; }
         
         .action-btn { display: block; width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 14px; border: none; font-size: 15px; font-weight: 600; }
@@ -312,14 +453,14 @@
         .slot-pick-btn .slot-time { display: block; font-size: 13px; color: var(--text-sec); font-weight: 500; }
 
         .cart-list { text-align: left; margin-bottom: 15px; max-height: 40vh; overflow-y: auto; background: var(--glass-1); border-radius: 16px; border: 1px solid var(--border-glass); }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; background: var(--glass-2); padding: 15px; border-bottom: 1px solid var(--border-glass); transition: all 0.3s var(--ease-apple); overflow: hidden; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; background: var(--glass-2); padding: 15px; border-bottom: 1px solid var(--border-glass); overflow: hidden; }
         .cart-item:last-child { border-bottom: none; }
         .cart-item-name { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
         .cart-item-price { color: var(--accent); font-weight: 700; font-family: 'Playfair Display', serif; font-size: 16px; font-variant-numeric: tabular-nums; }
-        .cart-delete-btn { background: rgba(255,59,48,0.1); color: var(--danger); border: 1px solid rgba(255,59,48,0.2); width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: 0.2s; }
-        .cart-delete-btn:active { background: var(--danger); color: white; transform: scale(0.9) !important; }
+        .cart-delete-btn { background: rgba(255,59,48,0.1); color: var(--danger); border: 1px solid rgba(255,59,48,0.2); width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .cart-delete-btn:active { background: var(--danger); color: white; }
 
-        .change-input { width: 100%; font-size: 24px; text-align: center; padding: 15px; border-radius: 12px; border: 1px solid var(--border-glass); background: var(--glass-1); color: var(--text-main); margin-bottom: 15px; outline: none; transition: all 0.3s var(--ease-apple); font-variant-numeric: tabular-nums; }
+        .change-input { width: 100%; font-size: 24px; text-align: center; padding: 15px; border-radius: 12px; border: 1px solid var(--border-glass); background: var(--glass-1); color: var(--text-main); margin-bottom: 15px; outline: none; transition: all 0.2s var(--ease-apple); font-variant-numeric: tabular-nums; }
         .change-input:focus { border-color: var(--success); box-shadow: 0 0 0 4px rgba(52, 199, 89, 0.15); }
         .change-result { font-size: 28px; font-weight: 700; color: var(--success); margin-bottom: 20px; font-family: monospace; font-variant-numeric: tabular-nums; }
 
@@ -341,29 +482,27 @@
         .sh-type.night { background: var(--accent-soft); color: var(--accent); }
         .sh-type.day { background: rgba(245, 158, 11, 0.15); color: var(--gold); }
 
-        /* ЦИФРОВОЕ МЕНЮ */
         #digital-menu-modal .modal-box {
-            max-width: 900px; height: 90vh; text-align: left; padding: 20px; 
+            max-width: 900px; height: 90vh; text-align: left; padding: 0; 
             overflow-y: auto; overflow-x: hidden; 
             width: 100%; 
             position: relative;
             transform: translateY(100%); opacity: 1;
             border-radius: 28px 28px 0 0;
+            will-change: transform;
         }
         #digital-menu-modal.active .modal-box { transform: translateY(0); opacity: 1; }
-        #digital-menu-modal .modal-box.dragging { transition: none; }
         
         .dm-header { 
             display: flex; justify-content: space-between; align-items: center; 
             position: sticky; top: 0; 
             background: var(--liquid-bg); 
-            backdrop-filter: var(--liquid-blur); 
             z-index: 20; 
             border-bottom: 1px solid var(--border-glass);
-            margin: -20px -20px 0 -20px;
-            padding: 16px 20px 12px;
+            padding: 15px 20px;
+            border-radius: 28px 28px 0 0;
         }
-        .dm-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--accent); letter-spacing: 1px; }
+        .dm-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--accent); letter-spacing: 1px; white-space: nowrap; }
         
         .dm-close { 
             width: 40px; height: 40px; 
@@ -376,19 +515,18 @@
             cursor: pointer;
             flex-shrink: 0;
         }
-        .dm-close:active { transform: scale(0.9) !important; }
         
+        .dm-chips-wrapper {
+            padding: 10px 20px 0 20px;
+            position: sticky; top: 70px; z-index: 19;
+            background: var(--liquid-bg);
+        }
         .dm-chips {
             display: flex; gap: 8px; overflow-x: auto; 
-            margin-top: 12px; margin-bottom: 16px;
-            padding-bottom: 4px;
+            padding-bottom: 8px;
             width: 100%; max-width: 100%; 
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            mask-image: linear-gradient(to right, black 90%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
         }
-        .dm-chips::-webkit-scrollbar { display: none; }
         .dm-chip {
             flex-shrink: 0; padding: 8px 16px; border-radius: 20px;
             background: var(--glass-1); border: 1px solid var(--border-glass);
@@ -396,15 +534,14 @@
             cursor: pointer; white-space: nowrap;
             line-height: 1.2; min-height: 36px;
             display: flex; align-items: center;
-            transition: all 0.2s var(--ease-apple);
+            transition: background 0.2s;
         }
         .dm-chip:active { transform: scale(0.95); }
         .dm-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
         .dm-search-wrap {
-            position: sticky; top: 72px; z-index: 19;
-            background: var(--liquid-bg); backdrop-filter: var(--liquid-blur);
-            margin: 0 -20px 12px -20px;
+            position: sticky; top: 125px; z-index: 19;
+            background: var(--liquid-bg);
             padding: 8px 20px;
         }
         .dm-search {
@@ -416,16 +553,27 @@
         }
         .dm-search:focus { border-color: var(--accent); background: var(--glass-2); box-shadow: 0 0 0 3px var(--accent-soft); }
         .dm-search::placeholder { color: var(--text-sec); }
-        .dm-empty {
-            text-align: center; padding: 60px 20px; color: var(--text-sec);
-            font-size: 15px;
-        }
+        
+        .dm-empty { text-align: center; padding: 60px 20px; color: var(--text-sec); font-size: 15px; }
         .dm-empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
 
-        .dm-grid { display: flex; flex-direction: column; gap: 32px; padding-bottom: 30px; }
-        .dm-category { break-inside: avoid; margin-bottom: 8px; scroll-margin-top: 140px; }
+        .dm-grid { display: flex; flex-direction: column; gap: 32px; padding: 20px; padding-bottom: 30px; }
+        .dm-category { break-inside: avoid; margin-bottom: 8px; scroll-margin-top: 200px; }
         .dm-cat-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text-main); margin-bottom: 14px; border-bottom: 1px solid var(--accent-soft); padding-bottom: 6px; font-style: italic; }
-        .dm-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; line-height: 1.3; gap: 8px; }
+        
+        /* Исправленный свайп */
+        .dm-item-wrapper { position: relative; overflow: hidden; border-radius: 12px; margin-bottom: 10px; background: var(--success); }
+        .dm-item-swipe-bg { position: absolute; inset: 0; display: flex; align-items: center; padding-left: 20px; color: #fff; font-weight: 700; font-size: 14px; z-index: 0; }
+        
+        .dm-item { 
+            display: flex; justify-content: space-between; align-items: center; 
+            font-size: 14px; line-height: 1.3; gap: 8px; 
+            background: var(--glass-2); padding: 12px 10px; position: relative; z-index: 1;
+            transition: transform 0.3s var(--ease-apple); will-change: transform;
+            border-radius: 12px; border: 1px solid var(--border-glass);
+        }
+        .dm-item.swiping { transition: none; }
+        
         .dm-item-info { flex-shrink: 0; min-width: 0; }
         .dm-item-name { font-weight: 500; color: var(--text-main); }
         .dm-item-vol { font-size: 11px; color: var(--text-sec); font-weight: 400; margin-left: 5px; }
@@ -438,7 +586,7 @@
             font-size: 18px; font-weight: 600;
             display: flex; align-items: center; justify-content: center;
             cursor: pointer; padding: 0; margin-left: 4px;
-            transition: all 0.2s var(--ease-apple);
+            transition: background 0.2s;
         }
         .dm-add-btn:active { background: var(--accent); color: #fff; transform: scale(0.9) !important; }
 
@@ -448,11 +596,11 @@
             background: var(--accent); color: #fff; border: none;
             font-size: 20px; font-weight: 700; cursor: pointer;
             box-shadow: 0 8px 24px rgba(196, 123, 61, 0.4);
-            display: none; align-items: center; justify-content: center;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transform: scale(0.8); pointer-events: none;
             transition: opacity 0.3s var(--ease-apple), transform 0.3s var(--ease-spring);
-            opacity: 0; transform: scale(0.8);
         }
-        .dm-scroll-top.visible { display: flex; opacity: 1; transform: scale(1); }
+        .dm-scroll-top.visible { opacity: 1; transform: scale(1); pointer-events: auto; }
         .dm-scroll-top:active { transform: scale(0.9) !important; }
 
         .info-text { text-align: left; font-size: 14px; line-height: 1.6; color: var(--text-main); }
@@ -461,43 +609,61 @@
         .info-danger { background: rgba(255, 59, 48, 0.08); padding: 10px; border-radius: 10px; border-left: 3px solid var(--danger); margin-bottom: 12px; font-weight: 500; color: var(--danger); }
 
         #toast-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 3000; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
-        .toast { background: var(--liquid-bg); color: var(--text-main); padding: 15px 25px; border-radius: 15px; font-weight: 600; font-size: 14px; text-align: center; animation: appleFadeIn 0.4s var(--ease-spring) forwards; pointer-events: auto; box-shadow: var(--liquid-shadow); max-width: 90vw; backdrop-filter: var(--liquid-blur); border: 1px solid var(--liquid-border); }
+        .toast { background: var(--liquid-bg); color: var(--text-main); padding: 15px 25px; border-radius: 15px; font-weight: 600; font-size: 14px; text-align: center; animation: appleFadeIn 0.3s var(--ease-spring) forwards; pointer-events: auto; box-shadow: var(--liquid-shadow); max-width: 90vw; border: 1px solid var(--liquid-border); }
 
-        .confetti { position: fixed; width: 10px; height: 10px; background-color: #f2d74e; position: absolute; top: 50%; left: 50%; opacity: 0; z-index: 9999; border-radius: 50%; pointer-events: none; }
-
-        body.compact-ui .barista-card, body.compact-ui .admin-card { padding: 12px; gap: 8px; }
-        body.compact-ui .timer-display { font-size: 24px; }
-        body.compact-ui .stat-label { font-size: 9px; }
-        body.compact-ui .barista-actions button { padding: 10px; font-size: 12px; }
-
-        /* Стили для тумблеров */
         .theme-switch { position: relative; display: inline-block; width: 50px; height: 28px; }
         .theme-switch input { opacity: 0; width: 0; height: 0; }
         .slider {
             position: absolute; cursor: pointer; inset: 0;
             background-color: var(--glass-1);
             border: 1px solid var(--border-glass);
-            transition: .4s var(--ease-spring);
+            transition: .2s;
             border-radius: 34px;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
         .slider:before {
             position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px;
-            background-color: white; transition: .4s var(--ease-spring); border-radius: 50%;
+            background-color: white; transition: .2s; border-radius: 50%;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         input:checked + .slider {
             background-color: rgba(52, 199, 89, 0.8);
             border-color: var(--success);
-            box-shadow: 0 0 15px rgba(52, 199, 89, 0.4), inset 0 2px 4px rgba(0,0,0,0.1);
         }
         input:checked + .slider:before { transform: translateX(22px); }
         
         input:not(:checked) + .slider {
             background-color: rgba(255, 59, 48, 0.6);
             border-color: rgba(255, 59, 48, 0.3);
-            box-shadow: 0 0 10px rgba(255, 59, 48, 0.2), inset 0 2px 4px rgba(0,0,0,0.1);
         }
+
+        .text-sm { font-size: 14px; }
+        .text-md { font-size: 15px; }
+        .text-lg { font-size: 18px; }
+        .text-xs { font-size: 12px; }
+        .text-accent { color: var(--accent); }
+        .text-sec { color: var(--text-sec); }
+        .text-bold { font-weight: 600; }
+        .mb-5 { margin-bottom: 5px; }
+        .mb-15 { margin-bottom: 15px; }
+        .mb-20 { margin-bottom: 20px; }
+
+        .confetti-piece {
+            position: fixed; width: 10px; height: 10px; background-color: #f2d74e; 
+            z-index: 9999; pointer-events: none; border-radius: 50%;
+            animation: confettiFall 1s ease-out forwards;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Редактор меню */
+        .edit-menu-item { background: var(--glass-1); border: 1px solid var(--border-glass); border-radius: 12px; padding: 12px; margin-bottom: 10px; text-align: left; }
+        .edit-menu-item-row { display: flex; gap: 10px; margin-bottom: 8px; }
+        .edit-menu-item-row input { flex: 1; padding: 8px; border-radius: 8px; border: 1px solid var(--border-glass); background: var(--glass-2); color: var(--text-main); font-size: 14px; }
+        .edit-menu-item-row input[type="number"] { width: 80px; flex: none; }
+        .edit-menu-img { width: 100%; height: 80px; object-fit: cover; border-radius: 8px; background: var(--glass-2); border: 1px solid var(--border-glass); }
 
         @media (min-width: 768px) {
             .dm-grid { column-count: 2; column-gap: 40px; display: block; }
@@ -512,12 +678,13 @@
             .barista-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
             .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
             .bottom-nav-wrapper { max-width: 600px; }
-            .bottom-bar { max-width: 800px; left: 50%; transform: translateX(-50%); border-radius: 24px 24px 0 0; padding: 20px 30px; }
-            .bottom-bar.show { bottom: calc(110px + max(20px, env(safe-area-inset-bottom))); }
+            .bottom-bar { max-width: 600px; }
             .modal-box { max-width: 500px; padding: 30px; }
-            #digital-menu-modal .modal-box { max-width: 1000px; padding: 30px; border-radius: 28px; }
-            .dm-header { margin: -30px -30px 0 -30px; padding: 20px 30px 12px; }
-            .dm-search-wrap { margin: 0 -30px 12px -30px; padding: 8px 30px; top: 82px; }
+            #digital-menu-modal .modal-box { max-width: 1000px; padding: 0; border-radius: 28px; }
+            .dm-header { padding: 20px 30px; border-radius: 28px 28px 0 0; }
+            .dm-chips-wrapper { top: 80px; padding: 10px 30px 0 30px; }
+            .dm-search-wrap { top: 140px; padding: 8px 30px; }
+            .dm-grid { padding: 30px; }
             .dm-scroll-top { bottom: 40px; right: 40px; }
         }
         
@@ -527,6 +694,10 @@
     </style>
 </head>
 <body>
+    <div id="splash-screen">
+        <div class="splash-logo">DOZA COFFEE</div>
+    </div>
+
     <div class="aurora-container">
         <div class="aurora-blob blob-1"></div>
         <div class="aurora-blob blob-2"></div>
@@ -541,7 +712,9 @@
             <p>SPECIALITY</p>
         </div>
         <div class="header-actions">
-            <button class="settings-btn" onclick="openModal('settings-modal')" aria-label="Настройки">⚙️</button>
+            <button class="settings-btn btn-spring" onclick="openModal('settings-modal')" aria-label="Настройки">
+                <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
+            </button>
         </div>
     </header>
 
@@ -549,20 +722,20 @@
         <div id="main-view">
             <div class="main-column">
                 <div class="column-title">ЕДА</div>
-                <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('food','snacks','Легкий перекус')"><span>Легкий перекус</span></button>
-                <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('food','bars','Батончики')"><span>Батончики</span></button>
-                <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('food','gum','Жевательная резинка')"><span>Жевательная резинка</span></button>
+                <button class="big-cat-btn btn-spring" id="cat-btn-snacks" style="background-image:url('https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('food','snacks','Легкий перекус')"><span>Легкий перекус</span></button>
+                <button class="big-cat-btn btn-spring" id="cat-btn-bars" style="background-image:url('https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('food','bars','Батончики')"><span>Батончики</span></button>
+                <button class="big-cat-btn btn-spring" id="cat-btn-gum" style="background-image:url('https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('food','gum','Жевательная резинка')"><span>Жевательная резинка</span></button>
             </div>
             <div class="main-column">
                 <div class="column-title">НАПИТКИ</div>
-                <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('drink','coffee','Кофе')"><span>Кофе</span></button>
-                <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('drink','juices','Холодные напитки')"><span>Холодные напитки</span></button>
-                <button class="big-cat-btn" style="background-image:url('https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('drink','water','Вода')"><span>Вода</span></button>
+                <button class="big-cat-btn btn-spring" id="cat-btn-coffee" style="background-image:url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('drink','coffee','Кофе')"><span>Кофе</span></button>
+                <button class="big-cat-btn btn-spring" id="cat-btn-juices" style="background-image:url('https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('drink','juices','Холодные напитки')"><span>Холодные напитки</span></button>
+                <button class="big-cat-btn btn-spring" id="cat-btn-water" style="background-image:url('https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=500&auto=format&fit=crop')" onclick="openCategory('drink','water','Вода')"><span>Вода</span></button>
             </div>
         </div>
 
         <div id="category-view">
-            <button class="back-btn" onclick="goBack()">← Назад</button>
+            <button class="back-btn btn-spring" onclick="goBack()">← Назад</button>
             <div class="category-header" id="category-title"></div>
             <div class="menu-grid" id="menu-grid"></div>
         </div>
@@ -570,7 +743,7 @@
         <div id="barista-view">
             <div class="category-header">Бариста</div>
             <div class="barista-list" id="barista-list"></div>
-            <button class="add-barista-btn liquid-glass" onclick="openAddBaristaModal()">+ Добавить бариста</button>
+            <button class="add-barista-btn liquid-glass btn-spring" onclick="openAddBaristaModal()">+ Добавить бариста</button>
         </div>
 
         <div id="admin-view">
@@ -578,80 +751,85 @@
                 <h2>Вход для персонала</h2>
                 <input type="password" id="admin-pass" class="admin-input" placeholder="****" inputmode="numeric" autocomplete="off" maxlength="8">
                 <div class="auth-error" id="auth-error"></div>
-                <button class="btn-login btn-liquid" onclick="loginAdmin()">Войти</button>
+                <button class="btn-login btn-liquid btn-spring" onclick="loginAdmin()">Войти</button>
             </div>
             <div id="admin-dashboard">
                 <div class="dash-header">
                     <h2>Смены</h2>
-                    <button class="btn-logout" onclick="logoutAdmin()">Выход</button>
+                    <button class="btn-logout btn-spring" onclick="logoutAdmin()">Выход</button>
                 </div>
                 <div class="admin-grid" id="admin-grid"></div>
                 <div class="admin-total-stats liquid-glass">
                     <h3>Общая статистика</h3>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" onclick="filterStats('today', this)">Сегодня</button>
+                        <button class="filter-tab" onclick="filterStats('week', this)">Неделя</button>
+                        <button class="filter-tab" onclick="filterStats('month', this)">Месяц</button>
+                    </div>
                     <div class="stat-row"><span>Всего смен:</span><span id="total-shifts-count">0</span></div>
                     <div class="stat-row"><span>Общая выручка:</span><span id="total-revenue-all">0 ₽</span></div>
-                    <button class="export-btn btn-liquid" onclick="exportToCSV()">📊 Скачать отчет (Excel)</button>
+                    <button class="export-btn btn-liquid btn-spring" onclick="exportToCSV()">📊 Скачать отчет (Excel)</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="bottom-bar liquid-glass" id="cart-bar">
+    <div class="bottom-bar" id="cart-bar">
         <div class="cart-info">
+            <div id="cart-badge" class="cart-badge" style="display:none;">0</div>
             <span id="cart-count">Ваш заказ</span>
             <b id="cart-total">0 ₽</b>
         </div>
-        <button class="checkout-btn btn-liquid" id="checkout-btn" onclick="openCartModal()" disabled>Оформить</button>
+        <button class="checkout-btn btn-liquid btn-spring" id="checkout-btn" onclick="openCartModal()" disabled>Оформить</button>
     </div>
 
     <div class="bottom-nav-wrapper" id="bottom-nav">
         <div class="bottom-nav liquid-glass">
+            <div class="nav-indicator" id="nav-indicator"></div>
             <button class="nav-item active" data-tab="menu"><svg viewBox="0 0 24 24"><path d="M11 9H9V2H7V9H5V2H3V9C3 11.12 4.66 12.84 6.75 12.97V22H8.25V12.97C10.34 12.84 12 11.12 12 9V2H11V9ZM16 6V2H14V14H16V22H18V2H17C16.45 2 16 2.45 16 3V6Z"/></svg>Меню</button>
             <button class="nav-item" data-tab="barista"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>Бариста</button>
             <button class="nav-item" data-tab="admin"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>Админ</button>
         </div>
     </div>
 
-    <!-- Модалка Добавления/Редактирования Бариста -->
     <div class="modal-overlay" id="edit-barista-modal">
         <div class="modal-box liquid-glass">
             <div class="modal-handle"></div>
             <h2 id="edit-barista-title">Настройка</h2>
             <input type="text" id="edit-barista-name" class="change-input" style="font-size:18px; margin-bottom:20px;" placeholder="Имя бариста">
-            <button class="action-btn btn-cash btn-liquid" onclick="saveBaristaName()">Сохранить</button>
-            <button class="action-btn btn-danger" id="delete-barista-btn" style="margin-top:10px;" onclick="deleteBaristaPrompt()">Удалить бариста</button>
+            <button class="action-btn btn-cash btn-liquid btn-spring" onclick="saveBaristaName()">Сохранить</button>
+            <button class="action-btn btn-danger btn-spring" id="delete-barista-btn" style="margin-top:10px;" onclick="deleteBaristaPrompt()">Удалить бариста</button>
             <button class="close-modal" onclick="closeModal('edit-barista-modal')">Отмена</button>
         </div>
     </div>
 
-    <!-- ЦИФРОВОЕ МЕНЮ -->
     <div class="modal-overlay" id="digital-menu-modal" data-no-outside-close="true">
         <div class="modal-box liquid-glass">
             <div class="dm-header">
                 <div class="dm-title">DOZA COFFEE</div>
-                <button class="dm-close" onclick="closeModal('digital-menu-modal')" aria-label="Назад">←</button>
+                <button class="dm-close btn-spring" onclick="closeModal('digital-menu-modal')" aria-label="Назад">←</button>
             </div>
-            <div class="dm-chips" id="dm-chips"></div>
+            <div class="dm-chips-wrapper">
+                <div class="dm-chips" id="dm-chips"></div>
+            </div>
             <div class="dm-search-wrap">
                 <input type="text" class="dm-search" id="dm-search" placeholder="🔍 Поиск по меню..." autocomplete="off">
             </div>
             <div class="dm-grid" id="dm-grid-content"></div>
         </div>
-        <button class="dm-scroll-top" id="dm-scroll-top" onclick="scrollDmToTop()" aria-label="Наверх">↑</button>
+        <button class="dm-scroll-top btn-spring" id="dm-scroll-top" onclick="scrollDmToTop()" aria-label="Наверх">↑</button>
     </div>
 
-    <!-- Модалка Корзины -->
     <div class="modal-overlay" id="cart-modal">
         <div class="modal-box liquid-glass">
             <div class="modal-handle"></div>
             <h2>Ваш заказ</h2>
             <div class="cart-list" id="cart-list-view"></div>
-            <button class="action-btn btn-cash btn-liquid" onclick="openCashModal()">💵 Оплата наличными</button>
-            <button class="action-btn btn-cancel" onclick="closeModal('cart-modal')">Продолжить выбор</button>
+            <button class="action-btn btn-cash btn-liquid btn-spring" onclick="openCashModal()">💵 Оплата наличными</button>
+            <button class="action-btn btn-cancel btn-spring" onclick="closeModal('cart-modal')">Продолжить выбор</button>
         </div>
     </div>
 
-    <!-- Модалка Калькулятора Сдачи -->
     <div class="modal-overlay" id="cash-modal">
         <div class="modal-box liquid-glass">
             <div class="modal-handle"></div>
@@ -660,7 +838,7 @@
             <input type="number" class="change-input" id="cash-received" placeholder="Клиент дал..." inputmode="numeric">
             <div class="text-xs text-sec mb-5 uppercase">Сдача:</div>
             <div class="change-result" id="change-result">0 ₽</div>
-            <button class="action-btn btn-cash btn-liquid" onclick="confirmCashPayment()">Завершить и зачислить</button>
+            <button class="action-btn btn-cash btn-liquid btn-spring" onclick="confirmCashPayment()">Завершить и зачислить</button>
             <button class="close-modal" onclick="closeModal('cash-modal')">Отмена</button>
         </div>
     </div>
@@ -671,8 +849,8 @@
             <h2>Выберите смену</h2>
             <p class="text-sm text-sec mb-20">Какую смену вы начинаете?</p>
             <div class="slot-pick-box">
-                <button class="slot-pick-btn night btn-liquid" onclick="confirmStartShift('night')"><span class="slot-title">🌙 Ночная</span><span class="slot-time">00:00 — 12:00</span></button>
-                <button class="slot-pick-btn day btn-liquid" onclick="confirmStartShift('day')"><span class="slot-title">☀️ Дневная</span><span class="slot-time">12:00 — 00:00</span></button>
+                <button class="slot-pick-btn night btn-liquid btn-spring" onclick="confirmStartShift('night')"><span class="slot-title">🌙 Ночная</span><span class="slot-time">00:00 — 12:00</span></button>
+                <button class="slot-pick-btn day btn-liquid btn-spring" onclick="confirmStartShift('day')"><span class="slot-title">☀️ Дневная</span><span class="slot-time">12:00 — 00:00</span></button>
             </div>
             <button class="close-modal" onclick="cancelStartShift()">Отмена</button>
         </div>
@@ -683,10 +861,13 @@
             <div class="modal-handle"></div>
             <h2>Продление смены</h2>
             <p class="text-sm text-sec mb-15">Вы остаетесь забирать рейсы сменщика?<br>Вы получите <b>+500 ₽</b>, но они вычтутся из фикса следующего бариста.</p>
+            <div class="info-danger" style="font-size:12px; margin-bottom:15px; text-align:left;">
+                <b>Внимание:</b> Если вы продлеваете смену, следующий бариста получит фикс 1000₽ вместо 1500₽. Если сменщик не выйдет, вы заплатите штраф -1500₽.
+            </div>
             <div class="slot-pick-box">
-                <button class="slot-pick-btn btn-liquid" onclick="applyExtension(1)">На +1 час</button>
-                <button class="slot-pick-btn btn-liquid" onclick="applyExtension(2)">На +2 часа</button>
-                <button class="slot-pick-btn btn-liquid" onclick="applyExtension(3)">На +3 часа</button>
+                <button class="slot-pick-btn btn-liquid btn-spring" onclick="applyExtension(1)">На +1 час</button>
+                <button class="slot-pick-btn btn-liquid btn-spring" onclick="applyExtension(2)">На +2 часа</button>
+                <button class="slot-pick-btn btn-liquid btn-spring" onclick="applyExtension(3)">На +3 часа</button>
             </div>
             <button class="close-modal" onclick="closeModal('extend-modal')">Отмена</button>
         </div>
@@ -695,9 +876,9 @@
     <div class="modal-overlay" id="salary-modal">
         <div class="modal-box liquid-glass" style="text-align:left">
             <div class="modal-handle"></div>
-            <h2 id="salary-title" class="text-center">Моя зарплата</h2>
+            <h2 id="salary-title" class="text-center">Информация</h2>
             <div id="salary-body"></div>
-            <button class="close-modal text-center" onclick="closeModal('salary-modal')">Закрыть</button>
+            <button class="close-modal text-center btn-spring" onclick="closeModal('salary-modal')">Закрыть</button>
         </div>
     </div>
 
@@ -709,23 +890,15 @@
             <div class="settings-row flex justify-between items-center p-15" style="border-bottom:1px solid var(--border-glass)">
                 <span class="text-bold text-main">Тёмная тема</span>
                 <label class="theme-switch">
-                    <input type="checkbox" id="theme-toggle" onchange="toggleTheme()">
+                    <input type="checkbox" id="theme-toggle" onchange="toggleTheme()" checked>
                     <span class="slider"></span>
                 </label>
             </div>
 
             <div class="settings-row flex justify-between items-center p-15" style="border-bottom:1px solid var(--border-glass)">
-                <span class="text-bold text-main">Виброотклик</span>
+                <span class="text-bold text-main">Режим Lite (Слабые устройства)</span>
                 <label class="theme-switch">
-                    <input type="checkbox" id="vibe-toggle" onchange="toggleVibe()" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-
-            <div class="settings-row flex justify-between items-center p-15" style="border-bottom:1px solid var(--border-glass)">
-                <span class="text-bold text-main">Компактный вид</span>
-                <label class="theme-switch">
-                    <input type="checkbox" id="compact-toggle" onchange="toggleCompact()">
+                    <input type="checkbox" id="lite-toggle" onchange="toggleLite()">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -738,16 +911,9 @@
                 </label>
             </div>
 
-            <div class="settings-row flex justify-between items-center p-15" style="border-bottom:1px solid var(--border-glass)">
-                <span class="text-bold text-main">Звук при заказе</span>
-                <label class="theme-switch">
-                    <input type="checkbox" id="sound-toggle" onchange="toggleSound()">
-                    <span class="slider"></span>
-                </label>
-            </div>
-
-            <button class="action-btn btn-liquid" style="background:var(--glass-1);color:var(--text-main);border:1px solid var(--border-glass);margin-top:15px;margin-bottom:5px;" onclick="openSalaryInfo()">📖 Информация</button>
-            <button class="close-modal" onclick="closeModal('settings-modal')" style="margin-top:10px">Закрыть</button>
+            <button class="action-btn btn-liquid btn-spring" style="background:var(--glass-1);color:var(--text-main);border:1px solid var(--border-glass);margin-top:15px;margin-bottom:5px;" onclick="openMenuEditor()">📝 Редактор меню</button>
+            <button class="action-btn btn-liquid btn-spring" style="background:var(--glass-1);color:var(--text-main);border:1px solid var(--border-glass);margin-bottom:5px;" onclick="openSalaryInfo()">📖 Информация</button>
+            <button class="close-modal btn-spring" onclick="closeModal('settings-modal')" style="margin-top:10px">Закрыть</button>
         </div>
     </div>
 
@@ -768,17 +934,29 @@
                     • Если сменщик так и не вышел, а вы закончили смену, вам начисляется <b>штраф -1500 ₽</b>.
                 </div>
             </div>
-            <button class="close-modal text-center mt-15" onclick="closeModal('salary-info-modal')">Понятно</button>
+            <button class="close-modal text-center mt-15 btn-spring" onclick="closeModal('salary-info-modal')">Понятно</button>
         </div>
     </div>
 
-    <!-- Модалка редактирования смен -->
     <div class="modal-overlay" id="edit-shift-modal">
         <div class="modal-box liquid-glass" style="text-align:left">
             <div class="modal-handle"></div>
             <h2 id="edit-shift-title" class="text-center">Управление сменами</h2>
             <div id="edit-shift-body" style="max-height: 60vh; overflow-y: auto;"></div>
-            <button class="close-modal text-center" onclick="closeModal('edit-shift-modal')">Закрыть</button>
+            <button class="close-modal text-center btn-spring" onclick="closeModal('edit-shift-modal')">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Модалка редактора меню -->
+    <div class="modal-overlay" id="menu-editor-modal">
+        <div class="modal-box liquid-glass" style="text-align:left; max-width: 600px;">
+            <div class="modal-handle"></div>
+            <h2 class="text-center">Редактор меню</h2>
+            <div style="max-height: 60vh; overflow-y: auto; padding-right: 5px;" id="menu-editor-list">
+                <!-- Сюда рендерится список -->
+            </div>
+            <button class="action-btn btn-cash btn-liquid btn-spring mt-10" onclick="saveMenuChanges()">Сохранить изменения</button>
+            <button class="close-modal text-center" onclick="closeModal('menu-editor-modal')">Отмена</button>
         </div>
     </div>
 
@@ -788,32 +966,21 @@
             <h2>Подтверждение</h2>
             <p id="confirm-text" class="text-sec mb-20 text-md">Вы уверены?</p>
             <div class="flex gap-10">
-                <button class="action-btn btn-cancel" onclick="closeCustomConfirm(false)">Отмена</button>
-                <button class="action-btn btn-danger" onclick="closeCustomConfirm(true)">Да, удалить</button>
+                <button class="action-btn btn-cancel btn-spring" onclick="closeCustomConfirm(false)">Отмена</button>
+                <button class="action-btn btn-danger btn-spring" onclick="closeCustomConfirm(true)">Да, удалить</button>
             </div>
         </div>
     </div>
 
-    <style>
-        .text-sm { font-size: 14px; }
-        .text-md { font-size: 15px; }
-        .text-lg { font-size: 18px; }
-        .text-xs { font-size: 12px; }
-        .text-accent { color: var(--accent); }
-        .text-sec { color: var(--text-sec); }
-        .text-bold { font-weight: 600; }
-        .mb-5 { margin-bottom: 5px; }
-        .mb-15 { margin-bottom: 15px; }
-        .mb-20 { margin-bottom: 20px; }
-    </style>
-
     <script>
         'use strict';
 
-        // --- УПРАВЛЕНИЕ НАСТРОЙКАМИ ---
-        let isVibeEnabled = true;
-        let isSoundEnabled = false;
-        let isCompactEnabled = false;
+        let currentStatsFilter = 'today';
+        let lastShiftAction = null;
+
+        setTimeout(() => { document.getElementById('splash-screen').classList.add('hidden'); }, 1200);
+
+        const $ = id => document.getElementById(id);
 
         function toggleTheme() { 
             try {
@@ -822,15 +989,10 @@
             } catch {}
         }
 
-        function toggleVibe() {
-            isVibeEnabled = $('vibe-toggle').checked;
-            localStorage.setItem('dozaVibe', isVibeEnabled ? 'true' : 'false');
-        }
-
-        function toggleCompact() {
-            isCompactEnabled = $('compact-toggle').checked;
-            document.body.classList.toggle('compact-ui', isCompactEnabled);
-            localStorage.setItem('dozaCompact', isCompactEnabled ? 'true' : 'false');
+        function toggleLite() {
+            const isLite = $('lite-toggle').checked;
+            document.body.classList.toggle('lite-mode', isLite);
+            localStorage.setItem('dozaLite', isLite ? 'true' : 'false');
         }
 
         function toggleIcons() {
@@ -848,41 +1010,20 @@
             localStorage.setItem('dozaIcons', show ? 'true' : 'false');
         }
 
-        function toggleSound() {
-            isSoundEnabled = $('sound-toggle').checked;
-            localStorage.setItem('dozaSound', isSoundEnabled ? 'true' : 'false');
-            if (isSoundEnabled) playSound();
-        }
-
-        function playSound() {
-            if (!isSoundEnabled) return;
-            try {
-                const ctx = new (window.AudioContext || window.webkitAudioContext)();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(800, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
-                gain.gain.setValueAtTime(0.1, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
-                osc.start(ctx.currentTime);
-                osc.stop(ctx.currentTime + 0.1);
-            } catch (e) { console.warn('Audio failed', e); }
-        }
-
         function initSettings() {
             try {
-                if (localStorage.getItem('dozaTheme') === 'dark') { document.body.setAttribute('data-theme','dark'); $('theme-toggle').checked = true; }
-                if (localStorage.getItem('dozaVibe') === 'false') { $('vibe-toggle').checked = false; isVibeEnabled = false; }
-                if (localStorage.getItem('dozaCompact') === 'true') { $('compact-toggle').checked = true; document.body.classList.add('compact-ui'); isCompactEnabled = true; }
+                if (localStorage.getItem('dozaTheme') === 'light') { 
+                    document.body.removeAttribute('data-theme'); 
+                    $('theme-toggle').checked = false; 
+                } else {
+                    document.body.setAttribute('data-theme','dark'); 
+                    $('theme-toggle').checked = true;
+                }
+                if (localStorage.getItem('dozaLite') === 'true') { document.body.classList.add('lite-mode'); $('lite-toggle').checked = true; }
                 if (localStorage.getItem('dozaIcons') === 'false') { $('icons-toggle').checked = false; }
-                if (localStorage.getItem('dozaSound') === 'true') { $('sound-toggle').checked = true; isSoundEnabled = true; }
             } catch {}
         }
 
-        // --- УПРАВЛЕНИЕ МОДАЛЬНЫМИ ОКНАМИ ---
         function openModal(id) {
             const el = document.getElementById(id);
             if (el) {
@@ -910,26 +1051,19 @@
             m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
         });
 
-        // --- СКРЫТИЕ МЕНЮ ПРИ КЛАВИАТУРЕ ---
         const inputs = document.querySelectorAll('input');
         inputs.forEach(input => {
             input.addEventListener('focus', () => { document.body.classList.add('keyboard-open'); });
             input.addEventListener('blur', () => { document.body.classList.remove('keyboard-open'); });
         });
 
-        // --- ДОЛГОЕ ЗАЖАТИЕ НА ЛОГОТИП ---
-        let pressTimer, hintVibrated = false;
+        let pressTimer;
         const logo = document.getElementById('header-logo');
         
         function startPress(e) {
             if (e.type === 'mousedown' && e.button !== 0) return;
-            hintVibrated = false;
-            pressTimer = window.setTimeout(() => {
-                if (!hintVibrated && navigator.vibrate && isVibeEnabled) { navigator.vibrate(8); hintVibrated = true; }
-            }, 300);
             pressTimer = window.setTimeout(() => {
                 openDigitalMenu();
-                if (navigator.vibrate && isVibeEnabled) navigator.vibrate([20, 40, 20]);
             }, 600);
         }
         function cancelPress() { clearTimeout(pressTimer); }
@@ -942,8 +1076,8 @@
         logo.addEventListener('touchcancel', cancelPress);
         logo.addEventListener('contextmenu', e => e.preventDefault());
 
-        // --- ДАННЫЕ ДЛЯ ЦИФРОВОГО МЕНЮ ---
-        const digitalMenuData = [
+        // --- ДАННЫЕ ---
+        let digitalMenuData = [
             { title: "🔥 Хиты", items: [ { name: "Эспрессо", vol: "60 мл", price: 250 }, { name: "Американо", vol: "200 мл", price: 250 }, { name: "Капучино", vol: "300 мл", price: 350 }, { name: "Латте", vol: "300 мл", price: 350 }, { name: "Флэт Вайт", vol: "200 мл", price: 350 }, { name: "Раф", vol: "300 мл", price: 300 } ] },
             { title: "Черный кофе", items: [ { name: "Эспрессо", vol: "60 мл", price: 250 }, { name: "Лунго", vol: "100 мл", price: 250 }, { name: "Американо", vol: "200 мл", price: 250 } ] },
             { title: "Кофе с молоком", items: [ { name: "Флэт Вайт", vol: "200 мл", price: 350 }, { name: "Капучино", vol: "300 мл", price: 350 }, { name: "Латте", vol: "300 мл", price: 350 } ] },
@@ -958,6 +1092,86 @@
             { title: "Альтернатива Матча", items: [ { name: "Айс матча латте", vol: "400 мл", price: 450 }, { name: "Матча латте", vol: "300 мл", price: 350 }, { name: "Матча кокос", vol: "400 мл", price: 450 }, { name: "Матча малина", vol: "400 мл", price: 450 }, { name: "Матча розовый", vol: "400 мл", price: 450 }, { name: "Сенча матча манго", vol: "400 мл", price: 450 }, { name: "Матча кокос без сахара", vol: "400 мл", price: 450 }, { name: "Какао", vol: "400 мл", price: 400 } ] }
         ];
 
+        let menuData = [
+            { type:'food', subcat:'snacks', name:'Сэндвич', price:300, img:'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=300&auto=format&fit=crop' },
+            { type:'food', subcat:'snacks', name:'Хот-дог', price:300, img:'https://images.unsplash.com/photo-1612392062126-5a7d29a6c33d?q=80&w=300&auto=format&fit=crop' },
+            { type:'food', subcat:'snacks', name:'Ямстер', price:300, img:'https://images.unsplash.com/photo-1626804475297-41608ea09aeb?q=80&w=300&auto=format&fit=crop' },
+            { type:'food', subcat:'bars', name:'Сникерс', price:150, img:'https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=300&auto=format&fit=crop' },
+            { type:'food', subcat:'bars', name:'Протеиновый батончик', price:200, img:'https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=300&auto=format&fit=crop' },
+            { type:'food', subcat:'gum', name:'5 Свежая мята', price:100, img:'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'coffee', name:'Эспрессо', price:250, img:'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'coffee', name:'Американо', price:250, img:'https://images.unsplash.com/photo-1551030173-122aabc4489c?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'coffee', name:'Капучино', price:350, img:'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'coffee', name:'Латте', price:350, img:'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'coffee', name:'Флэт Вайт', price:350, img:'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'coffee', name:'Раф', price:300, img:'https://images.unsplash.com/photo-1550368566-f9ac44eeae95?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'juices', name:'Колд Брю', price:350, img:'https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'juices', name:'Deneb', price:200, img:'https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'juices', name:'Kinza', price:200, img:'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=300&auto=format&fit=crop' },
+            { type:'drink', subcat:'water', name:'Вода', price:100, img:'https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=300&auto=format&fit=crop' }
+        ];
+
+        // Загрузка кастомного меню и картинок
+        let savedMenu = localStorage.getItem('dozaCustomMenu');
+        if (savedMenu) { try { menuData = JSON.parse(savedMenu); } catch(e){} }
+
+        let savedCatImgs = localStorage.getItem('dozaCatImgs');
+        if (savedCatImgs) { 
+            try { 
+                const imgs = JSON.parse(savedCatImgs); 
+                for (const key in imgs) { 
+                    const btn = $('cat-btn-' + key); 
+                    if(btn) btn.style.backgroundImage = `url('${imgs[key]}')`; 
+                } 
+            } catch(e){} 
+        }
+
+        function openMenuEditor() {
+            closeModal('settings-modal');
+            renderMenuEditor();
+            openModal('menu-editor-modal');
+        }
+
+        function renderMenuEditor() {
+            const list = $('menu-editor-list');
+            list.innerHTML = menuData.map((item, idx) => `
+                <div class="edit-menu-item">
+                    <div class="edit-menu-item-row">
+                        <input type="text" value="${safeText(item.name)}" onchange="updateMenuField(${idx}, 'name', this.value)" placeholder="Название">
+                        <input type="number" value="${item.price}" onchange="updateMenuField(${idx}, 'price', this.value)" placeholder="Цена">
+                    </div>
+                    <div class="edit-menu-item-row">
+                        <input type="text" value="${safeText(item.img)}" onchange="updateMenuField(${idx}, 'img', this.value)" placeholder="URL картинки">
+                    </div>
+                    <img src="${safeText(item.img)}" class="edit-menu-img" onerror="this.style.display='none'" onload="this.style.display='block'">
+                </div>
+            `).join('') + `
+                <button class="action-btn btn-liquid btn-spring" onclick="addNewMenuItem()" style="background:var(--accent-soft); color:var(--accent); border:1px dashed var(--accent);">+ Добавить блюдо</button>
+            `;
+        }
+
+        window.updateMenuField = function(idx, field, val) {
+            if (field === 'price') menuData[idx][field] = Number(val);
+            else menuData[idx][field] = val;
+            if (field === 'img') {
+                const imgs = document.querySelectorAll('.edit-menu-img');
+                if(imgs[idx]) imgs[idx].src = val;
+            }
+        };
+
+        window.addNewMenuItem = function() {
+            menuData.push({ type: 'food', subcat: 'snacks', name: 'Новое блюдо', price: 100, img: '' });
+            renderMenuEditor();
+            setTimeout(() => { const el = $('menu-editor-list'); if(el) el.scrollTop = el.scrollHeight; }, 50);
+        };
+
+        window.saveMenuChanges = function() {
+            localStorage.setItem('dozaCustomMenu', JSON.stringify(menuData));
+            showToast('Меню сохранено!');
+            closeModal('menu-editor-modal');
+        };
+
+        // --- ЛОГИКА ---
         let dmGridEl, dmChipsEl, dmScrollTopEl, dmSearchEl;
 
         function openDigitalMenu() {
@@ -998,31 +1212,68 @@
                 <div class="dm-category" id="dm-cat-${idx}" data-idx="${idx}">
                     <div class="dm-cat-title">${cat.title}</div>
                     ${cat.items.map(item => `
-                        <div class="dm-item">
-                            <div class="dm-item-info">
-                                <span class="dm-item-name">${safeText(item.name)}</span>
-                                <span class="dm-item-vol">${item.vol}</span>
+                        <div class="dm-item-wrapper">
+                            <div class="dm-item-swipe-bg">+ В корзину</div>
+                            <div class="dm-item" data-name="${safeText(item.name)}" data-price="${item.price}">
+                                <div class="dm-item-info">
+                                    <span class="dm-item-name">${safeText(item.name)}</span>
+                                    <span class="dm-item-vol">${item.vol}</span>
+                                </div>
+                                <div class="dm-item-dots"></div>
+                                <span class="dm-item-price">${item.price} ₽</span>
+                                <button class="dm-add-btn" data-name="${safeText(item.name)}" data-price="${item.price}" aria-label="Добавить ${safeText(item.name)}">+</button>
                             </div>
-                            <div class="dm-item-dots"></div>
-                            <span class="dm-item-price">${item.price} ₽</span>
-                            <button class="dm-add-btn" data-name="${safeText(item.name)}" data-price="${item.price}" aria-label="Добавить ${safeText(item.name)}">+</button>
                         </div>
                     `).join('')}
                 </div>
             `).join('');
 
+            // Обработчик кнопки +
             dmGridEl.onclick = e => {
                 const btn = e.target.closest('.dm-add-btn');
                 if (btn) {
                     const rect = btn.getBoundingClientRect();
-                    haptic('light');
                     flyToCart(rect);
                     addToCart(Number(btn.dataset.price), btn.dataset.name);
-                    if (!$('cart-bar').classList.contains('show')) {
-                        $('cart-bar').classList.add('show');
-                    }
                 }
             };
+
+            // Свайп
+            dmGridEl.querySelectorAll('.dm-item').forEach(itemEl => {
+                let startX = 0, currentX = 0, isSwiping = false;
+                
+                itemEl.addEventListener('touchstart', e => {
+                    startX = e.touches[0].clientX;
+                    isSwiping = true;
+                    itemEl.classList.add('swiping');
+                }, {passive: true});
+
+                itemEl.addEventListener('touchmove', e => {
+                    if (!isSwiping) return;
+                    currentX = e.touches[0].clientX - startX;
+                    if (currentX > 0) {
+                        itemEl.style.transform = `translateX(${Math.min(currentX, 100)}px)`;
+                    }
+                }, {passive: true});
+
+                itemEl.addEventListener('touchend', () => {
+                    if (!isSwiping) return;
+                    isSwiping = false;
+                    itemEl.classList.remove('swiping');
+                    if (currentX > 60) {
+                        const name = itemEl.dataset.name;
+                        const price = Number(itemEl.dataset.price);
+                        addToCart(price, name);
+                        itemEl.style.transform = `translateX(0)`;
+                        
+                        const rect = itemEl.getBoundingClientRect();
+                        flyToCart(rect);
+                    } else {
+                        itemEl.style.transform = `translateX(0)`;
+                    }
+                    currentX = 0;
+                });
+            });
         }
 
         function renderDmChips(data) {
@@ -1059,7 +1310,7 @@
             }
 
             const cats = dmGridEl.querySelectorAll('.dm-category');
-            const scrollTop = box.scrollTop + 180;
+            const scrollTop = box.scrollTop + 200;
             let activeIdx = 0;
             cats.forEach((cat, idx) => {
                 if (cat.offsetTop <= scrollTop) activeIdx = idx;
@@ -1085,7 +1336,7 @@
             const box = document.querySelector('#digital-menu-modal .modal-box');
             const cat = document.getElementById(`dm-cat-${idx}`);
             if (!box || !cat) return;
-            box.scrollTo({ top: cat.offsetTop - 160, behavior: 'smooth' });
+            box.scrollTo({ top: cat.offsetTop - 180, behavior: 'smooth' });
             updateDmChips(idx);
         }
 
@@ -1094,42 +1345,18 @@
             if (box) box.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- PWA ---
         (function initPWA() {
             try {
                 const manifest = {
                     name: "DOZA COFFEE", short_name: "DOZA", start_url: ".", display: "standalone",
-                    background_color: "#f7f5f2", theme_color: "#c47b3d",
+                    background_color: "#121212", theme_color: "#c47b3d",
                     icons: [{ src: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>", sizes: "192x192", type: "image/svg+xml" }]
                 };
                 const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
                 const link = document.createElement('link');
                 link.rel = 'manifest'; link.href = URL.createObjectURL(blob);
                 document.head.appendChild(link);
-
-                if ('serviceWorker' in navigator) {
-                    const swCode = `
-                        const CACHE = 'doza-v17';
-                        self.addEventListener('install', e => { self.skipWaiting(); });
-                        self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
-                        self.addEventListener('fetch', e => {
-                            if (e.request.method !== 'GET') return;
-                            e.respondWith(
-                                caches.match(e.request).then(cached => {
-                                    const fetched = fetch(e.request).then(res => {
-                                        const clone = res.clone();
-                                        caches.open(CACHE).then(c => c.put(e.request, clone));
-                                        return res;
-                                    }).catch(() => cached);
-                                    return cached || fetched;
-                                })
-                            );
-                        });
-                    `;
-                    const swBlob = new Blob([swCode], {type: 'application/javascript'});
-                    navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(err => console.warn('SW reg failed', err));
-                }
-            } catch (e) { console.warn('PWA manifest failed:', e); }
+            } catch (e) {}
         })();
 
         let bc;
@@ -1150,35 +1377,14 @@
             MIN_SLOT_TIME_MS: 2 * 3600 * 1000,
             ADMIN_PIN: '333', STORAGE_KEY: 'doza_v11_shifts'
         };
-        let BARISTAS = []; // Теперь динамический массив
-        const $ = id => document.getElementById(id);
-
-        const menuData = [
-            { type:'food', subcat:'snacks', name:'Сэндвич', price:300, img:'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=300&auto=format&fit=crop' },
-            { type:'food', subcat:'snacks', name:'Хот-дог', price:300, img:'https://images.unsplash.com/photo-1612392062126-5a7d29a6c33d?q=80&w=300&auto=format&fit=crop' },
-            { type:'food', subcat:'snacks', name:'Ямстер', price:300, img:'https://images.unsplash.com/photo-1626804475297-41608ea09aeb?q=80&w=300&auto=format&fit=crop' },
-            { type:'food', subcat:'bars', name:'Сникерс', price:150, img:'https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=300&auto=format&fit=crop' },
-            { type:'food', subcat:'bars', name:'Протеиновый батончик', price:200, img:'https://images.unsplash.com/photo-1622484212850-eb596d769edc?q=80&w=300&auto=format&fit=crop' },
-            { type:'food', subcat:'gum', name:'5 Свежая мята', price:100, img:'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=300&auto=format&fit=crop' },
-            { type:'drink', subcat:'coffee', name:'Эспрессо', price:250, img:'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=300&auto=format&fit=crop' },
-            { type:'drink', subcat:'coffee', name:'Американо', price:250, img:'https://images.unsplash.com/photo-1551030173-122aabc4489c?q=80&w=300&auto=format&fit=crop' },
-            { type:'drink', subcat:'coffee', name:'Капучино', price:350, img:'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=300&auto=format&fit=crop' },
-            { type:'drink', subcat:'coffee', name:'Латте', price:350, img:'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=300&auto=format&fit=crop' },
-            { type:'drink', subcat:'coffee', name:'Флэт Вайт', price:350, img:'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=300&auto=format&fit=crop' },
-            { type:'drink', subcat:'coffee', name:'Раф', price:300, img:'https://images.unsplash.com/photo-1550368566-f9ac44eeae95?q=80&w=300&auto=format&fit=crop' },
-            { type:'drink', subcat:'juices', name:'Колд Брю', price:350, img:'https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=300&auto=format&fit=crop' },
-            { type:'drink', subcat:'juices', name:'Deneb', price:200, img:'https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=300&auto=format&fit=crop' },
-            { type:'drink', subcat:'juices', name:'Kinza', price:200, img:'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=300&auto=format&fit=crop' },
-            { type:'drink', subcat:'water', name:'Вода', price:100, img:'https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=300&auto=format&fit=crop' }
-        ];
+        let BARISTAS = []; 
 
         let cartSum = 0, cartItems = [], timerInterval = null;
         let pendingShiftBarista = null, currentSalaryBarista = null, pendingExtendBarista = null, currentEditBarista = null;
-        let editingBaristaId = null; // Для модалки редактирования бариста
+        let editingBaristaId = null; 
 
         function defaultStore() {
             const b = {};
-            // Инициализируем 4 бариста по умолчанию, если база пуста
             for (let i = 1; i <= 4; i++) {
                 b[i] = { id: i, name: `Бариста ${i}`, active: false, since: null, slot: null, slotKey: null, revenue: 0, bonus: 0, totalShifts: 0, extended: false };
             }
@@ -1198,20 +1404,10 @@
             try { 
                 localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(store)); 
                 if (bc) bc.postMessage('update');
-            } catch (e) { console.error('Save failed:', e); }
+            } catch (e) {}
         }
 
         window.addEventListener('beforeunload', () => { try { saveStore(); } catch {} });
-
-        function haptic(type = 'light') {
-            if (!navigator.vibrate || !isVibeEnabled) return;
-            try {
-                if (type === 'light') navigator.vibrate(10);
-                if (type === 'medium') navigator.vibrate(30);
-                if (type === 'success') navigator.vibrate([30, 50, 30]);
-                if (type === 'error') navigator.vibrate([50, 100, 50]);
-            } catch {}
-        }
 
         function formatTime(ms) { if (ms < 0) ms = 0; const s = Math.floor(ms/1000); return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor(s%3600/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`; }
         function safeText(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
@@ -1228,15 +1424,11 @@
             return store.slots[key];
         }
 
-        function initTheme() { 
-            try { if (localStorage.getItem('dozaTheme') === 'dark') { document.body.setAttribute('data-theme','dark'); $('theme-toggle').checked = true; } } catch {}
-        }
-
         function showToast(msg, type='success') {
             const t = document.createElement('div'); t.className = 'toast';
             if (type === 'error') t.style.color = 'var(--danger)';
             t.innerHTML = msg; $('toast-container').appendChild(t);
-            setTimeout(() => { t.style.opacity='0'; t.style.transform='translateY(-10px)'; setTimeout(()=>t.remove(),400); }, 3500);
+            setTimeout(() => { t.style.opacity='0'; t.style.transform='translateY(-10px)'; setTimeout(()=>t.remove(),300); }, 3500);
         }
         
         function customConfirm(text) { return new Promise(resolve => { $('confirm-text').innerText = text; openModal('custom-confirm-modal'); window.confirmCallback = r => { closeModal('custom-confirm-modal'); resolve(r); }; }); }
@@ -1247,8 +1439,8 @@
             if ($('admin-pass').value.trim() === CONFIG.ADMIN_PIN) { 
                 try { sessionStorage.setItem('dozaSession', JSON.stringify({ exp: Date.now() + CONFIG.SESSION_MS })); } catch {}
                 $('admin-pass').value = ''; $('auth-error').innerText = ''; 
-                haptic('success'); showAdminDashboard(); 
-            } else { $('auth-error').innerText = 'Неверный PIN'; haptic('error'); } 
+                showAdminDashboard(); 
+            } else { $('auth-error').innerText = 'Неверный PIN'; } 
         }
         function logoutAdmin() { 
             try { sessionStorage.removeItem('dozaSession'); } catch {}
@@ -1308,7 +1500,6 @@
             return { b, timeMs, rev, pct, bonus, slotAwarded, isLeader };
         }
 
-        // --- УПРАВЛЕНИЕ БАРИСТАМИ ---
         function openAddBaristaModal() {
             editingBaristaId = null;
             $('edit-barista-title').innerText = 'Добавить бариста';
@@ -1354,7 +1545,6 @@
             renderBarista(); renderAdmin();
         }
 
-        // --- УПРАВЛЕНИЕ СМЕНАМИ ---
         function startShiftClick(id) {
             if (!store.baristas[id] || store.baristas[id].active) return;
             pendingShiftBarista = id; openModal('shift-pick-modal');
@@ -1374,7 +1564,7 @@
             }
 
             b.active = true; b.since = Date.now(); b.slot = slotType; b.slotKey = key; b.revenue = 0; b.bonus = 0; b.extended = false;
-            saveStore(); haptic('medium');
+            saveStore();
             showToast(`🟢 ${b.name} начал ${slotType === 'night' ? 'ночную' : 'дневную'} смену`);
             renderBarista(); renderAdmin(); updateCheckoutState();
         }
@@ -1401,7 +1591,7 @@
             nextSlot.needsReplacement = true;
             nextSlot.replacementDone = false;
 
-            saveStore(); haptic('medium');
+            saveStore();
             showToast(`⏱ ${b.name} продлил смену на ${hours} ч.<br>+500 ₽ (следующий фикс будет 1000 ₽)`);
             renderBarista(); renderAdmin();
         }
@@ -1411,6 +1601,8 @@
             if (!b || !b.active) return;
             if (!await customConfirm('Завершить смену?')) return;
             
+            lastShiftAction = { type: 'end', id: id, data: JSON.parse(JSON.stringify(b)) };
+
             const sessionTime = Date.now() - b.since;
             const slot = getSlotByKey(b.slotKey);
             slot.times[id] = (slot.times[id] || 0) + sessionTime;
@@ -1418,7 +1610,7 @@
             slot.bonuses[id] = (slot.bonuses[id] || 0) + (b.bonus || 0);
 
             if (b.extended && slot.needsReplacement && !slot.replacementDone) {
-                slot.replacementDone = true; b.bonus -= CONFIG.EXTENSION_PENALTY; haptic('error');
+                slot.replacementDone = true; b.bonus -= CONFIG.EXTENSION_PENALTY;
                 showToast(`🚨 Штраф -1500 ₽! Сменщик не вышел.`, 'error');
             }
 
@@ -1435,10 +1627,34 @@
             saveStore();
 
             const win = (slot.awarded === String(id)) ? CONFIG.BASE_PAY : 0;
-            haptic('success');
-            showToast(`🔴 ${b.name} завершил смену<br>6%: ${Math.round((slot.revenues[id]||0)*CONFIG.SALARY_PCT)} ₽${win ? '<br>🏆 +1500 ₽ за слот' : ''}`);
+            showToast(`🔴 ${b.name} завершил смену<br>6%: ${Math.round((slot.revenues[id]||0)*CONFIG.SALARY_PCT)} ₽${win ? '<br>🏆 +1500 ₽ за слот' : ''}<br><button onclick="undoLastShift()" style="background:none;border:none;color:var(--accent);font-weight:bold;margin-top:10px;text-decoration:underline;">Отменить (Undo)</button>`);
             renderBarista(); renderAdmin(); updateCheckoutState();
         }
+
+        window.undoLastShift = function() {
+            if (!lastShiftAction || lastShiftAction.type !== 'end') return;
+            const id = lastShiftAction.id;
+            const b = store.baristas[id];
+            if (!b) return;
+            
+            b.active = lastShiftAction.data.active;
+            b.since = lastShiftAction.data.since;
+            b.slot = lastShiftAction.data.slot;
+            b.slotKey = lastShiftAction.data.slotKey;
+            b.revenue = lastShiftAction.data.revenue;
+            b.bonus = lastShiftAction.data.bonus;
+            b.totalShifts = Math.max(0, (b.totalShifts || 1) - 1);
+            
+            const slot = getSlotByKey(b.slotKey);
+            slot.times[id] = Math.max(0, (slot.times[id] || 0) - (Date.now() - b.since)); 
+            slot.revenues[id] = Math.max(0, (slot.revenues[id] || 0) - (b.revenue || 0));
+            slot.bonuses[id] = Math.max(0, (slot.bonuses[id] || 0) - (b.bonus || 0));
+            
+            saveStore();
+            showToast(`Смена ${b.name} восстановлена!`);
+            lastShiftAction = null;
+            renderBarista(); renderAdmin();
+        };
 
         function renderBarista() {
             const list = $('barista-list');
@@ -1449,6 +1665,8 @@
                 const { b, timeMs, rev, pct, slotAwarded, isLeader } = data;
                 const online = b.active;
                 const slotLabel = online ? (b.slot === 'night' ? '🌙 Ночная' : '☀️ Дневная') : '';
+                
+                const isWarning = online && (Date.now() - b.since) > (11.5 * 3600 * 1000);
 
                 return `
                     <div class="barista-card ${online ? 'online' : ''} view-anim">
@@ -1461,8 +1679,9 @@
                                 <span class="status-dot"></span>${online ? 'На смене' : 'Не на смене'}
                             </span>
                         </div>
-                        ${online ? `<div class="text-center text-accent text-bold text-sm">${slotLabel}${isLeader && !slotAwarded ? ' · 🏆 Лидер' : ''}${slotAwarded === k ? ' · 🏆 +1500' : ''}${b.extended ? ' · ⏳ Ждет сменщика' : ''}</div>` : ''}
-                        <div class="timer-display" id="barista-timer-${k}">${formatTime(timeMs)}</div>
+                        ${online ? `<div class="text-center text-accent text-bold text-sm" style="margin-bottom:2px;">${slotLabel}${isLeader && !slotAwarded ? ' · 🏆 Лидер' : ''}${slotAwarded === k ? ' · 🏆 +1500' : ''}${b.extended ? ' · ⏳ Ждет сменщика' : ''}</div>` : ''}
+                        <div class="timer-display ${isWarning ? 'timer-warning' : ''}" id="barista-timer-${k}">${formatTime(timeMs)}</div>
+                        ${isWarning ? `<div class="text-center text-xs text-danger" style="margin-bottom:5px; font-weight:700;">⚠️ Скоро конец смены</div>` : ''}
                         <div class="stats-row">
                             <div class="stat-col"><span class="stat-label">Смен</span><b class="text-main">${b.totalShifts||0}</b></div>
                             <div class="stat-col"><span class="stat-label">Выручка</span><b id="barista-rev-${k}">${rev}</b></div>
@@ -1470,11 +1689,11 @@
                         </div>
                         <div class="barista-actions">
                             ${online 
-                                ? `<button class="btn-end btn-liquid" onclick="endShift(${id})">Завершить</button>
-                                   ${!b.extended ? `<button class="btn-extend btn-liquid" onclick="openExtendModal(${id})">⏱ Продлить</button>` : ''}
-                                   <button class="btn-salary btn-liquid" onclick="openSalary(${id})">💰</button>`
-                                : `<button class="btn-start btn-liquid" onclick="startShiftClick(${id})">Начать смену</button>
-                                   <button class="btn-salary btn-liquid" onclick="openSalary(${id})">💰</button>`}
+                                ? `<button class="btn-glass-red btn-spring" onclick="endShift(${id})">Завершить</button>
+                                   ${!b.extended ? `<button class="btn-glass-gold btn-spring" onclick="openExtendModal(${id})">⏱ Продлить</button>` : ''}
+                                   <button class="btn-glass-orange btn-spring" onclick="openSalary(${id})">Информация</button>`
+                                : `<button class="btn-glass-green btn-spring" onclick="startShiftClick(${id})">Начать смену</button>
+                                   <button class="btn-glass-orange btn-spring" onclick="openSalary(${id})">Информация</button>`}
                         </div>
                     </div>`;
             }).join('');
@@ -1495,7 +1714,10 @@
                         <div class="admin-card-head">
                             <h3>
                                 ${b.name || `Бариста ${id}`}
-                                <button class="edit-shift-btn" onclick="openEditShift(${id})">✏️ История</button>
+                                <div class="admin-actions">
+                                    <button class="edit-shift-btn btn-spring" onclick="openEditShift(${id})">✏️ История</button>
+                                    <button class="edit-shift-btn btn-spring" onclick="copyShiftReport(${id})" style="color:var(--success); border-color:var(--success);">📋 Копировать</button>
+                                </div>
                             </h3>
                             <span class="status-badge ${online ? 'status-online' : 'status-offline'}">
                                 <span class="status-dot"></span>${online ? slotInfo : 'Отдыхает'}
@@ -1512,16 +1734,59 @@
                     </div>`;
             }).join('');
 
+            updateAdminStats();
+        }
+
+        function updateAdminStats() {
             let totalShifts = 0, totalRev = 0;
+            const now = new Date();
+            const todayStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+            const weekAgo = new Date(now.getTime() - 7 * 24 * 3600 * 1000);
+            const monthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
+
             for (const k in store.baristas) totalShifts += store.baristas[k].totalShifts || 0;
-            for (const key in store.slots) for (const bid in store.slots[key].revenues) totalRev += store.slots[key].revenues[bid] || 0;
-            for (const k in store.baristas) if (store.baristas[k].active) totalRev += store.baristas[k].revenue || 0;
+            
+            for (const key in store.slots) {
+                const slot = store.slots[key];
+                const [dateStr] = key.split('_');
+                const slotDate = new Date(dateStr);
+                
+                let include = false;
+                if (currentStatsFilter === 'today') include = dateStr === todayStr;
+                else if (currentStatsFilter === 'week') include = slotDate >= weekAgo;
+                else if (currentStatsFilter === 'month') include = slotDate >= monthAgo;
+
+                if (include) {
+                    for (const bid in slot.revenues) totalRev += slot.revenues[bid] || 0;
+                }
+            }
+            
+            if (currentStatsFilter === 'today') {
+                for (const k in store.baristas) if (store.baristas[k].active) totalRev += store.baristas[k].revenue || 0;
+            }
             
             $('total-shifts-count').innerText = totalShifts;
             $('total-revenue-all').innerText = totalRev + ' ₽';
         }
 
-        // --- РЕДАКТИРОВАНИЕ СМЕН ---
+        window.filterStats = function(type, btn) {
+            currentStatsFilter = type;
+            document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateAdminStats();
+        };
+
+        window.copyShiftReport = function(id) {
+            const b = store.baristas[id];
+            if (!b) return;
+            const time = getBaristaLiveTime(id);
+            const rev = getBaristaLiveRevenue(id);
+            const pct = Math.round(rev * 0.06);
+            const bonus = getBaristaLiveBonus(id);
+            const text = `Смена: ${b.name} (${b.active ? 'Активна' : 'Завершена'})\nВремя: ${formatTime(time)}\nВыручка: ${rev}₽\n6%: ${pct}₽\nНадбавки: ${bonus}₽`;
+            navigator.clipboard.writeText(text).then(() => showToast('Отчет скопирован!'));
+        };
+
         function openEditShift(id) {
             currentEditBarista = id;
             $('edit-shift-title').innerText = `✏️ История: ${store.baristas[id]?.name || id}`;
@@ -1536,7 +1801,7 @@
                         <div class="salary-line"><span class="lbl">Начало</span><span class="val">${new Date(b.since).toLocaleString('ru-RU')}</span></div>
                         <div class="salary-line"><span class="lbl">Слот</span><span class="val">${b.slot === 'night' ? 'Ночная' : 'Дневная'}</span></div>
                         <div class="salary-line"><span class="lbl">Выручка</span><span class="val">${b.revenue} ₽</span></div>
-                        <button class="action-btn btn-danger mt-10 p-10 text-xs" onclick="cancelActiveShift(${id})">Отменить смену (Сброс)</button>
+                        <button class="action-btn btn-danger mt-10 p-10 text-xs btn-spring" onclick="cancelActiveShift(${id})">Отменить смену (Сброс)</button>
                     </div>
                 </div>`;
             }
@@ -1557,7 +1822,7 @@
                     html += `<div class="salary-history-item">
                         <div class="sh-head">
                             <span class="sh-date">${dateStr.split('-').reverse().join('.')} (${type === 'night' ? 'Ночь' : 'День'})</span>
-                            <button class="edit-shift-btn" style="color:var(--danger);border-color:var(--danger);" onclick="deleteHistoryShift(${id}, '${key}')">🗑 Удалить</button>
+                            <button class="edit-shift-btn btn-spring" style="color:var(--danger);border-color:var(--danger);" onclick="deleteHistoryShift(${id}, '${key}')">🗑 Удалить</button>
                         </div>
                         <div class="text-xs text-sec mb-5" style="line-height:1.5">
                             Время: ${formatTime(time)} · Выручка: ${rev} ₽<br>
@@ -1664,7 +1929,7 @@
 
         function openSalary(id) { 
             currentSalaryBarista = id; 
-            $('salary-title').innerText = `💰 ${store.baristas[id]?.name || id}`; 
+            $('salary-title').innerText = `${store.baristas[id]?.name || id}`; 
             renderSalary(id); openModal('salary-modal'); 
         }
         
@@ -1730,7 +1995,7 @@
                     <div class="card-content">
                         <div class="card-title">${safeText(item.name)}</div>
                         <div class="card-price">${item.price} ₽</div>
-                        <button class="add-btn btn-liquid" data-price="${item.price}" data-name="${safeText(item.name)}">+</button>
+                        <button class="add-btn btn-liquid btn-spring" data-price="${item.price}" data-name="${safeText(item.name)}">+</button>
                     </div>
                 </div>`).join('');
             
@@ -1738,7 +2003,6 @@
                 const btn = e.target.closest('.add-btn');
                 if (btn) {
                     const rect = btn.getBoundingClientRect();
-                    haptic('light');
                     flyToCart(rect);
                     addToCart(Number(btn.dataset.price), btn.dataset.name);
                 }
@@ -1767,7 +2031,7 @@
                 { transform: `translate(${deltaX * 0.5}px, ${deltaY - 100}px) scale(0.8)`, opacity: 0.8, offset: 0.5 },
                 { transform: `translate(${deltaX}px, ${deltaY}px) scale(0.2)`, opacity: 0 }
             ], {
-                duration: 600, easing: 'cubic-bezier(0.25, 1, 0.5, 1)'
+                duration: 500, easing: 'cubic-bezier(0.25, 1, 0.5, 1)'
             }).onfinish = () => dot.remove();
         }
 
@@ -1775,6 +2039,7 @@
             $('category-view').style.display = 'none'; 
             $('main-view').style.display = 'flex'; 
             document.querySelectorAll('.nav-item').forEach((el,idx)=>el.classList.toggle('active', idx===0));
+            updateNavIndicator(0);
             $('main-view').classList.add('view-anim-right');
             setTimeout(() => $('main-view').classList.remove('view-anim-right'), 500);
         }
@@ -1783,341 +2048,203 @@
             cartSum += price; 
             cartItems.push({ name, price }); 
             updateCartUI();
-            if (isSoundEnabled) playSound();
         }
 
         function updateCartUI() {
             const count = cartItems.length;
-            $('cart-count').innerText = count === 0 ? 'Ваш заказ' : `${count} товар(а)`;
+            $('cart-count').innerText = count > 0 ? `Ваш заказ` : 'Ваш заказ';
             $('cart-total').innerText = cartSum + ' ₽';
-            $('cart-bar').classList.add('show');
-            updateCheckoutState();
-        }
-
-        window.deleteCartItem = function(index) {
-            haptic('medium');
-            const itemEl = document.querySelector(`.cart-item[data-index="${index}"]`);
-            if(itemEl) {
-                itemEl.style.height = '0';
-                itemEl.style.padding = '0';
-                itemEl.style.border = 'none';
-                itemEl.style.opacity = '0';
+            
+            const badge = $('cart-badge');
+            if (count > 0) {
+                badge.innerText = count;
+                badge.style.display = 'flex';
+                $('cart-bar').classList.add('show');
+                $('checkout-btn').disabled = false;
+            } else {
+                badge.style.display = 'none';
+                $('cart-bar').classList.remove('show');
+                $('checkout-btn').disabled = true;
             }
-            
-            cartSum -= cartItems[index].price;
-            cartItems.splice(index, 1);
-            
-            setTimeout(() => {
-                updateCartUI();
-                if (cartItems.length === 0) closeModal('cart-modal');
-                else renderCartList();
-            }, 200);
-        };
-
-        function renderCartList() {
-            const list = $('cart-list-view');
-            list.innerHTML = cartItems.map((item, index) => `
-                <div class="cart-item" data-index="${index}">
-                    <div>
-                        <div class="cart-item-name">${item.name}</div>
-                        <div class="cart-item-price">${item.price} ₽</div>
-                    </div>
-                    <button class="cart-delete-btn" onclick="deleteCartItem(${index})" aria-label="Удалить">✕</button>
-                </div>
-            `).join('');
         }
 
         function openCartModal() {
             if (cartItems.length === 0) return;
-            renderCartList();
+            const list = $('cart-list-view');
+            list.innerHTML = cartItems.map((item, idx) => `
+                <div class="cart-item">
+                    <div>
+                        <div class="cart-item-name">${safeText(item.name)}</div>
+                        <div class="cart-item-price">${item.price} ₽</div>
+                    </div>
+                    <button class="cart-delete-btn btn-spring" onclick="removeFromCart(${idx})">✕</button>
+                </div>
+            `).join('');
             openModal('cart-modal');
         }
 
-        $('cash-received')?.addEventListener('input', (e) => {
-            const received = Number(e.target.value) || 0;
-            const total = Math.round(cartSum);
-            const change = received - total;
-            
-            if (received === 0) {
-                $('change-result').innerText = '0 ₽';
-                $('change-result').style.color = 'var(--success)';
-            } else if (change >= 0) {
-                $('change-result').innerText = change + ' ₽';
-                $('change-result').style.color = 'var(--success)';
-            } else {
-                $('change-result').innerText = 'Недостаточно';
-                $('change-result').style.color = 'var(--danger)';
-            }
-        });
+        function removeFromCart(idx) {
+            const item = cartItems[idx];
+            cartSum -= item.price;
+            cartItems.splice(idx, 1);
+            updateCartUI();
+            openCartModal(); 
+        }
 
-        window.openCashModal = function() {
-            $('cash-total-display').innerText = Math.round(cartSum) + ' ₽';
+        function openCashModal() {
+            if (cartItems.length === 0) return;
+            $('cash-total-display').innerText = cartSum + ' ₽';
             $('cash-received').value = '';
             $('change-result').innerText = '0 ₽';
-            $('change-result').style.color = 'var(--success)';
             closeModal('cart-modal');
             openModal('cash-modal');
-            setTimeout(() => $('cash-received').focus(), 100);
-        };
+            
+            $('cash-received').oninput = (e) => {
+                const received = Number(e.target.value) || 0;
+                const change = received - cartSum;
+                $('change-result').innerText = change >= 0 ? change + ' ₽' : 'Недостаточно средств';
+                $('change-result').style.color = change >= 0 ? 'var(--success)' : 'var(--danger)';
+            };
+        }
 
-        function shootConfetti() {
-            const colors = ['#f2d74e', '#e09f65', '#34c759', '#c47b3d'];
-            for (let i = 0; i < 30; i++) {
-                const conf = document.createElement('div');
-                conf.className = 'confetti';
-                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                document.body.appendChild(conf);
-
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = 20 + Math.random() * 30;
-                const tx = Math.cos(angle) * velocity * 10;
-                const ty = Math.sin(angle) * velocity * 10 + 50;
-
-                conf.animate([
-                    { transform: `translate(-50%, -50%) scale(0)`, opacity: 1 },
-                    { transform: `translate(${tx}px, ${ty}px) scale(1) rotate(${Math.random()*360}deg)`, opacity: 0 }
-                ], {
-                    duration: 800 + Math.random() * 400,
-                    easing: 'cubic-bezier(0.25, 1, 0.5, 1)'
-                }).onfinish = () => conf.remove();
+        function createConfetti() {
+            const colors = ['#c47b3d', '#34c759', '#f59e0b', '#fff'];
+            for (let i = 0; i < 40; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + 'vw';
+                piece.style.top = '-20px';
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.animationDelay = Math.random() * 0.3 + 's';
+                piece.style.animationDuration = (Math.random() * 0.5 + 0.7) + 's';
+                piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                document.body.appendChild(piece);
+                setTimeout(() => piece.remove(), 1500);
             }
         }
 
         function confirmCashPayment() {
             const received = Number($('cash-received').value) || 0;
-            if (received > 0 && received < Math.round(cartSum)) {
-                showToast('Клиент дал меньше суммы', 'error'); return;
+            if (received < cartSum) {
+                showToast('Введенная сумма меньше стоимости заказа!', 'error');
+                return;
             }
-            const id = getActiveBaristaId();
-            if (!id) { showToast('Никто не на смене', 'error'); return; }
-            
-            const amount = Math.round(cartSum);
-            store.baristas[id].revenue = (store.baristas[id].revenue || 0) + amount;
-            saveStore(); haptic('success');
-            
-            shootConfetti();
-            showToast(`💰 ${amount} ₽ зачислено ${store.baristas[id].name}`);
-            updateTimers(); renderBarista(); renderAdmin(); clearCart(); closeModal('cash-modal');
-        }
 
-        function clearCart() { 
-            cartSum = 0; cartItems = []; 
-            updateCartUI(); 
-        }
-        
-        function getActiveBaristaId() { 
-            for (const id in store.baristas) {
-                if (store.baristas[id].active) return id;
+            const activeBaristaId = Object.keys(store.baristas).find(id => store.baristas[id].active);
+            
+            if (activeBaristaId) {
+                store.baristas[activeBaristaId].revenue = (store.baristas[activeBaristaId].revenue || 0) + cartSum;
+                showToast(`Заказ оплачен! Выручка начислена: ${store.baristas[activeBaristaId].name}`);
+            } else {
+                showToast('Заказ оплачен! (Нет активного бариста, выручка не учтена)', 'error');
             }
-            return null; 
-        }
-        
-        function updateCheckoutState() { 
-            const anyOnline = Object.values(store.baristas).some(b => b.active); 
-            $('checkout-btn').disabled = !(anyOnline && cartSum > 0); 
+
+            createConfetti();
+            cartSum = 0;
+            cartItems = [];
+            updateCartUI();
+            closeModal('cash-modal');
+            
+            renderBarista();
+            if (isAuthorized()) renderAdmin();
+            saveStore();
         }
 
         function exportToCSV() {
-            let csv = '\uFEFFДата;Смена;Бариста;Время (ч);Выручка;6%;Надбавки;1500₽;Итого к выплате\n';
-            const sortedKeys = Object.keys(store.slots).sort();
-            let grandTotal = 0;
-
-            for (const key of sortedKeys) {
+            let csv = 'Дата;Слот;Бариста;Время (часы);Выручка (руб);6% (руб);Надбавки (руб);Фикс 1500 (руб);Итого (руб)\n';
+            
+            for (const key in store.slots) {
                 const slot = store.slots[key];
                 const [dateStr, type] = key.split('_');
-                const slotName = type === 'night' ? 'Ночная' : 'Дневная';
                 
-                for (const id in store.baristas) {
-                    const b = store.baristas[id];
-                    const timeMs = slot.times[id] || 0, rev = slot.revenues[id] || 0;
-                    if (timeMs === 0 && rev === 0) continue;
-                    
-                    const timeH = (timeMs / 3600000).toFixed(2).replace('.', ','); 
-                    const pct = Math.round(rev * CONFIG.SALARY_PCT);
-                    const bonus = slot.bonuses[id] || 0;
-                    const win = slot.awarded === id ? CONFIG.BASE_PAY : 0;
-                    const total = pct + bonus + win;
-                    grandTotal += total;
-                    
-                    csv += `${dateStr.split('-').reverse().join('.')};${slotName};${b.name || id};${timeH};${rev};${pct};${bonus};${win};${total}\n`;
+                for (const bid in slot.times) {
+                    if (slot.times[bid] > 0) {
+                        const bName = store.baristas[bid]?.name || `ID ${bid}`;
+                        const timeHrs = (slot.times[bid] / 3600000).toFixed(1);
+                        const rev = slot.revenues[bid] || 0;
+                        const pct = Math.round(rev * CONFIG.SALARY_PCT);
+                        const bonus = slot.bonuses[bid] || 0;
+                        const win = slot.awarded === bid ? CONFIG.BASE_PAY : 0;
+                        const total = pct + bonus + win;
+                        
+                        csv += `${dateStr};${type === 'night' ? 'Ночь' : 'День'};${bName};${timeHrs};${rev};${pct};${bonus};${win};${total}\n`;
+                    }
                 }
             }
-            csv += `;;;;;;;ИТОГО:;${grandTotal}\n`;
-
-            try {
-                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url; a.download = `DOZA_Report_${new Date().toISOString().slice(0,10)}.csv`;
-                document.body.appendChild(a); a.click(); document.body.removeChild(a);
-                setTimeout(() => URL.revokeObjectURL(url), 1000);
-                haptic('success'); showToast('✅ Отчет скачан');
-            } catch (e) { showToast('Ошибка экспорта', 'error'); }
+            
+            const blob = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `DOZA_Отчет_${new Date().toLocaleDateString('ru-RU').replace(/\./g,'-')}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Отчет скачан!');
         }
 
-        // --- СВАЙП-НАВИГАЦИЯ ---
-        let currentTab = 'menu';
-        const tabs = ['menu', 'barista', 'admin'];
-        
-        function updateView(tab, direction = 'right') {
-            // Скрываем все
+        // --- NAV INDICATOR ---
+        const navIndicator = $('nav-indicator');
+        function updateNavIndicator(idx) {
+            if (!navIndicator) return;
+            const navWidth = navIndicator.parentElement.clientWidth;
+            const pad = 8; // padding: 8px
+            const itemWidth = (navWidth - (pad * 2)) / 3;
+            
+            const offset = pad + (itemWidth * idx);
+            
+            navIndicator.style.width = itemWidth + 'px';
+            navIndicator.style.transform = `translateX(${offset - pad}px)`;
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.nav-item').forEach((el, idx) => {
+                const isActive = el.dataset.tab === tab;
+                el.classList.toggle('active', isActive);
+                if (isActive) updateNavIndicator(idx);
+            });
+
             $('main-view').style.display = 'none';
             $('category-view').style.display = 'none';
             $('barista-view').style.display = 'none';
             $('admin-view').style.display = 'none';
-            
-            // Показываем нужный
+
             if (tab === 'menu') {
                 $('main-view').style.display = 'flex';
-                $('main-view').classList.add(direction === 'right' ? 'view-anim-right' : 'view-anim-left');
-                setTimeout(() => $('main-view').classList.remove('view-anim-right', 'view-anim-left'), 500);
+                $('main-view').classList.add('view-anim-left');
+                setTimeout(() => $('main-view').classList.remove('view-anim-left'), 500);
+                stopTimerLoop();
             } else if (tab === 'barista') {
                 $('barista-view').style.display = 'block';
                 renderBarista();
-                $('barista-view').classList.add(direction === 'right' ? 'view-anim-right' : 'view-anim-left');
-                setTimeout(() => $('barista-view').classList.remove('view-anim-right', 'view-anim-left'), 500);
+                startTimerLoop();
+                $('barista-view').classList.add('view-anim-left');
+                setTimeout(() => $('barista-view').classList.remove('view-anim-left'), 500);
             } else if (tab === 'admin') {
                 $('admin-view').style.display = 'block';
-                if (isAuthorized()) { showAdminDashboard(); startTimerLoop(); } 
-                else { $('admin-auth').style.display = 'block'; $('admin-dashboard').style.display = 'none'; stopTimerLoop(); }
-                $('admin-view').classList.add(direction === 'right' ? 'view-anim-right' : 'view-anim-left');
-                setTimeout(() => $('admin-view').classList.remove('view-anim-right', 'view-anim-left'), 500);
+                if (isAuthorized()) showAdminDashboard();
+                else { $('admin-auth').style.display = 'block'; $('admin-dashboard').style.display = 'none'; }
+                startTimerLoop();
+                $('admin-view').classList.add('view-anim-left');
+                setTimeout(() => $('admin-view').classList.remove('view-anim-left'), 500);
             }
-            
-            // Обновляем нижнюю навигацию
-            document.querySelectorAll('.nav-item').forEach((el) => {
-                el.classList.toggle('active', el.dataset.tab === tab);
-            });
-            
-            currentTab = tab;
-            updateCheckoutState();
+            window.scrollTo(0,0);
+            updateNavIndicator(tab === 'menu' ? 0 : (tab === 'barista' ? 1 : 2));
         }
 
-        // Обработчики кнопок нижней навигации
-        document.querySelectorAll('.nav-item').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tab = btn.dataset.tab;
-                if (tab === currentTab) return;
-                const dir = tabs.indexOf(tab) > tabs.indexOf(currentTab) ? 'right' : 'left';
-                updateView(tab, dir);
-            });
+        document.querySelectorAll('.nav-item').forEach((btn) => {
+            btn.addEventListener('click', () => switchTab(btn.dataset.tab));
         });
 
-        // Обработчики свайпов
-        let touchStartX = 0;
-        let touchStartY = 0;
-        let isSwiping = false;
-        const container = $('view-container');
-
-        container.addEventListener('touchstart', e => {
-            if (e.touches.length > 1) return;
-            // Игнорируем свайп на интерактивных элементах
-            if (e.target.closest('.card, button, input, .big-cat-btn, .modal-overlay')) return;
-            
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-            isSwiping = true;
-        }, { passive: true });
-
-        container.addEventListener('touchmove', e => {
-            if (!isSwiping) return;
-            const dx = e.touches[0].clientX - touchStartX;
-            const dy = e.touches[0].clientY - touchStartY;
-            // Если вертикальное движение больше — отменяем свайп
-            if (Math.abs(dy) > Math.abs(dx)) {
-                isSwiping = false;
-            }
-        }, { passive: true });
-
-        container.addEventListener('touchend', e => {
-            if (!isSwiping) return;
-            isSwiping = false;
-            
-            const dx = e.changedTouches[0].clientX - touchStartX;
-            const dy = e.changedTouches[0].clientY - touchStartY;
-            
-            // Свайп должен быть достаточно длинным и горизонтальным
-            if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-                const currentIndex = tabs.indexOf(currentTab);
-                if (dx < 0 && currentIndex < tabs.length - 1) {
-                    // Свайп влево — следующая вкладка
-                    updateView(tabs[currentIndex + 1], 'right');
-                } else if (dx > 0 && currentIndex > 0) {
-                    // Свайп вправо — предыдущая вкладка
-                    updateView(tabs[currentIndex - 1], 'left');
-                }
-            }
-        }, { passive: true });
-
-        // --- DRAG-TO-CLOSE ДЛЯ МОДАЛОК (кроме digital-menu-modal) ---
-        document.querySelectorAll('.modal-box').forEach(box => {
-            const overlay = box.closest('.modal-overlay');
-            if (!overlay || overlay.id === 'digital-menu-modal') return;
-
-            let startY = 0, currentY = 0, isDragging = false;
-
-            box.addEventListener('touchstart', e => {
-                if (box.scrollTop > 0) return;
-                if (e.target.closest('.cart-list') || e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;
-                const handle = box.querySelector('.modal-handle');
-                const rect = handle ? handle.getBoundingClientRect() : box.getBoundingClientRect();
-                if (e.touches[0].clientY > rect.bottom + 20) return;
-                
-                startY = e.touches[0].clientY;
-                isDragging = true;
-                box.style.transition = 'none';
-                box.classList.add('dragging');
-            }, {passive: true});
-
-            box.addEventListener('touchmove', e => {
-                if (!isDragging) return;
-                currentY = e.touches[0].clientY - startY;
-                if (currentY > 0) {
-                    if (e.cancelable) e.preventDefault();
-                    box.style.transform = `translateY(${currentY}px)`;
-                    box.style.opacity = 1 - (currentY / 300);
-                }
-            }, {passive: false});
-
-            box.addEventListener('touchend', () => {
-                if (!isDragging) return;
-                isDragging = false;
-                box.style.transition = 'transform 0.3s var(--ease-apple), opacity 0.3s var(--ease-apple)';
-                
-                if (currentY > 100) {
-                    if (overlay) closeModal(overlay.id);
-                    box.style.transform = '';
-                    box.style.opacity = '';
-                } else {
-                    box.style.transform = '';
-                    box.style.opacity = '';
-                }
-                setTimeout(() => box.classList.remove('dragging'), 300);
-                currentY = 0;
-            });
-        });
-
-        $('admin-pass').addEventListener('keydown', e => { if (e.key === 'Enter') loginAdmin(); });
-
-        setInterval(() => { 
-            if (!isAuthorized() && $('admin-dashboard').style.display === 'block') logoutAdmin(); 
-        }, 60 * 1000);
-
-        initSettings(); 
-        renderBarista(); 
-        updateCheckoutState();
+        // Инициализация при загрузке
+        initSettings();
+        updateCartUI();
+        setTimeout(() => updateNavIndicator(0), 100);
         
-        // Live-обновление меню (для разработчика)
-        setInterval(() => {
-            const currentHash = JSON.stringify(digitalMenuData);
-            if (window._lastMenuHash && window._lastMenuHash !== currentHash) {
-                if ($('digital-menu-modal').classList.contains('active')) {
-                    renderDmMenu(digitalMenuData);
-                    renderDmChips(digitalMenuData);
-                }
-            }
-            window._lastMenuHash = currentHash;
-        }, 5000);
+        window.addEventListener('resize', () => {
+            const activeTab = document.querySelector('.nav-item.active').dataset.tab;
+            updateNavIndicator(activeTab === 'menu' ? 0 : (activeTab === 'barista' ? 1 : 2));
+        });
+
     </script>
 </body>
-    </html>
+</html>
